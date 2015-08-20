@@ -1,0 +1,19 @@
+void BSP_PB_Init(Button_TypeDef Button)
+{
+  GPIO_InitTypeDef gpioinitstruct = {0};
+
+  /* Enable the BUTTON Clock */
+  BUTTONx_GPIO_CLK_ENABLE(Button);
+
+  if (ButtonMode == BUTTON_MODE_GPIO)
+  {
+    /* Configure Button pin as input */
+    gpioinitstruct.Pin    = BUTTON_PIN[Button];
+    gpioinitstruct.Mode   = GPIO_MODE_INPUT;
+    gpioinitstruct.Pull   = GPIO_NOPULL;
+    gpioinitstruct.Speed  = GPIO_SPEED_MEDIUM;
+  
+    HAL_GPIO_Init(BUTTON_PORT[Button], &gpioinitstruct);
+  }
+ 
+ }
