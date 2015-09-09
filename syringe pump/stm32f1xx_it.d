@@ -29,6 +29,8 @@ stm32f1xx_it.o: .\CMSIS\inc\stm32f1xx_hal_flash.h
 stm32f1xx_it.o: .\CMSIS\inc\stm32f1xx_hal_flash_ex.h
 stm32f1xx_it.o: .\CMSIS\inc\stm32f1xx_hal_pwr.h
 stm32f1xx_it.o: .\CMSIS\inc\stm32f1xx_hal_spi.h
+stm32f1xx_it.o: .\CMSIS\inc\stm32f1xx_hal_tim.h
+stm32f1xx_it.o: .\CMSIS\inc\stm32f1xx_hal_tim_ex.h
 stm32f1xx_it.o: .\inc\glcdfont.h
 stm32f1xx_it.o: .\inc\Switches.h
 stm32f1xx_it.o: .\inc\syringepump.h

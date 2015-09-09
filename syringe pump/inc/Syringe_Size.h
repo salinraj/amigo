@@ -1,5 +1,5 @@
 #include "stm32f1xx_hal.h"
-#include "stm32f1xx_nucleo.h"
+//#include "stm32f1xx_nucleo.h"
 
 /* Exported types ------------------------------------------------------------*/
 /* Exported constants --------------------------------------------------------*/
@@ -63,3 +63,24 @@ static void ADC_Config(void);
 static void TIM_Config(void);
 #endif /* ADC_TRIGGER_FROM_TIMER */
 
+void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef *AdcHandle);
+
+void HAL_ADC_ConvHalfCpltCallback(ADC_HandleTypeDef* hadc);
+
+  void HAL_ADC_LevelOutOfWindowCallback(ADC_HandleTypeDef* hadc);
+	void HAL_ADC_ErrorCallback(ADC_HandleTypeDef *hadc);
+	static void Error_Handler(void);
+
+
+#ifdef  USE_FULL_ASSERT
+	/**
+  * @brief  Reports the name of the source file and the source line number
+  *         where the assert_param error has occurred.
+  * @param  file: pointer to the source file name
+  * @param  line: assert_param error line source number
+  * @retval None
+  */
+void assert_failed(uint8_t *file, uint32_t line);
+
+
+#endif

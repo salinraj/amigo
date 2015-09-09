@@ -471,6 +471,21 @@
               <FileType>1</FileType>
               <FilePath>.\CMSIS\src\stm32f1xx_hal_wwdg.c</FilePath>
             </File>
+            <File>
+              <FileName>stm32f1xx_hal_dma.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\CMSIS\src\stm32f1xx_hal_dma.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f1xx_hal_adc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\CMSIS\src\stm32f1xx_hal_adc.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f1xx_hal_adc_ex.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\CMSIS\src\stm32f1xx_hal_adc_ex.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -505,6 +520,11 @@
               <FileName>Syringe_Size.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\src\Syringe_Size.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f1xx_hal_msp.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\stm32f1xx_hal_msp.c</FilePath>
             </File>
           </Files>
         </Group>

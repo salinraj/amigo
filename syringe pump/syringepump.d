@@ -29,6 +29,8 @@ syringepump.o: .\CMSIS\inc\stm32f1xx_hal_flash.h
 syringepump.o: .\CMSIS\inc\stm32f1xx_hal_flash_ex.h
 syringepump.o: .\CMSIS\inc\stm32f1xx_hal_pwr.h
 syringepump.o: .\CMSIS\inc\stm32f1xx_hal_spi.h
+syringepump.o: .\CMSIS\inc\stm32f1xx_hal_tim.h
+syringepump.o: .\CMSIS\inc\stm32f1xx_hal_tim_ex.h
 syringepump.o: .\inc\glcdfont.h
 syringepump.o: .\inc\Switches.h
 syringepump.o: .\inc\stm32f1xx_PWM.h

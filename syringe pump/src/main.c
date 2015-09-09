@@ -92,8 +92,10 @@ LCD_SetRotation(1);
 	//LCD_Delay(4000);
 	//LCD_Delay(8000);
 	PWM_Freq(200);
-	
-	
+	Syringe_Size();
+
+
+
 	while(1)
 	{
 if(!Read_OK_Button())

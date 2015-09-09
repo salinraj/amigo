@@ -24,3 +24,5 @@ system_stm32f1xx.o: .\CMSIS\inc\stm32f1xx_hal_flash.h
 system_stm32f1xx.o: .\CMSIS\inc\stm32f1xx_hal_flash_ex.h
 system_stm32f1xx.o: .\CMSIS\inc\stm32f1xx_hal_pwr.h
 system_stm32f1xx.o: .\CMSIS\inc\stm32f1xx_hal_spi.h
+system_stm32f1xx.o: .\CMSIS\inc\stm32f1xx_hal_tim.h
+system_stm32f1xx.o: .\CMSIS\inc\stm32f1xx_hal_tim_ex.h

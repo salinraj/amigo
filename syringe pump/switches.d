@@ -28,3 +28,5 @@ switches.o: .\CMSIS\inc\stm32f1xx_hal_flash.h
 switches.o: .\CMSIS\inc\stm32f1xx_hal_flash_ex.h
 switches.o: .\CMSIS\inc\stm32f1xx_hal_pwr.h
 switches.o: .\CMSIS\inc\stm32f1xx_hal_spi.h
+switches.o: .\CMSIS\inc\stm32f1xx_hal_tim.h
+switches.o: .\CMSIS\inc\stm32f1xx_hal_tim_ex.h

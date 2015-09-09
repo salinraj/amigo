@@ -81,7 +81,7 @@
 #define Position21		101
 #define Position22		106
 #define Position23		111
-#define Position22		116
+/*#define Position22		116
 #define Position21		121
 #define Position22		126
 #define Position21		131
@@ -102,7 +102,7 @@
 #define Position22		206
 #define Position21		211
 #define Position22		216
-
+*/
 
 	 
 	 

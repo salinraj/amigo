@@ -1,6 +1,9 @@
 
 /* Includes ------------------------------------------------------------------*/
-#include "Syringe_Pump.h"
+#include "Syringe_Size.h"
+#include "syringepump.h"
+#include "stm32f1xx_hal_tim.h"
+
 
 /** @addtogroup STM32F1xx_HAL_Examples
   * @{
@@ -56,7 +59,7 @@ __IO uint8_t    ubUserButtonClickEvent = RESET;  /* Event detection: Set after U
 
 
 
-int Syringe_Size(void)
+void Syringe_Size(void)
 {
  ADC_Config();
 	
@@ -81,7 +84,23 @@ int Syringe_Size(void)
     Error_Handler();
   }
 #endif /* ADC_TRIGGER_FROM_TIMER */
+  /* Note: This example, on some other STM32 boards, is performing            */
+  /*       DAC signal generation here.                                        */
+  /*       On STM32F103RB-Nucleo, the device has no DAC available,            */
+  /*       therefore analog signal must be supplied externally.               */
 
+  /*## Start ADC conversions #################################################*/
+  
+  /* Start ADC conversion on regular group with transfer by DMA */
+  if (HAL_ADC_Start_DMA(&AdcHandle,
+                        (uint32_t *)aADCxConvertedValues,
+                        ADCCONVERTEDVALUES_BUFFER_SIZE
+                       ) != HAL_OK)
+  {
+    /* Start Error */
+    Error_Handler();
+  }
+ 
 
 
 
@@ -226,3 +245,131 @@ static void TIM_Config(void)
   
 }
 #endif /* ADC_TRIGGER_FROM_TIMER */
+
+
+/* Note: This example, on some other STM32 boards, is performing              */
+/*       DAC configuration here.                                              */
+/*       On STM32F103RB-Nucleo, the device has no DAC available,              */
+/*       therefore analog signal must be supplied externally.                 */
+
+/**
+  * @brief EXTI line detection callbacks
+  * @param GPIO_Pin: Specifies the pins connected EXTI line
+  * @retval None
+  */
+
+// void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
+// {
+//   if (GPIO_Pin == USER_BUTTON_PIN)
+//   {
+//     /* Set variable to report push button event to main program */
+//     ubUserButtonClickEvent = SET;
+//   
+//     /* Manage ubUserButtonClickCount to increment it circularly from 0 to     */
+//     /* maximum value defined                                                  */
+//     if (ubUserButtonClickCount < USERBUTTON_CLICK_COUNT_MAX)
+//     {
+//       ubUserButtonClickCount++;
+//     }      
+//     else
+//     {
+//       ubUserButtonClickCount=0;
+//     }
+//     
+//   }
+// }
+
+/**
+  * @brief  Conversion complete callback in non blocking mode
+  * @param  AdcHandle : AdcHandle handle
+  * @note   This example shows a simple way to report end of conversion
+  *         and get conversion result. You can add your own implementation.
+  * @retval None
+  */
+void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef *AdcHandle)
+{
+
+}
+
+/**
+  * @brief  Conversion DMA half-transfer callback in non blocking mode 
+  * @param  hadc: ADC handle
+  * @retval None
+  */
+void HAL_ADC_ConvHalfCpltCallback(ADC_HandleTypeDef* hadc)
+{
+
+}
+
+/**
+  * @brief  Analog watchdog callback in non blocking mode. 
+  * @param  hadc: ADC handle
+  * @retval None
+  */
+  void HAL_ADC_LevelOutOfWindowCallback(ADC_HandleTypeDef* hadc)
+{
+  /* Set variable to report analog watchdog out of window status to main      */
+  /* program.                                                                 */
+  ubAnalogWatchdogStatus = SET;
+}
+
+/**
+  * @brief  ADC error callback in non blocking mode
+  *        (ADC conversion with interruption or transfer by DMA)
+  * @param  hadc: ADC handle
+  * @retval None
+  */
+void HAL_ADC_ErrorCallback(ADC_HandleTypeDef *hadc)
+{
+  /* In case of ADC error, call main error handler */
+  Error_Handler();
+}
+
+/**
+  * @brief  This function is executed in case of error occurrence.
+  * @param  None
+  * @retval None
+  */
+static void Error_Handler(void)
+{
+  /* User may add here some code to deal with a potential error */
+  
+  /* In case of error, LED2 is toggling at a frequency of 1Hz */
+  while(1)
+  {
+    /* Toggle LED2 */
+//    BSP_LED_Toggle(LED2);
+    HAL_Delay(500);
+  }
+}
+
+#ifdef  USE_FULL_ASSERT
+
+/**
+  * @brief  Reports the name of the source file and the source line number
+  *         where the assert_param error has occurred.
+  * @param  file: pointer to the source file name
+  * @param  line: assert_param error line source number
+  * @retval None
+  */
+void assert_failed(uint8_t *file, uint32_t line)
+{
+  /* User can add his own implementation to report the file name and line number,
+     ex: printf("Wrong parameters value: file %s on line %d\r\n", file, line) */
+
+  /* Infinite loop */
+  while (1)
+  {
+  }
+}
+
+#endif
+
+/**
+  * @}
+  */
+
+/**
+  * @}
+  */
+
