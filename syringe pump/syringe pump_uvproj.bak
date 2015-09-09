@@ -496,6 +496,11 @@
               <FileType>1</FileType>
               <FilePath>.\src\syringepump.c</FilePath>
             </File>
+            <File>
+              <FileName>stm32f1xx_PWM.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\stm32f1xx_PWM.c</FilePath>
+            </File>
           </Files>
         </Group>
       </Groups>

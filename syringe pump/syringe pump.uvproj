@@ -501,6 +501,11 @@
               <FileType>1</FileType>
               <FilePath>.\src\stm32f1xx_PWM.c</FilePath>
             </File>
+            <File>
+              <FileName>Syringe_Size.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\Syringe_Size.c</FilePath>
+            </File>
           </Files>
         </Group>
       </Groups>
