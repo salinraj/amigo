@@ -11,7 +11,10 @@
 /*    and first conversion is trigger by software trigger.                    */
 #define ADC_TRIGGER_FROM_TIMER
 
+/* Variable containing ADC conversions results */
+#define ADCCONVERTEDVALUES_BUFFER_SIZE ((uint32_t) 256)     /* Size of array containing ADC converted values */
 
+//__IO uint16_t   aADCxConvertedValues[ADCCONVERTEDVALUES_BUFFER_SIZE];
 
 /* User can use this section to tailor ADCx instance under use and associated
    resources */

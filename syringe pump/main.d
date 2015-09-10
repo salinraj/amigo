@@ -35,3 +35,4 @@ main.o: .\inc\glcdfont.h
 main.o: .\inc\Switches.h
 main.o: .\inc\syringepump.h
 main.o: .\inc\stm32f1xx_PWM.h
+main.o: .\inc\Syringe_Size.h
