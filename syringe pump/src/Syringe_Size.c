@@ -18,7 +18,7 @@
 #define RANGE_12BITS                   ((uint32_t) 4095)    /* Max value with a full range of 12 bits */
 #define USERBUTTON_CLICK_COUNT_MAX     ((uint32_t)    4)    /* Maximum value of variable "UserButtonClickCount" */
 
-#define ADCCONVERTEDVALUES_BUFFER_SIZE ((uint32_t) 256)     /* Size of array containing ADC converted values */
+//#define ADCCONVERTEDVALUES_BUFFER_SIZE ((uint32_t) 256)     /* Size of array containing ADC converted values */
 
 #if defined(ADC_TRIGGER_FROM_TIMER)
 #define TIMER_FREQUENCY                ((uint32_t) 1000)    /* Timer frequency (unit: Hz). With a timer 16 bits and time base freq min 1Hz, range is min=1Hz, max=32kHz. */
@@ -42,7 +42,7 @@ TIM_HandleTypeDef    TimHandle;
 /*       therefore analog signal must be supplied externally.                 */
 
 /* Variable containing ADC conversions results */
-__IO uint16_t   aADCxConvertedValues[ADCCONVERTEDVALUES_BUFFER_SIZE];
+volatile __IO uint16_t   aADCxConvertedValues[ADCCONVERTEDVALUES_BUFFER_SIZE];
 
 /* Variable to report ADC analog watchdog status:   */
 /*   RESET <=> voltage into AWD window   */

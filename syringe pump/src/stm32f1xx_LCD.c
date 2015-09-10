@@ -108,7 +108,7 @@ void delay(unsigned int t)
 
 void st7783_Init(void)
 {    
-  uint16_t data = 0;
+//  uint16_t data = 0;
   
 	m_width     = TFTWIDTH;
 	m_height    = TFTHEIGHT;

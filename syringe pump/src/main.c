@@ -3,14 +3,17 @@
 
 #include "main.h"
 
+extern __IO uint16_t   aADCxConvertedValues[ADCCONVERTEDVALUES_BUFFER_SIZE];
+
+
+
 int main()
 {
-	uint8_t Running=0;
-	
-	uint32_t  buttonstate;
+	  uint8_t Running=0;
+	  uint32_t  buttonstate;
 		uint32_t  buttonstate2;
 	
-	
+	uint8_t test=0;
 	
 	uint16_t x;
 	uint16_t y;
@@ -32,19 +35,22 @@ HAL_Init();
 st7783_Init();
 Button_Init();
 TIM4_Init ();
+
+	Syringe_Size();
+	//aADCxConvertedValues[10]=0;
 LCD_SetRotation(1);
 //Display_Clear(CYAN);
 
 	//LCD_DrawFastHLine(40,40,30,BLACK);
 
 
-	Display_Clear(GREEN);
-	LCD_Delay(8000);
-		Display_Clear(RED);
-	LCD_Delay(8000);
-		Display_Clear(BLUE);
-	LCD_Delay(8000);
-		Display_Clear(YELLOW);
+// 	Display_Clear(GREEN);
+// 	LCD_Delay(8000);
+// 		Display_Clear(RED);
+// 	LCD_Delay(8000);
+// 		Display_Clear(BLUE);
+// 	LCD_Delay(8000);
+// 		Display_Clear(YELLOW);
 	LCD_Delay(8000);
 		Display_Clear(MAGENTA);
 	LCD_Delay(8000);
@@ -92,9 +98,29 @@ LCD_SetRotation(1);
 	//LCD_Delay(4000);
 	//LCD_Delay(8000);
 	PWM_Freq(200);
-	Syringe_Size();
 
 
+////////////////////////////////////////////////////////test adc
+
+
+while(1)
+{
+	LCD_SetTextSize(2);
+	Print_Text_On(Line1,Position5);
+  //LCD_Printf("ClassB     ");
+	//Print_Text_On(Line1,Position8);
+	//LCD_SetTextSize(2);
+	LCD_SetTextColor(BLUE,WHITE);
+  PrintDecimal(aADCxConvertedValues[10]);
+	
+	
+				
+}
+
+
+
+
+/////////////////////////////////////////////////////////
 
 	while(1)
 	{
@@ -133,7 +159,15 @@ if(!Read_STOP_Button())
 	
 
 	
-	
+	test=aADCxConvertedValues[10];
+
+	LCD_SetTextSize(2);
+	Print_Text_On(Line1,Position5);
+  //LCD_Printf("ClassB     ");
+	//Print_Text_On(Line1,Position8);
+	//LCD_SetTextSize(2);
+	LCD_SetTextColor(BLUE,WHITE);
+  PrintDecimal(aADCxConvertedValues[10]);
 				
 }
 
