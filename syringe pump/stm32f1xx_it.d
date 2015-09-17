@@ -35,4 +35,5 @@ stm32f1xx_it.o: .\inc\glcdfont.h
 stm32f1xx_it.o: .\inc\Switches.h
 stm32f1xx_it.o: .\inc\syringepump.h
 stm32f1xx_it.o: .\inc\stm32f1xx_PWM.h
+stm32f1xx_it.o: .\inc\Syringe_Size.h
 stm32f1xx_it.o: .\inc\stm32f1xx_it.h
