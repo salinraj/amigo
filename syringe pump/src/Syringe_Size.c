@@ -1,3 +1,5 @@
+//changed lines 152,195
+
 
 /* Includes ------------------------------------------------------------------*/
 #include "Syringe_Size.h"
@@ -59,8 +61,10 @@ __IO uint8_t    ubUserButtonClickEvent = RESET;  /* Event detection: Set after U
 
 
 
-void Syringe_Size(void)
+uint32_t Syringe_Size(void)
 {
+	uint32_t adc_value;
+	uint32_t adc_valuetest=0;
  ADC_Config();
 	
 	
@@ -92,40 +96,129 @@ void Syringe_Size(void)
   /*## Start ADC conversions #################################################*/
   
   /* Start ADC conversion on regular group with transfer by DMA */
-  if (HAL_ADC_Start_DMA(&AdcHandle,
-                        (uint32_t *)aADCxConvertedValues,
-                        ADCCONVERTEDVALUES_BUFFER_SIZE
-                       ) != HAL_OK)
+//   if (HAL_ADC_Start_DMA(&AdcHandle,
+//                         (uint32_t *)aADCxConvertedValues,
+//                         ADCCONVERTEDVALUES_BUFFER_SIZE
+//                        ) != HAL_OK)
+//   {
+//     /* Start Error */
+//     Error_Handler();
+//   }
+   if (HAL_ADC_Start(&AdcHandle) != HAL_OK)
   {
     /* Start Error */
     Error_Handler();
   }
- 
-
-
-
-
+	
+	if (HAL_ADC_PollForConversion(&AdcHandle,10) != HAL_OK)
+		  {
+    /* Start Error */
+    Error_Handler();
+  }
+	
+	adc_value= HAL_ADC_GetValue(&AdcHandle);
+	if(adc_value<=0x400) return(10);
+	else if(adc_value>0x400 && adc_value<=0x800) return(20); 
+	else if(adc_value>0x800 && adc_value<=0xc00) return(30); 
+	else if(adc_value>0xc00)
+	return(50);
 
 }
 
+void Syringe_Size_stop(void)
+{
+HAL_ADC_Stop_DMA(&AdcHandle);
+	
+}
+
+
+// static void ADC_Config(void)
+// {
+//   ADC_ChannelConfTypeDef   sConfig;
+//   ADC_AnalogWDGConfTypeDef AnalogWDGConfig;
+//   
+//   /* Configuration of ADCx init structure: ADC parameters and regular group */
+//   AdcHandle.Instance = ADCx;
+//   
+//   AdcHandle.Init.DataAlign             = ADC_DATAALIGN_RIGHT;
+//   AdcHandle.Init.ScanConvMode          = ADC_SCAN_DISABLE;              /* Sequencer disabled (ADC conversion on only 1 channel: channel set on rank 1) */
+// #if defined ADC_TRIGGER_FROM_TIMER
+//   AdcHandle.Init.ContinuousConvMode    = DISABLE;                       /* Continuous mode disabled to have only 1 conversion at each conversion trig */
+// #else
+//   AdcHandle.Init.ContinuousConvMode    = ENABLE;                        /* Continuous mode to have maximum conversion speed (no delay between conversions) */
+// #endif
+//   AdcHandle.Init.NbrOfConversion       = 1;                             /* Parameter discarded because sequencer is disabled */
+//   AdcHandle.Init.DiscontinuousConvMode = DISABLE;                       /* Parameter discarded because sequencer is disabled */
+//   AdcHandle.Init.NbrOfDiscConversion   = 1;                             /* Parameter discarded because sequencer is disabled */
+// #if defined ADC_TRIGGER_FROM_TIMER
+//   AdcHandle.Init.ExternalTrigConv      = ADC_EXTERNALTRIGCONV_Tx_TRGO;  /* Trig of conversion start done by external event */
+// #else
+//   AdcHandle.Init.ExternalTrigConv      = ADC_SOFTWARE_START;            /* Software start to trig the 1st conversion manually, without external event */
+// #endif
+
+//   if (HAL_ADC_Init(&AdcHandle) != HAL_OK)
+//   {
+//     /* ADC initialization error */
+//     Error_Handler();
+//   }
+//   
+//   /* Configuration of channel on ADCx regular group on sequencer rank 1 */
+//   /* Note: Considering IT occurring after each ADC conversion if ADC          */
+//   /*       conversion is out of the analog watchdog window selected (ADC IT   */
+//   /*       enabled), select sampling time and ADC clock with sufficient       */
+//   /*       duration to not create an overhead situation in IRQHandler.        */
+//   sConfig.Channel      = ADCx_CHANNELa;
+//   sConfig.Rank         = ADC_REGULAR_RANK_1;
+//   //sConfig.SamplingTime = ADC_SAMPLETIME_41CYCLES_5;
+// 	sConfig.SamplingTime = ADC_SAMPLETIME_239CYCLES_5;
+//   
+//   if (HAL_ADC_ConfigChannel(&AdcHandle, &sConfig) != HAL_OK)
+//   {
+//     /* Channel Configuration Error */
+//     Error_Handler();
+//   }
+//   
+//   /* Set analog watchdog thresholds in order to be between steps of DAC       */
+//   /* voltage.                                                                 */
+//   /*  - High threshold: between DAC steps 1/2 and 3/4 of full range:          */
+//   /*                    5/8 of full range (4095 <=> Vdda=3.3V): 2559<=> 2.06V */
+//   /*  - Low threshold:  between DAC steps 0 and 1/4 of full range:            */
+//   /*                    1/8 of full range (4095 <=> Vdda=3.3V): 512 <=> 0.41V */
+
+//   /* Analog watchdog 1 configuration */
+//   AnalogWDGConfig.WatchdogMode = ADC_ANALOGWATCHDOG_ALL_REG;
+//   AnalogWDGConfig.Channel = ADCx_CHANNELa;
+//   AnalogWDGConfig.ITMode = ENABLE;
+//   AnalogWDGConfig.HighThreshold = (RANGE_12BITS * 5/8);
+//   AnalogWDGConfig.LowThreshold = (RANGE_12BITS * 1/8);
+//   if (HAL_ADC_AnalogWDGConfig(&AdcHandle, &AnalogWDGConfig) != HAL_OK)
+//   {
+//     /* Channel Configuration Error */
+//     Error_Handler();
+//   }
+//   
+// }
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 
 static void ADC_Config(void)
 {
   ADC_ChannelConfTypeDef   sConfig;
-  ADC_AnalogWDGConfTypeDef AnalogWDGConfig;
+ // ADC_AnalogWDGConfTypeDef AnalogWDGConfig;
   
   /* Configuration of ADCx init structure: ADC parameters and regular group */
   AdcHandle.Instance = ADCx;
   
   AdcHandle.Init.DataAlign             = ADC_DATAALIGN_RIGHT;
   AdcHandle.Init.ScanConvMode          = ADC_SCAN_DISABLE;              /* Sequencer disabled (ADC conversion on only 1 channel: channel set on rank 1) */
-#if defined ADC_TRIGGER_FROM_TIMER
+//#if defined ADC_TRIGGER_FROM_TIMER
   AdcHandle.Init.ContinuousConvMode    = DISABLE;                       /* Continuous mode disabled to have only 1 conversion at each conversion trig */
-#else
-  AdcHandle.Init.ContinuousConvMode    = ENABLE;                        /* Continuous mode to have maximum conversion speed (no delay between conversions) */
-#endif
+//#else
+//  AdcHandle.Init.ContinuousConvMode    = ENABLE;                        /* Continuous mode to have maximum conversion speed (no delay between conversions) */
+//#endif
   AdcHandle.Init.NbrOfConversion       = 1;                             /* Parameter discarded because sequencer is disabled */
   AdcHandle.Init.DiscontinuousConvMode = DISABLE;                       /* Parameter discarded because sequencer is disabled */
   AdcHandle.Init.NbrOfDiscConversion   = 1;                             /* Parameter discarded because sequencer is disabled */
@@ -149,6 +242,7 @@ static void ADC_Config(void)
   sConfig.Channel      = ADCx_CHANNELa;
   sConfig.Rank         = ADC_REGULAR_RANK_1;
   sConfig.SamplingTime = ADC_SAMPLETIME_41CYCLES_5;
+	//sConfig.SamplingTime = ADC_SAMPLETIME_239CYCLES_5;
   
   if (HAL_ADC_ConfigChannel(&AdcHandle, &sConfig) != HAL_OK)
   {
@@ -164,19 +258,24 @@ static void ADC_Config(void)
   /*                    1/8 of full range (4095 <=> Vdda=3.3V): 512 <=> 0.41V */
 
   /* Analog watchdog 1 configuration */
-  AnalogWDGConfig.WatchdogMode = ADC_ANALOGWATCHDOG_ALL_REG;
-  AnalogWDGConfig.Channel = ADCx_CHANNELa;
-  AnalogWDGConfig.ITMode = ENABLE;
-  AnalogWDGConfig.HighThreshold = (RANGE_12BITS * 5/8);
-  AnalogWDGConfig.LowThreshold = (RANGE_12BITS * 1/8);
-  if (HAL_ADC_AnalogWDGConfig(&AdcHandle, &AnalogWDGConfig) != HAL_OK)
-  {
-    /* Channel Configuration Error */
-    Error_Handler();
-  }
-  
+//   AnalogWDGConfig.WatchdogMode = ADC_ANALOGWATCHDOG_ALL_REG;
+//   AnalogWDGConfig.Channel = ADCx_CHANNELa;
+//   AnalogWDGConfig.ITMode = ENABLE;
+//   AnalogWDGConfig.HighThreshold = (RANGE_12BITS * 5/8);
+//   AnalogWDGConfig.LowThreshold = (RANGE_12BITS * 1/8);
+//   if (HAL_ADC_AnalogWDGConfig(&AdcHandle, &AnalogWDGConfig) != HAL_OK)
+//   {
+//     /* Channel Configuration Error */
+//     Error_Handler();
+//   }
+//   
 }
 
+
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////
 
 #if defined(ADC_TRIGGER_FROM_TIMER)
 /**
@@ -191,8 +290,8 @@ static void TIM_Config(void)
   uint32_t latency;                               /* Temporary variable to retrieve Flash Latency */
   
   uint32_t timer_clock_frequency = 0;             /* Timer clock frequency */
-  uint32_t timer_prescaler = 0;                   /* Time base prescaler to have timebase aligned on minimum frequency possible */
-  
+ // uint32_t timer_prescaler = 0;                   /* Time base prescaler to have timebase aligned on minimum frequency possible */
+  uint32_t timer_prescaler = 10;
   /* Configuration of timer as time base:                                     */ 
   /* Caution: Computation of frequency is done for a timer instance on APB1   */
   /*          (clocked by PCLK1)                                              */
@@ -335,7 +434,7 @@ static void Error_Handler(void)
   /* User may add here some code to deal with a potential error */
   
   /* In case of error, LED2 is toggling at a frequency of 1Hz */
-  while(1)
+ // while(1)
   {
     /* Toggle LED2 */
 //    BSP_LED_Toggle(LED2);

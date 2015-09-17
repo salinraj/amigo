@@ -9,7 +9,7 @@
 /*    and conversions are trigger by external trigger: timer.                 */
 /*  - If this literal is not defined: ADC is operating in continuous mode     */
 /*    and first conversion is trigger by software trigger.                    */
-#define ADC_TRIGGER_FROM_TIMER
+//#define ADC_TRIGGER_FROM_TIMER
 
 /* Variable containing ADC conversions results */
 #define ADCCONVERTEDVALUES_BUFFER_SIZE ((uint32_t) 256)     /* Size of array containing ADC converted values */
@@ -73,7 +73,8 @@ void HAL_ADC_ConvHalfCpltCallback(ADC_HandleTypeDef* hadc);
   void HAL_ADC_LevelOutOfWindowCallback(ADC_HandleTypeDef* hadc);
 	void HAL_ADC_ErrorCallback(ADC_HandleTypeDef *hadc);
 	static void Error_Handler(void);
-
+uint32_t Syringe_Size(void);
+void Syringe_Size_stop(void);
 
 #ifdef  USE_FULL_ASSERT
 	/**
