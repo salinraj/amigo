@@ -110,9 +110,13 @@ void st7783_Init(void)
 {    
 //  uint16_t data = 0;
   
-	m_width     = TFTWIDTH;
-	m_height    = TFTHEIGHT;
-	m_rotation  = 0;
+//	m_width     = TFTWIDTH;
+//	m_height    = TFTHEIGHT;
+    m_height    = TFTWIDTH;
+		m_width     = TFTHEIGHT;
+	
+	//m_rotation  = 0;
+	m_rotation  = 1;
 	m_cursor_y  = m_cursor_x    = 0;
 	m_textsize  = 4;
 	m_textcolor = m_textbgcolor = 0xFFFF;
@@ -680,7 +684,8 @@ void LCD_DrawPixel(int16_t x, int16_t y, uint16_t color)
 {
 	// Clip	
 	int16_t t;
-	if((x < 0) || (y < 0) || (x >= TFTWIDTH) || (y >= TFTHEIGHT)) return;
+	if((x < 0) || (y < 0) || (x >= m_width) || (y >= m_height)) return;
+	//if((x < 0) || (y < 0) || (y >= TFTWIDTH) || (x >= TFTHEIGHT)) return;
 
 	LCD_CS_LOW();
 
@@ -702,6 +707,29 @@ void LCD_DrawPixel(int16_t x, int16_t y, uint16_t color)
 		break;
 	}
 
+
+///////////////////////////////////////////////////////
+
+// 	switch(m_rotation) {
+// 	case 1:
+// 		t = x;
+// 		x = TFTHEIGHT  - 1 - y;
+// 		y = t;
+// 		break;
+// 	case 2:
+// 		x = TFTWIDTH  - 1 - x;
+// 		y = TFTHEIGHT - 1 - y;
+// 		break;
+// 	case 3:
+// 		t = x;
+// 		x = y;
+// 		y = TFTHEIGHT - 1 - t;
+// 		break;
+// 	}
+
+
+
+//////////////////////////////////////////////////////
 	LCD_WriteRegister16(0x0020, x);
 	LCD_WriteRegister16(0x0021, y);
 	LCD_WriteRegister16(0x0022, color);
@@ -866,6 +894,28 @@ void LCD_DrawLine(uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2, uint16_t c
 void LCD_DrawFastHLine(int16_t x, int16_t y, int16_t length, uint16_t color)
 {
 	int16_t x2;
+	int16_t t;
+	
+	////////////////////////////////////////test
+	
+// 		switch(m_rotation) {
+// 	case 1:
+// 		t = x;
+// 		x = TFTHEIGHT  - 1 - y;
+// 		y = t;
+// 		break;
+// 	case 2:
+// 		x = TFTWIDTH  - 1 - x;
+// 		y = TFTHEIGHT - 1 - y;
+// 		break;
+// 	case 3:
+// 		t = x;
+// 		x = y;
+// 		y = TFTHEIGHT - 1 - t;
+// 		break;
+// 	}
+
+	////////////////////////////////////////////
 
 	// Initial off-screen clipping
 	if((length <= 0) || (y <  0) || (y >= m_height) ||
@@ -1085,8 +1135,302 @@ void LCD_DrawChar(int16_t x, int16_t y, unsigned char c, uint16_t color, uint16_
 
 
 
+void LCD_DrawChar3(int16_t x, int16_t y, unsigned char c, uint16_t color, uint16_t bg, uint8_t size)
+{
+	uint8_t x_max;
+	uint8_t x_temp;
+	uint8_t line;
+	int8_t Byte_1=0;
+	uint16_t GetByte=0;
+	uint8_t Byte_multiplied=0;
+	int8_t i=0;
+	int8_t j = 0;
+	size=1;
+	if((x >= m_width)            || // Clip right
+		(y >= m_height)          || // Clip bottom
+		((x + 6 * size - 1) < 0) || // Clip left
+		((y + 8 * size - 1) < 0))   // Clip top
+			return;
+		Byte_1=0;
+	for (i=0; i<14; i++ ) {
+		
+		
+		if (i == 13) {
+			line = 0x0;
+			
+		} else {
+			
+			for(Byte_1=0;Byte_1<2;Byte_1++)
+			{
+			
+			if(Byte_1==0)
+			{
+				Byte_multiplied=i*2;
+				GetByte= ((c-33)*28 )+ Byte_multiplied;
+			line = font10[GetByte];//pgm_read_byte(font+(c*5)+i);
+				x_max=8;
+				x_temp=0;
+			}
+			else if(Byte_1==1)
+			{
+				Byte_multiplied=i*2;
+				GetByte= ((c-33)*28 )+ Byte_multiplied+1;
+			line = font10[GetByte];//pgm_read_byte(font+(c*5)+i);
+				x_max=16;
+				x_temp=8;
+			}
+
+			
+			for (j = x_temp; j<x_max; j++) {
+				if (line & 0x80) {
+					
+						LCD_DrawPixel(x+j, y+i, color);
+					
+				} else if (bg != color) {
+					
+						LCD_DrawPixel(x+j, y+i, bg);
+					 
+				}
+				line <<= 1;
+			}
+		}
+// 						if(Byte_1==0)
+// 			{
+// 			Byte_1=1;
+// 			}
+// 					else
+// 			{
+// 			Byte_1=0;
+// 			}	
+
+			
+			
+// 			for (j = x_temp; j<x_max; j++) {
+// 				if (line & 0x1) {
+// 					
+// 						LCD_DrawPixel(x+j, y+i, color);
+// 					
+// 				} else if (bg != color) {
+// 					
+// 						LCD_DrawPixel(x+j, y+i, bg);
+// 					 
+// 				}
+// 				line >>= 1;
+// 			}
 
 
+			
+			
+		}
+	}
+}
+
+
+
+/////////////////////////////////////////////////////////////////
+
+
+
+void LCD_DrawChar20(int16_t x, int16_t y, unsigned char c, uint16_t color, uint16_t bg, uint8_t size)
+{
+	uint8_t x_max;
+	uint8_t x_temp;
+	uint8_t line;
+	int8_t Byte_1=0;
+	uint16_t GetByte=0;
+	uint8_t Byte_multiplied=0;
+	int8_t i=0;
+	int8_t j = 0;
+	size=1;
+	if((y >= m_height)            || // Clip right
+		(x >= m_width )          || // Clip bottom
+		((x + 6 * size - 1) < 0) || // Clip left
+		((y + 8 * size - 1) < 0))   // Clip top
+			return;
+		Byte_1=0;
+	for (i=0; i<27; i++ ) {
+		
+		
+		if (i == 26) {
+			line = 0x0;
+			
+		} else {
+			
+			for(Byte_1=0;Byte_1<5;Byte_1++)
+			{
+			
+			if(Byte_1==0)
+			{
+				Byte_multiplied=i*4;
+				GetByte= ((c-32)*104 )+ Byte_multiplied;
+			line = font20[GetByte];//pgm_read_byte(font+(c*5)+i);
+				x_max=8;
+				x_temp=0;
+			}
+			else if(Byte_1==1)
+			{
+				Byte_multiplied=i*4;
+				GetByte= ((c-32)*104 )+ Byte_multiplied+1;
+			line = font20[GetByte];//pgm_read_byte(font+(c*5)+i);
+				x_max=16;
+				x_temp=8;
+			}
+						if(Byte_1==2)
+			{
+				Byte_multiplied=i*4;
+				GetByte= ((c-32)*104 )+ Byte_multiplied+2;
+			line = font20[GetByte];//pgm_read_byte(font+(c*5)+i);
+				x_max=24;
+				x_temp=16;
+			}
+			else if(Byte_1==3)
+			{
+				Byte_multiplied=i*4;
+				GetByte= ((c-32)*104 )+ Byte_multiplied+3;
+			line = font20[GetByte];//pgm_read_byte(font+(c*5)+i);
+				x_max=32;
+				x_temp=24;
+			}
+
+			
+			for (j = x_temp; j<x_max; j++) {
+				if (line & 0x80) {
+					
+						LCD_DrawPixel(x+j, y+i, color);
+					
+				} else if (bg != color) {
+					
+						LCD_DrawPixel(x+j, y+i, bg);
+					 
+				}
+				line <<= 1;
+			}
+		}
+// 						if(Byte_1==0)
+// 			{
+// 			Byte_1=1;
+// 			}
+// 					else
+// 			{
+// 			Byte_1=0;
+// 			}	
+
+			
+			
+// 			for (j = x_temp; j<x_max; j++) {
+// 				if (line & 0x1) {
+// 					
+// 						LCD_DrawPixel(x+j, y+i, color);
+// 					
+// 				} else if (bg != color) {
+// 					
+// 						LCD_DrawPixel(x+j, y+i, bg);
+// 					 
+// 				}
+// 				line >>= 1;
+// 			}
+
+
+			
+			
+		}
+	}
+}
+
+
+////////////////////////////////////////////////////////////font36
+
+
+
+void LCD_DrawChar36(int16_t x, int16_t y, unsigned char c, uint16_t color, uint16_t bg, uint8_t size)
+{
+	uint8_t x_max;
+	uint8_t x_temp;
+	uint8_t line;
+	int8_t Byte_1=0;
+	uint16_t GetByte=0;
+	uint8_t Byte_multiplied=0;
+	int8_t i=0;
+	int8_t j = 0;
+//	size=1;
+	if((x >= m_width)            || // Clip right
+		(y >= m_height)          || // Clip bottom
+		((x + 6 * size - 1) < 0) || // Clip left
+		((y + 8 * size - 1) < 0))   // Clip top
+			return;
+		Byte_1=0;
+	for (i=0; i<37; i++ ) {
+		
+		
+		if (i == 36) {
+			line = 0x0;
+			
+		} else {
+			
+			for(Byte_1=0;Byte_1<4;Byte_1++)
+			{
+			
+			if(Byte_1==0)
+			{
+				Byte_multiplied=i*4;
+				GetByte= ((c-48)*144 )+ Byte_multiplied;
+			line = font36[GetByte];//pgm_read_byte(font+(c*5)+i);
+				x_max=8;
+				x_temp=0;
+			}
+			else if(Byte_1==1)
+			{
+				Byte_multiplied=i*4;
+				GetByte= ((c-48)*144 )+ Byte_multiplied+1;
+			line = font36[GetByte];//pgm_read_byte(font+(c*5)+i);
+				x_max=16;
+				x_temp=8;
+			}
+						if(Byte_1==2)
+			{
+				Byte_multiplied=i*4;
+				GetByte= ((c-48)*144 )+ Byte_multiplied+2;
+			line = font36[GetByte];//pgm_read_byte(font+(c*5)+i);
+				x_max=24;
+				x_temp=16;
+			}
+			else if(Byte_1==3)
+			{
+				Byte_multiplied=i*4;
+				GetByte= ((c-48)*144 )+ Byte_multiplied+3;
+			  line = font36[GetByte];//pgm_read_byte(font+(c*5)+i);
+				x_max=28;
+				x_temp=24;
+			}
+
+			
+			for (j = x_temp; j<x_max; j++) {
+				if (line & 0x80) {
+					
+						LCD_DrawPixel(x+j, y+i, color);
+// 					if (size == 1) { // default size
+// 						LCD_DrawPixel(x+j, y+i, color);
+// 					} else {  // big size
+// 						LCD_FillRect(x+(j*size), y+(i*size), size, size, color);
+// 					}
+					
+				} else if (bg != color) {
+					
+						LCD_DrawPixel(x+j, y+i, bg);
+// 										if (size == 1) { // default size
+// 						LCD_DrawPixel(x+j, y+i, bg);
+// 					} else {  // big size
+// 						LCD_FillRect(x+j*size, y+i*size, size, size, bg);
+// 					}
+					 
+				}
+				line <<= 1;
+			}
+		}
+		
+		}
+	}
+}
 
 
 
@@ -1332,6 +1676,115 @@ void LCD_Printf(const char *fmt, ...)
 		p++;
 	}
 }
+
+/////////////////////////////////////////////////////////////// font size test
+
+
+
+void LCD_Printf3(const char *fmt, ...)
+{
+	static char buf[256];
+	char *p;
+	va_list lst;
+
+	va_start(lst, fmt);
+	vsprintf(buf, fmt, lst);
+	va_end(lst);
+
+	p = buf;
+	while(*p) {
+		if (*p == '\n') {
+			m_cursor_y += m_textsize*8;
+			m_cursor_x  = 0;
+		} else if (*p == '\r') {
+			// skip em
+		} else {
+			LCD_DrawChar3(m_cursor_x, m_cursor_y, *p, m_textcolor, m_textbgcolor, m_textsize);
+			m_cursor_x += m_textsize*6;
+			if (m_wrap && (m_cursor_x > (m_width - m_textsize*6))) {
+				m_cursor_y += m_textsize*8;
+				m_cursor_x = 0;
+			}
+		}
+		p++;
+	}
+}
+////////////////////////////////////////////////////////////////////
+
+
+void LCD_Printf20(const char *fmt, ...)
+{
+	static char buf[256];
+	char *p;
+	va_list lst;
+
+	va_start(lst, fmt);
+	vsprintf(buf, fmt, lst);
+	va_end(lst);
+
+	p = buf;
+	while(*p) {
+		if (*p == '\n') {
+			m_cursor_y += m_textsize*8;
+			m_cursor_x  = 0;
+		} else if (*p == '\r') {
+			// skip em
+		} else {
+			LCD_DrawChar20(m_cursor_x, m_cursor_y, *p, m_textcolor, m_textbgcolor, m_textsize);
+			m_cursor_x += m_textsize*23;
+			if (m_wrap && (m_cursor_x > (324 - m_textsize*6))) {
+				m_cursor_y += m_textsize*52;
+				m_cursor_x = 0;
+			}
+		}
+		p++;
+	}
+}
+
+
+
+/////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+
+
+void LCD_Printf36(const char *fmt, ...)
+{
+	static char buf[256];
+	char *p;
+	va_list lst;
+
+	va_start(lst, fmt);
+	vsprintf(buf, fmt, lst);
+	va_end(lst);
+
+	p = buf;
+	while(*p) {
+		if (*p == '\n') {
+			m_cursor_y += m_textsize*8;
+			m_cursor_x  = 0;
+		} else if (*p == '\r') {
+			// skip em
+		} else {
+			LCD_DrawChar36(m_cursor_x, m_cursor_y, *p, m_textcolor, m_textbgcolor, m_textsize);
+			m_cursor_x += m_textsize*28;
+			if (m_wrap && (m_cursor_x > (m_width - m_textsize*6))) {
+				m_cursor_y += m_textsize*40;
+				m_cursor_x = 0;
+			}
+		}
+		p++;
+	}
+}
+
+
+
+
+
+
+
+
+////////////////////////////////////////////////////////////  font size test ends
 
 /**
  * \brief Resets the Display

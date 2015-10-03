@@ -48,6 +48,9 @@
 
 #define TFTWIDTH   240
 #define TFTHEIGHT  320
+//#define TFTWIDTH   320
+//#define TFTHEIGHT  240
+
 
 #define Line1				10
 #define Line2				41
@@ -242,6 +245,15 @@ void LCD_DrawCircle(int16_t x0, int16_t y0, int16_t r, uint16_t color);
 void LCD_DrawChar(int16_t x, int16_t y, unsigned char c, uint16_t color, uint16_t bg, uint8_t size);
 
 
+//font size test
+void LCD_DrawChar3(int16_t x, int16_t y, unsigned char c, uint16_t color, uint16_t bg, uint8_t size);
+void LCD_Printf3(const char *fmt, ...);
+void LCD_DrawChar20(int16_t x, int16_t y, unsigned char c, uint16_t color, uint16_t bg, uint8_t size);
+void LCD_Printf20(const char *fmt, ...);
+void LCD_DrawChar36(int16_t x, int16_t y, unsigned char c, uint16_t color, uint16_t bg, uint8_t size);
+void LCD_Printf36(const char *fmt, ...);
+
+
 void LCD_Flood(uint16_t color, uint32_t len);
 void LCD_FillScreen(uint16_t color);
 void LCD_FillRoundRect(int16_t x, int16_t y, int16_t w, int16_t h, int16_t r, uint16_t color);
@@ -260,8 +272,8 @@ void Print_Text_On(uint8_t line, uint8_t position);
 
 
 
-static int16_t m_width;
-static int16_t m_height;
+//static int16_t m_width;
+//static int16_t m_height;
 static int16_t m_cursor_x;
 static int16_t m_cursor_y;
 static uint16_t m_textcolor;
