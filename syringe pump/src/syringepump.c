@@ -27,8 +27,8 @@ void PumpRate(void)
 		
 	Print_Text_On(Line4,Position4);
   //LCD_Printf("UP");
-	PrintDecimal(PumpingRate);
-
+	//PrintDecimal(PumpingRate);
+PrintRate(PumpingRate);
 	}
 	else if(!Read_DOWN_Button())
 	{
@@ -41,7 +41,9 @@ void PumpRate(void)
 		
 			Print_Text_On(Line4,Position4);
   //LCD_Printf("DN");
-	PrintDecimal(PumpingRate);
+	//PrintDecimal(PumpingRate);
+		
+		PrintRate(PumpingRate);
 
 	}
 	
@@ -61,7 +63,7 @@ void PumpRate(void)
 }
 }
 
-void PrintDecimal(uint16_t value)
+void PrintDecimal(uint16_t value,uint8_t Size)
 {
  char digit[3];
 		digit[0] = (unsigned int)(value/100);									 // Calculate digit1 of ADC_value
@@ -72,11 +74,39 @@ void PrintDecimal(uint16_t value)
 		digit[1]=digit[1]+0x30;
 		digit[2]=digit[2]+0x30;
 		//digit[3]=digit[3]+0x30;
-LCD_Printf(digit);
-//LCD_Printf(digit2);
+	if(Size==36)
+      LCD_Printf36(digit);
+	else if(Size==20)
+	{
+			LCD_Printf20(&digit[1]);
+	}
+		
+		//LCD_Printf(digit2);
 //LCD_Printf(digit3);
 //LCD_Printf(digit4);
 	
 }
+
+
+/*Print the Rate of injection in ml/hour*/
+void PrintRate(uint16_t value)
+{
+	
+	Print_Text_On(Line4,Position14);
+	LCD_SetTextColor(BLACK,WHITE);	
+  PrintDecimal(value,36);
+
+}
+
+
+/*Print the size of the syringe*/
+void Print_Syringe_Size(uint16_t value)
+{
+	LCD_SetTextColor(BLUE,WHITE);
+	Print_Text_On(Line1,Position26);	
+  PrintDecimal(value,20);
+	
+}
+
 
 

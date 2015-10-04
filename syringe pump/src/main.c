@@ -13,7 +13,7 @@ int main()
 	  uint32_t  buttonstate;
 		uint32_t  buttonstate2;
 	
-	uint8_t test=0;
+	uint16_t test1=0;
 	
 	uint16_t x;
 	uint16_t y;
@@ -62,60 +62,111 @@ LCD_SetRotation(1);
  //Syringe_Size_stop();	
 	
 	//LCD_FillRect(1,1,319,32,LIGHTGRAY);
+
+// 	LCD_SetTextSize(1);
+// 	LCD_SetTextColor(RED,WHITE);
+// 	Print_Text_On(Line3,Position10);
+//   LCD_Printf3("1");
+// 	Print_Text_On(Line4,Position10);
+//   LCD_Printf20("RATE");
+// 	LCD_SetTextColor(BLUE,WHITE);
+// 	Print_Text_On(Line4,Position25);
+//   LCD_Printf36("321");
+// 	Print_Text_On(Line8,Position10);
+//   LCD_Printf("K");
+// 	while(1)
+// 	{
+// }
+// 	
+
+
+
+
+///////////////////////////////////////////////////////
+
+//	LCD_SetAddrWindow(50, 10, 200, 10);
+//	LCD_Flood(RED, 319);
+	//while(1);
+
+
+
+//////////////////////////////////////////////////////////
 		
-	LCD_SetTextSize(2);
-	LCD_SetTextColor(GREEN,WHITE);
+		/////////////////////////////////////////test
+// 		for(test1=0;test1<319;test1++)
+// 		{
+// 		LCD_DrawPixel(test1,100,RED);
+// 		
+// 		LCD_DrawPixel(test1,150,BLUE);
+// 		
+// 		}
+// 		
+// 		while(1);
+// 		LCD_DrawPixel(300,200,GREEN);
+// 		
+		//////////////////////////////////////////////
+		
+	LCD_SetTextSize(1);
+	LCD_SetTextColor(LIGHTGRAY,WHITE);
 	Print_Text_On(Line1,Position1);
-  LCD_Printf("ClassB     ");
+  LCD_Printf20("ClassB ");
+	//while(1);
 	//Print_Text_On(Line1,Position8);
 	//LCD_SetTextSize(2);
 	LCD_SetTextColor(BLUE,WHITE);
-  LCD_Printf("10ml     ");
-	LCD_SetTextColor(GREEN,WHITE);
-  LCD_Printf("OCCL:H");
-	LCD_DrawFastHLine(1,30,319,RED);
-	
-	LCD_FillRect(Position2,Line2,90,28,LIGHTGRAY);
-	LCD_SetTextSize(3);
+  //LCD_Printf20("10ml");
+	Print_Syringe_Size(10);
+	Print_Text_On(Line1,Position34);	
+ 	LCD_Printf20("ml");
+// 	LCD_SetTextColor(GREEN,WHITE);
+//   LCD_Printf20("OCCL:H");
+	LCD_DrawFastHLine(1,35,319,RED);
+
+	LCD_FillRect(Position2,Line2,100,28,LIGHTGRAY);
+	LCD_SetTextSize(1);
 	Print_Text_On(Line2,Position2);
 	LCD_SetTextColor(BLACK,LIGHTGRAY);
-  LCD_Printf("RATE");
+  LCD_Printf20("RATE");
 	
 	
-	LCD_SetTextSize(4);
+	LCD_SetTextSize(1);
 	Print_Text_On(Line4,Position4);
 	LCD_SetTextColor(BLACK,WHITE);
-  //LCD_Printf("300.0");
-	PrintDecimal(200);
+  //LCD_Printf36("300");
+	//PrintDecimal(200);
+	PrintRate(300);
 	
-		LCD_SetTextSize(3);
 	
+		LCD_SetTextSize(1);
+	Print_Text_On(Line4,Position28);
 	LCD_SetTextColor(BLACK,WHITE);
-  LCD_Printf(" ml/h");
+  LCD_Printf20("ml/h");
 	
 	LCD_DrawFastHLine(1,200,319,RED);
 	LCD_SetCursor(2,Line8);
-	LCD_SetTextSize(2);
+	LCD_SetTextSize(1);
 	LCD_SetTextColor(BLUE,WHITE);
-  LCD_Printf("Limit");
+  LCD_Printf20("Limit");
 	//LCD_Delay(4000);
 	//LCD_Delay(8000);
 	PWM_Freq(200);
-
+while(1)
+{}
 
 ////////////////////////////////////////////////////////test adc
 
 
 while(1)
 {
-	LCD_SetTextSize(2);
+	LCD_SetTextSize(1);
 	Print_Text_On(Line1,Position5);
   //LCD_Printf("ClassB     ");
 	Print_Text_On(Line1,Position12);
 	//LCD_SetTextSize(2);
 	LCD_SetTextColor(BLUE,WHITE);
-  PrintDecimal(Syringe_Size());
-	LCD_Printf("ml");
+  //PrintDecimal(Syringe_Size());
+	PrintSize(Syringe_Size());
+	LCD_Printf20("ml");
 	
 				
 }
@@ -162,7 +213,7 @@ if(!Read_STOP_Button())
 	
 
 	
-	test=aADCxConvertedValues[10];
+	//test=aADCxConvertedValues[10];
 
 	LCD_SetTextSize(2);
 	Print_Text_On(Line1,Position5);
@@ -170,8 +221,8 @@ if(!Read_STOP_Button())
 	//Print_Text_On(Line1,Position8);
 	//LCD_SetTextSize(2);
 	LCD_SetTextColor(BLUE,WHITE);
-  PrintDecimal(aADCxConvertedValues[10]);
-				
+  //PrintDecimal(aADCxConvertedValues[10]);
+		PrintRate(aADCxConvertedValues[10]);		
 }
 
 
