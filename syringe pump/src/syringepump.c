@@ -65,7 +65,7 @@ PrintRate(PumpingRate);
 
 void PrintDecimal(uint16_t value,uint8_t Size)
 {
- char digit[3];
+ char digit[4]={0,0,0,0};
 		digit[0] = (unsigned int)(value/100);									 // Calculate digit1 of ADC_value
 		digit[1] = (unsigned int)((value - digit[0]*100)/10);						 // Calculate digit2 of ADC_value
 		digit[2] = (unsigned int)((value - (digit[0]*100+digit[1]*10))/1);			 // Calculate digit3 of ADC_value
