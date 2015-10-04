@@ -116,7 +116,7 @@ LCD_SetRotation(1);
 	LCD_SetTextColor(BLUE,WHITE);
   //LCD_Printf20("10ml");
 	Print_Syringe_Size(10);
-	Print_Text_On(Line1,Position34);	
+	Print_Text_On(Line1,Position35);	
  	LCD_Printf20("ml");
 // 	LCD_SetTextColor(GREEN,WHITE);
 //   LCD_Printf20("OCCL:H");
@@ -130,28 +130,25 @@ LCD_SetRotation(1);
 	
 	
 	LCD_SetTextSize(1);
-	Print_Text_On(Line4,Position4);
-	LCD_SetTextColor(BLACK,WHITE);
-  //LCD_Printf36("300");
+	  //LCD_Printf36("300");
 	//PrintDecimal(200);
 	PrintRate(300);
 	
 	
 		LCD_SetTextSize(1);
-	Print_Text_On(Line4,Position28);
+	Print_Text_On(Line5,Position29);
 	LCD_SetTextColor(BLACK,WHITE);
   LCD_Printf20("ml/h");
 	
 	LCD_DrawFastHLine(1,200,319,RED);
-	LCD_SetCursor(2,Line8);
+	LCD_SetCursor(2,Line9);
 	LCD_SetTextSize(1);
 	LCD_SetTextColor(BLUE,WHITE);
   LCD_Printf20("Limit");
 	//LCD_Delay(4000);
 	//LCD_Delay(8000);
 	PWM_Freq(200);
-while(1)
-{}
+
 
 ////////////////////////////////////////////////////////test adc
 
@@ -165,10 +162,9 @@ while(1)
 	//LCD_SetTextSize(2);
 	LCD_SetTextColor(BLUE,WHITE);
   //PrintDecimal(Syringe_Size());
-	PrintSize(Syringe_Size());
-	LCD_Printf20("ml");
-	
-				
+	Print_Syringe_Size(Syringe_Size());
+	//LCD_Printf20("ml");
+			
 }
 
 
@@ -178,6 +174,8 @@ while(1)
 
 	while(1)
 	{
+
+		
 if(!Read_OK_Button())
 {
 		while(!Read_OK_Button());

@@ -1288,7 +1288,7 @@ void LCD_DrawChar20(int16_t x, int16_t y, unsigned char c, uint16_t color, uint1
 				Byte_multiplied=i*4;
 				GetByte= ((c-32)*104 )+ Byte_multiplied+3;
 			line = font20[GetByte];//pgm_read_byte(font+(c*5)+i);
-				x_max=32;
+				x_max=30;
 				x_temp=24;
 			}
 
@@ -1712,17 +1712,18 @@ void LCD_Printf3(const char *fmt, ...)
 ////////////////////////////////////////////////////////////////////
 
 
-void LCD_Printf20(const char *fmt, ...)
+void LCD_Printf20( char *fmt, ...)
 {
 	static char buf[256];
 	char *p;
-	va_list lst;
+// 	va_list lst;
 
-	va_start(lst, fmt);
-	vsprintf(buf, fmt, lst);
-	va_end(lst);
+// 	va_start(lst, fmt);
+// 	vsprintf(buf, fmt, lst);
+// 	va_end(lst);
 
-	p = buf;
+// 	p = buf;
+	p=fmt;
 	while(*p) {
 		if (*p == '\n') {
 			m_cursor_y += m_textsize*8;
@@ -1731,7 +1732,7 @@ void LCD_Printf20(const char *fmt, ...)
 			// skip em
 		} else {
 			LCD_DrawChar20(m_cursor_x, m_cursor_y, *p, m_textcolor, m_textbgcolor, m_textsize);
-			m_cursor_x += m_textsize*23;
+			m_cursor_x += m_textsize*25;
 			if (m_wrap && (m_cursor_x > (324 - m_textsize*6))) {
 				m_cursor_y += m_textsize*52;
 				m_cursor_x = 0;
@@ -1765,7 +1766,16 @@ void LCD_Printf36(const char *fmt, ...)
 			m_cursor_x  = 0;
 		} else if (*p == '\r') {
 			// skip em
-		} else {
+		}
+		
+		/////////////////////test exiting
+		else if (*p ==' ') {
+			break;
+		}
+		
+		///////////////////////
+
+		else {
 			LCD_DrawChar36(m_cursor_x, m_cursor_y, *p, m_textcolor, m_textbgcolor, m_textsize);
 			m_cursor_x += m_textsize*28;
 			if (m_wrap && (m_cursor_x > (m_width - m_textsize*6))) {

@@ -56,10 +56,11 @@
 #define Line2				41
 #define Line3				61
 #define Line4				91
-#define Line5				121
-#define Line6				151
-#define Line7				181
-#define Line8				211
+#define Line5				101
+#define Line6				121
+#define Line7				151
+#define Line8				181
+#define Line9				211
 
 #define Position1		1
 #define Position2		7
@@ -249,7 +250,7 @@ void LCD_DrawChar(int16_t x, int16_t y, unsigned char c, uint16_t color, uint16_
 void LCD_DrawChar3(int16_t x, int16_t y, unsigned char c, uint16_t color, uint16_t bg, uint8_t size);
 void LCD_Printf3(const char *fmt, ...);
 void LCD_DrawChar20(int16_t x, int16_t y, unsigned char c, uint16_t color, uint16_t bg, uint8_t size);
-void LCD_Printf20(const char *fmt, ...);
+void LCD_Printf20( char *fmt, ...);
 void LCD_DrawChar36(int16_t x, int16_t y, unsigned char c, uint16_t color, uint16_t bg, uint8_t size);
 void LCD_Printf36(const char *fmt, ...);
 

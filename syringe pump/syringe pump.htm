@@ -1,9 +1,9 @@
 <!doctype html public "-//w3c//dtd html 4.0 transitional//en">
 <html><head>
-<title>Static Call Graph - [E:\amigo\syringe pump\syringe pump.axf]</title></head>
+<title>Static Call Graph - [E:\syringe pump\amigo\syringe pump\syringe pump.axf]</title></head>
 <body><HR>
-<H1>Static Call Graph for image E:\amigo\syringe pump\syringe pump.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5.02 [Build 28]: Last Updated: Sat Oct 03 11:53:15 2015
+<H1>Static Call Graph for image E:\syringe pump\amigo\syringe pump\syringe pump.axf</H1><HR>
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5.02 [Build 28]: Last Updated: Sat Oct 03 18:01:28 2015
 <BR><P>
 <H3>Maximum Stack Usage =        320 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -1067,7 +1067,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[71]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[71]"></a>main</STRONG> (Thumb, 332 bytes, Stack size 8 bytes, main.o(.text))
+<P><STRONG><a name="[71]"></a>main</STRONG> (Thumb, 358 bytes, Stack size 8 bytes, main.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 200 + Unknown Stack Size
 <LI>Call Chain = main &rArr; Print_Syringe_Size &rArr; PrintDecimal &rArr; LCD_Printf36 &rArr; LCD_DrawChar36 &rArr; LCD_DrawPixel &rArr; LCD_WriteRegister16 &rArr; LCD_IO_WriteMultipleData &rArr; LCD_PORT_Value
 </UL>
@@ -1381,18 +1381,16 @@ Global Symbols
 <LI><a href="#[de]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_DrawChar3
 </UL>
 
-<P><STRONG><a name="[c2]"></a>LCD_Printf20</STRONG> (Thumb, 200 bytes, Stack size 40 bytes, stm32f1xx_lcd.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 168 + Unknown Stack Size
-<LI>Call Chain = LCD_Printf20 &rArr; LCD_DrawChar20 &rArr; LCD_DrawPixel &rArr; LCD_WriteRegister16 &rArr; LCD_IO_WriteMultipleData &rArr; LCD_PORT_Value
+<P><STRONG><a name="[c2]"></a>LCD_Printf20</STRONG> (Thumb, 178 bytes, Stack size 24 bytes, stm32f1xx_lcd.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 152<LI>Call Chain = LCD_Printf20 &rArr; LCD_DrawChar20 &rArr; LCD_DrawPixel &rArr; LCD_WriteRegister16 &rArr; LCD_IO_WriteMultipleData &rArr; LCD_PORT_Value
 </UL>
-<BR>[Calls]<UL><LI><a href="#[e6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__c89vsprintf
-<LI><a href="#[df]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_DrawChar20
+<BR>[Calls]<UL><LI><a href="#[df]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_DrawChar20
 </UL>
 <BR>[Called By]<UL><LI><a href="#[ef]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PrintDecimal
 <LI><a href="#[71]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[e8]"></a>LCD_Printf36</STRONG> (Thumb, 196 bytes, Stack size 40 bytes, stm32f1xx_lcd.o(.text))
+<P><STRONG><a name="[e8]"></a>LCD_Printf36</STRONG> (Thumb, 206 bytes, Stack size 40 bytes, stm32f1xx_lcd.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 168 + Unknown Stack Size
 <LI>Call Chain = LCD_Printf36 &rArr; LCD_DrawChar36 &rArr; LCD_DrawPixel &rArr; LCD_WriteRegister16 &rArr; LCD_IO_WriteMultipleData &rArr; LCD_PORT_Value
 </UL>
@@ -1482,7 +1480,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[f0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PumpRate
 </UL>
 
-<P><STRONG><a name="[ef]"></a>PrintDecimal</STRONG> (Thumb, 136 bytes, Stack size 16 bytes, syringepump.o(.text))
+<P><STRONG><a name="[ef]"></a>PrintDecimal</STRONG> (Thumb, 140 bytes, Stack size 16 bytes, syringepump.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 184 + Unknown Stack Size
 <LI>Call Chain = PrintDecimal &rArr; LCD_Printf36 &rArr; LCD_DrawChar36 &rArr; LCD_DrawPixel &rArr; LCD_WriteRegister16 &rArr; LCD_IO_WriteMultipleData &rArr; LCD_PORT_Value
 </UL>
@@ -1616,7 +1614,6 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[e8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Printf36
 <LI><a href="#[e7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Printf3
 <LI><a href="#[e5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Printf
-<LI><a href="#[c2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Printf20
 </UL>
 
 <P><STRONG><a name="[b7]"></a>__aeabi_memclr4</STRONG> (Thumb, 0 bytes, Stack size 4 bytes, rt_memclr_w.o(.text))
