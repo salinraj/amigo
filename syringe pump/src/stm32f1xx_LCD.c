@@ -411,14 +411,14 @@ void LCD_IO_WriteMultipleData(uint16_t *pData, uint32_t Size)
     /* Only 1 byte to be sent to LCD - general interface can be used */
     /* Send Data */
    // SPIx_Write(*pData);
-		LCD_RW_LOW();
+		//LCD_RW_LOW();
 	LCD_PORT_Value((*pData)>>8);
-		LCD_RW_HIGH();
-  //Toggle_LCD_RW();
-		LCD_RW_LOW();
+		//LCD_RW_HIGH();
+  Toggle_LCD_RW();
+		//LCD_RW_LOW();
 		  LCD_PORT_Value(*pData);
-		LCD_RW_HIGH();
-  //Toggle_LCD_RW();
+		//LCD_RW_HIGH();
+  Toggle_LCD_RW();
   }
   else
 {
@@ -474,33 +474,33 @@ void LCD_PORT_Value(uint32_t value)
 {
 //uint8_t Mask;
 
-if(value & 0x80) HAL_GPIO_WritePin(LCD_GPIO_PORT, LCD_DATA_PIN_7, GPIO_PIN_SET);
-else 	HAL_GPIO_WritePin(LCD_GPIO_PORT, LCD_DATA_PIN_7, GPIO_PIN_RESET);
+// if(value & 0x80) HAL_GPIO_WritePin(LCD_GPIO_PORT, LCD_DATA_PIN_7, GPIO_PIN_SET);
+// else 	HAL_GPIO_WritePin(LCD_GPIO_PORT, LCD_DATA_PIN_7, GPIO_PIN_RESET);
 
-	if(value & 0x40) HAL_GPIO_WritePin(LCD_GPIO_PORT, LCD_DATA_PIN_6, GPIO_PIN_SET);
-else 	HAL_GPIO_WritePin(LCD_GPIO_PORT, LCD_DATA_PIN_6, GPIO_PIN_RESET);
-	
-	if(value & 0x20) HAL_GPIO_WritePin(LCD_GPIO_PORT, LCD_DATA_PIN_5, GPIO_PIN_SET);
-else 	HAL_GPIO_WritePin(LCD_GPIO_PORT, LCD_DATA_PIN_5, GPIO_PIN_RESET);
-	
-	if(value & 0x10) HAL_GPIO_WritePin(LCD_GPIO_PORT, LCD_DATA_PIN_4, GPIO_PIN_SET);       //10
-else 	HAL_GPIO_WritePin(LCD_GPIO_PORT, LCD_DATA_PIN_4, GPIO_PIN_RESET);
+// 	if(value & 0x40) HAL_GPIO_WritePin(LCD_GPIO_PORT, LCD_DATA_PIN_6, GPIO_PIN_SET);
+// else 	HAL_GPIO_WritePin(LCD_GPIO_PORT, LCD_DATA_PIN_6, GPIO_PIN_RESET);
+// 	
+// 	if(value & 0x20) HAL_GPIO_WritePin(LCD_GPIO_PORT, LCD_DATA_PIN_5, GPIO_PIN_SET);
+// else 	HAL_GPIO_WritePin(LCD_GPIO_PORT, LCD_DATA_PIN_5, GPIO_PIN_RESET);
+// 	
+// 	if(value & 0x10) HAL_GPIO_WritePin(LCD_GPIO_PORT, LCD_DATA_PIN_4, GPIO_PIN_SET);       //10
+// else 	HAL_GPIO_WritePin(LCD_GPIO_PORT, LCD_DATA_PIN_4, GPIO_PIN_RESET);
 
-	if(value & 0x08) HAL_GPIO_WritePin(LCD_GPIO_PORT, LCD_DATA_PIN_3, GPIO_PIN_SET);       //9
-else 	HAL_GPIO_WritePin(LCD_GPIO_PORT, LCD_DATA_PIN_3, GPIO_PIN_RESET);
+// 	if(value & 0x08) HAL_GPIO_WritePin(LCD_GPIO_PORT, LCD_DATA_PIN_3, GPIO_PIN_SET);       //9
+// else 	HAL_GPIO_WritePin(LCD_GPIO_PORT, LCD_DATA_PIN_3, GPIO_PIN_RESET);
 
-	if(value & 0x04) HAL_GPIO_WritePin(LCD_GPIO_PORT, LCD_DATA_PIN_2, GPIO_PIN_SET);
-else 	HAL_GPIO_WritePin(LCD_GPIO_PORT, LCD_DATA_PIN_2, GPIO_PIN_RESET);
-	
-		if(value & 0x02) HAL_GPIO_WritePin(LCD_GPIO_PORT, LCD_DATA_PIN_1, GPIO_PIN_SET);
-else 	HAL_GPIO_WritePin(LCD_GPIO_PORT, LCD_DATA_PIN_1, GPIO_PIN_RESET);
-	
-	if(value & 0x01) HAL_GPIO_WritePin(LCD_GPIO_PORT, LCD_DATA_PIN_0, GPIO_PIN_SET);
-else 	HAL_GPIO_WritePin(LCD_GPIO_PORT, LCD_DATA_PIN_0, GPIO_PIN_RESET);
+// 	if(value & 0x04) HAL_GPIO_WritePin(LCD_GPIO_PORT, LCD_DATA_PIN_2, GPIO_PIN_SET);
+// else 	HAL_GPIO_WritePin(LCD_GPIO_PORT, LCD_DATA_PIN_2, GPIO_PIN_RESET);
+// 	
+// 		if(value & 0x02) HAL_GPIO_WritePin(LCD_GPIO_PORT, LCD_DATA_PIN_1, GPIO_PIN_SET);
+// else 	HAL_GPIO_WritePin(LCD_GPIO_PORT, LCD_DATA_PIN_1, GPIO_PIN_RESET);
+// 	
+// 	if(value & 0x01) HAL_GPIO_WritePin(LCD_GPIO_PORT, LCD_DATA_PIN_0, GPIO_PIN_SET);
+// else 	HAL_GPIO_WritePin(LCD_GPIO_PORT, LCD_DATA_PIN_0, GPIO_PIN_RESET);
 
- // GPIOB->ODR =(GPIOB->ODR & 0x00ff);
+  GPIOB->ODR =(GPIOB->ODR & 0x00ff);
 
- // GPIOB->ODR =(GPIOB->ODR |(value<<8));
+  GPIOB->ODR =(GPIOB->ODR |(value<<8));
 
 //LCD_Delay(50);
 
@@ -509,10 +509,10 @@ else 	HAL_GPIO_WritePin(LCD_GPIO_PORT, LCD_DATA_PIN_0, GPIO_PIN_RESET);
 
 
 void Toggle_LCD_RW(void)
-{ LCD_Delay(10);
+{ //LCD_Delay(10);
 	LCD_RD_HIGH();
 	LCD_RW_LOW();
-	LCD_Delay(1);
+	LCD_Delay(3);
 	LCD_RW_HIGH();
 	//LCD_Delay(10);
 }

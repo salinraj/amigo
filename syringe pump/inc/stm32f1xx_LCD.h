@@ -163,7 +163,7 @@
   * @brief  LCD data pins
   */
 
-#define LCD_DATA_PIN_0												GPIO_PIN_7	
+#define LCD_DATA_PIN_0												GPIO_PIN_8	
 #define LCD_DATA_PIN_1												GPIO_PIN_9	
 #define LCD_DATA_PIN_2												GPIO_PIN_10	
 #define LCD_DATA_PIN_3												GPIO_PIN_11

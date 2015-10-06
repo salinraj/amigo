@@ -34,8 +34,9 @@ HAL_Init();
 	
 	  /* Configure the system clock = 64 MHz */
   SystemClock_Config();
-st7783_Init();
+LCD_Delay(8000);
 Button_Init();
+st7783_Init();
 TIM4_Init ();
 
 	ad_value=Syringe_Size();
