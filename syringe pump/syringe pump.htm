@@ -3,7 +3,7 @@
 <title>Static Call Graph - [F:\amigo\syringe pump\syringe pump.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image F:\amigo\syringe pump\syringe pump.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5.02 [Build 28]: Last Updated: Sat Oct 03 11:06:44 2015
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5.02 [Build 28]: Last Updated: Tue Oct 06 12:33:55 2015
 <BR><P>
 <H3>Maximum Stack Usage =        320 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -358,7 +358,7 @@ Global Symbols
 
 <P><STRONG><a name="[70]"></a>__rt_entry_main</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, rtentry2.o(.ARM.Collect$$rtentry$$0000000D))
 <BR><BR>[Stack]<UL><LI>Max Depth = 200 + Unknown Stack Size
-<LI>Call Chain = __rt_entry_main &rArr; main &rArr; Print_Syringe_Size &rArr; PrintDecimal &rArr; LCD_Printf36 &rArr; LCD_DrawChar36 &rArr; LCD_DrawPixel &rArr; LCD_WriteRegister16 &rArr; LCD_IO_WriteMultipleData &rArr; LCD_PORT_Value
+<LI>Call Chain = __rt_entry_main &rArr; main &rArr; Print_Syringe_Size &rArr; PrintDecimal &rArr; LCD_Printf36 &rArr; LCD_DrawChar36 &rArr; LCD_DrawPixel &rArr; LCD_WriteRegister16 &rArr; LCD_IO_WriteMultipleData &rArr; Toggle_LCD_RW
 </UL>
 <BR>[Calls]<UL><LI><a href="#[72]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;exit
 <LI><a href="#[71]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
@@ -703,7 +703,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[8b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_RCC_MCOConfig
 <LI><a href="#[9c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_ADC_MspInit
 <LI><a href="#[d1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_IO_Init
-<LI><a href="#[ba]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM4_Init
+<LI><a href="#[bb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM4_Init
 <LI><a href="#[b9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Button_Init
 </UL>
 
@@ -725,9 +725,8 @@ Global Symbols
 <LI><a href="#[d1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_IO_Init
 <LI><a href="#[cf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Reset
 <LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_IO_WriteReg
-<LI><a href="#[cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Toggle_LCD_RW
 <LI><a href="#[cb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_IO_WriteMultipleData
-<LI><a href="#[c9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_PORT_Value
+<LI><a href="#[c9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Toggle_LCD_RW
 </UL>
 
 <P><STRONG><a name="[156]"></a>HAL_GPIO_TogglePin</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, stm32f1xx_hal_gpio.o(.text), UNUSED)
@@ -917,7 +916,7 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[9f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADC_Enable
 </UL>
-<BR>[Called By]<UL><LI><a href="#[bb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Syringe_Size
+<BR>[Called By]<UL><LI><a href="#[bc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Syringe_Size
 </UL>
 
 <P><STRONG><a name="[a1]"></a>HAL_ADC_Stop</STRONG> (Thumb, 60 bytes, Stack size 16 bytes, stm32f1xx_hal_adc.o(.text), UNUSED)
@@ -930,7 +929,7 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[94]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_RCCEx_GetPeriphCLKFreq
 <LI><a href="#[82]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GetTick
 </UL>
-<BR>[Called By]<UL><LI><a href="#[bb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Syringe_Size
+<BR>[Called By]<UL><LI><a href="#[bc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Syringe_Size
 </UL>
 
 <P><STRONG><a name="[a3]"></a>HAL_ADC_PollForEvent</STRONG> (Thumb, 100 bytes, Stack size 24 bytes, stm32f1xx_hal_adc.o(.text), UNUSED)
@@ -982,7 +981,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[f4]"></a>HAL_ADC_GetValue</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, stm32f1xx_hal_adc.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[bb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Syringe_Size
+<BR><BR>[Called By]<UL><LI><a href="#[bc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Syringe_Size
 </UL>
 
 <P><STRONG><a name="[ab]"></a>HAL_ADC_IRQHandler</STRONG> (Thumb, 296 bytes, Stack size 8 bytes, stm32f1xx_hal_adc.o(.text), UNUSED)
@@ -1011,7 +1010,7 @@ Global Symbols
 <LI><a href="#[94]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_RCCEx_GetPeriphCLKFreq
 <LI><a href="#[82]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GetTick
 </UL>
-<BR>[Called By]<UL><LI><a href="#[bb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Syringe_Size
+<BR>[Called By]<UL><LI><a href="#[bc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Syringe_Size
 </UL>
 
 <P><STRONG><a name="[af]"></a>HAL_ADCEx_InjectedStart</STRONG> (Thumb, 182 bytes, Stack size 16 bytes, stm32f1xx_hal_adc_ex.o(.text), UNUSED)
@@ -1067,27 +1066,27 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[71]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[71]"></a>main</STRONG> (Thumb, 332 bytes, Stack size 8 bytes, main.o(.text))
+<P><STRONG><a name="[71]"></a>main</STRONG> (Thumb, 340 bytes, Stack size 8 bytes, main.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 200 + Unknown Stack Size
-<LI>Call Chain = main &rArr; Print_Syringe_Size &rArr; PrintDecimal &rArr; LCD_Printf36 &rArr; LCD_DrawChar36 &rArr; LCD_DrawPixel &rArr; LCD_WriteRegister16 &rArr; LCD_IO_WriteMultipleData &rArr; LCD_PORT_Value
+<LI>Call Chain = main &rArr; Print_Syringe_Size &rArr; PrintDecimal &rArr; LCD_Printf36 &rArr; LCD_DrawChar36 &rArr; LCD_DrawPixel &rArr; LCD_WriteRegister16 &rArr; LCD_IO_WriteMultipleData &rArr; Toggle_LCD_RW
 </UL>
 <BR>[Calls]<UL><LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_Init
-<LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;st7783_Init
-<LI><a href="#[ba]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM4_Init
-<LI><a href="#[bb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Syringe_Size
+<LI><a href="#[ba]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;st7783_Init
+<LI><a href="#[bb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM4_Init
+<LI><a href="#[bc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Syringe_Size
 <LI><a href="#[c1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Print_Text_On
 <LI><a href="#[c3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Print_Syringe_Size
 <LI><a href="#[c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PrintRate
 <LI><a href="#[c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PWM_Freq
 <LI><a href="#[bf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_SetTextSize
 <LI><a href="#[c0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_SetTextColor
-<LI><a href="#[bc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_SetRotation
+<LI><a href="#[bd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_SetRotation
 <LI><a href="#[c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_SetCursor
 <LI><a href="#[c2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Printf20
 <LI><a href="#[c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_FillRect
 <LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_DrawFastHLine
-<LI><a href="#[be]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Delay
-<LI><a href="#[bd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Display_Clear
+<LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Delay
+<LI><a href="#[be]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Display_Clear
 <LI><a href="#[b9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Button_Init
 <LI><a href="#[b6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SystemClock_Config
 </UL>
@@ -1098,49 +1097,47 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[cf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Reset
 </UL>
 
-<P><STRONG><a name="[c9]"></a>LCD_PORT_Value</STRONG> (Thumb, 244 bytes, Stack size 8 bytes, stm32f1xx_lcd.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = LCD_PORT_Value
-</UL>
-<BR>[Calls]<UL><LI><a href="#[ca]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_WritePin
-</UL>
-<BR>[Called By]<UL><LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Display_Reset
+<P><STRONG><a name="[cc]"></a>LCD_PORT_Value</STRONG> (Thumb, 22 bytes, Stack size 0 bytes, stm32f1xx_lcd.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Display_Reset
 <LI><a href="#[d2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_IO_WriteData
 <LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_IO_WriteReg
 <LI><a href="#[cb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_IO_WriteMultipleData
 </UL>
 
-<P><STRONG><a name="[cb]"></a>LCD_IO_WriteMultipleData</STRONG> (Thumb, 168 bytes, Stack size 16 bytes, stm32f1xx_lcd.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = LCD_IO_WriteMultipleData &rArr; LCD_PORT_Value
-</UL>
-<BR>[Calls]<UL><LI><a href="#[ca]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_WritePin
-<LI><a href="#[c9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_PORT_Value
-</UL>
-<BR>[Called By]<UL><LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_WriteRegister16
-</UL>
-
-<P><STRONG><a name="[be]"></a>LCD_Delay</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, stm32f1xx_lcd.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Toggle_LCD_RW
+<P><STRONG><a name="[b8]"></a>LCD_Delay</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, stm32f1xx_lcd.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[c9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Toggle_LCD_RW
 <LI><a href="#[71]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[cc]"></a>Toggle_LCD_RW</STRONG> (Thumb, 46 bytes, Stack size 8 bytes, stm32f1xx_lcd.o(.text))
+<P><STRONG><a name="[c9]"></a>Toggle_LCD_RW</STRONG> (Thumb, 40 bytes, Stack size 8 bytes, stm32f1xx_lcd.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = Toggle_LCD_RW
 </UL>
 <BR>[Calls]<UL><LI><a href="#[ca]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_WritePin
-<LI><a href="#[be]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Delay
+<LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Delay
 </UL>
 <BR>[Called By]<UL><LI><a href="#[d7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Flood
 <LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Display_Reset
 <LI><a href="#[d2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_IO_WriteData
 <LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_IO_WriteReg
+<LI><a href="#[cb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_IO_WriteMultipleData
+</UL>
+
+<P><STRONG><a name="[cb]"></a>LCD_IO_WriteMultipleData</STRONG> (Thumb, 136 bytes, Stack size 16 bytes, stm32f1xx_lcd.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = LCD_IO_WriteMultipleData &rArr; Toggle_LCD_RW
+</UL>
+<BR>[Calls]<UL><LI><a href="#[ca]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_WritePin
+<LI><a href="#[c9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Toggle_LCD_RW
+<LI><a href="#[cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_PORT_Value
+</UL>
+<BR>[Called By]<UL><LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_WriteRegister16
 </UL>
 
 <P><STRONG><a name="[cd]"></a>LCD_IO_WriteReg</STRONG> (Thumb, 60 bytes, Stack size 8 bytes, stm32f1xx_lcd.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = LCD_IO_WriteReg &rArr; Toggle_LCD_RW
 </UL>
 <BR>[Calls]<UL><LI><a href="#[ca]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_WritePin
-<LI><a href="#[cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Toggle_LCD_RW
-<LI><a href="#[c9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_PORT_Value
+<LI><a href="#[c9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Toggle_LCD_RW
+<LI><a href="#[cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_PORT_Value
 </UL>
 <BR>[Called By]<UL><LI><a href="#[d7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Flood
 <LI><a href="#[cf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Reset
@@ -1148,7 +1145,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[ce]"></a>LCD_WriteRegister16</STRONG> (Thumb, 20 bytes, Stack size 16 bytes, stm32f1xx_lcd.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = LCD_WriteRegister16 &rArr; LCD_IO_WriteMultipleData &rArr; LCD_PORT_Value
+<BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = LCD_WriteRegister16 &rArr; LCD_IO_WriteMultipleData &rArr; Toggle_LCD_RW
 </UL>
 <BR>[Calls]<UL><LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_IO_WriteReg
 <LI><a href="#[cb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_IO_WriteMultipleData
@@ -1156,8 +1153,8 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[e4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_FillScreen
 <LI><a href="#[d5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_DrawPixel
 <LI><a href="#[d4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_SetAddrWindow
-<LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;st7783_Init
-<LI><a href="#[bd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Display_Clear
+<LI><a href="#[ba]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;st7783_Init
+<LI><a href="#[be]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Display_Clear
 </UL>
 
 <P><STRONG><a name="[cf]"></a>LCD_Reset</STRONG> (Thumb, 112 bytes, Stack size 8 bytes, stm32f1xx_lcd.o(.text))
@@ -1167,19 +1164,19 @@ Global Symbols
 <LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_IO_WriteReg
 <LI><a href="#[d0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay
 </UL>
-<BR>[Called By]<UL><LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;st7783_Init
+<BR>[Called By]<UL><LI><a href="#[ba]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;st7783_Init
 </UL>
 
-<P><STRONG><a name="[d1]"></a>LCD_IO_Init</STRONG> (Thumb, 278 bytes, Stack size 24 bytes, stm32f1xx_lcd.o(.text))
+<P><STRONG><a name="[d1]"></a>LCD_IO_Init</STRONG> (Thumb, 296 bytes, Stack size 24 bytes, stm32f1xx_lcd.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = LCD_IO_Init &rArr; HAL_GPIO_Init
 </UL>
 <BR>[Calls]<UL><LI><a href="#[ca]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_WritePin
 <LI><a href="#[8c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_Init
 </UL>
-<BR>[Called By]<UL><LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;st7783_Init
+<BR>[Called By]<UL><LI><a href="#[ba]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;st7783_Init
 </UL>
 
-<P><STRONG><a name="[b8]"></a>st7783_Init</STRONG> (Thumb, 698 bytes, Stack size 8 bytes, stm32f1xx_lcd.o(.text))
+<P><STRONG><a name="[ba]"></a>st7783_Init</STRONG> (Thumb, 700 bytes, Stack size 8 bytes, stm32f1xx_lcd.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = st7783_Init &rArr; LCD_IO_Init &rArr; HAL_GPIO_Init
 </UL>
 <BR>[Calls]<UL><LI><a href="#[d1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_IO_Init
@@ -1193,15 +1190,15 @@ Global Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = LCD_IO_WriteData &rArr; Toggle_LCD_RW
 </UL>
 <BR>[Calls]<UL><LI><a href="#[ca]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_WritePin
-<LI><a href="#[cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Toggle_LCD_RW
-<LI><a href="#[c9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_PORT_Value
+<LI><a href="#[c9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Toggle_LCD_RW
+<LI><a href="#[cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_PORT_Value
 </UL>
 <BR>[Called By]<UL><LI><a href="#[d7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Flood
-<LI><a href="#[bd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Display_Clear
+<LI><a href="#[be]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Display_Clear
 </UL>
 
-<P><STRONG><a name="[bd]"></a>Display_Clear</STRONG> (Thumb, 60 bytes, Stack size 16 bytes, stm32f1xx_lcd.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = Display_Clear &rArr; LCD_WriteRegister16 &rArr; LCD_IO_WriteMultipleData &rArr; LCD_PORT_Value
+<P><STRONG><a name="[be]"></a>Display_Clear</STRONG> (Thumb, 60 bytes, Stack size 16 bytes, stm32f1xx_lcd.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = Display_Clear &rArr; LCD_WriteRegister16 &rArr; LCD_IO_WriteMultipleData &rArr; Toggle_LCD_RW
 </UL>
 <BR>[Calls]<UL><LI><a href="#[d2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_IO_WriteData
 <LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_WriteRegister16
@@ -1211,16 +1208,16 @@ Global Symbols
 
 <P><STRONG><a name="[d3]"></a>Display_Reset</STRONG> (Thumb, 102 bytes, Stack size 8 bytes, stm32f1xx_lcd.o(.text), UNUSED)
 <BR><BR>[Calls]<UL><LI><a href="#[ca]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_WritePin
-<LI><a href="#[cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Toggle_LCD_RW
-<LI><a href="#[c9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_PORT_Value
+<LI><a href="#[c9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Toggle_LCD_RW
+<LI><a href="#[cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_PORT_Value
 </UL>
 
-<P><STRONG><a name="[bc]"></a>LCD_SetRotation</STRONG> (Thumb, 68 bytes, Stack size 0 bytes, stm32f1xx_lcd.o(.text))
+<P><STRONG><a name="[bd]"></a>LCD_SetRotation</STRONG> (Thumb, 68 bytes, Stack size 0 bytes, stm32f1xx_lcd.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[71]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
 <P><STRONG><a name="[d4]"></a>LCD_SetAddrWindow</STRONG> (Thumb, 188 bytes, Stack size 32 bytes, stm32f1xx_lcd.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 72<LI>Call Chain = LCD_SetAddrWindow &rArr; LCD_WriteRegister16 &rArr; LCD_IO_WriteMultipleData &rArr; LCD_PORT_Value
+<BR><BR>[Stack]<UL><LI>Max Depth = 72<LI>Call Chain = LCD_SetAddrWindow &rArr; LCD_WriteRegister16 &rArr; LCD_IO_WriteMultipleData &rArr; Toggle_LCD_RW
 </UL>
 <BR>[Calls]<UL><LI><a href="#[ca]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_WritePin
 <LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_WriteRegister16
@@ -1232,7 +1229,7 @@ Global Symbols
 <P><STRONG><a name="[168]"></a>LCD_Color565</STRONG> (Thumb, 24 bytes, Stack size 8 bytes, stm32f1xx_lcd.o(.text), UNUSED)
 
 <P><STRONG><a name="[d5]"></a>LCD_DrawPixel</STRONG> (Thumb, 154 bytes, Stack size 24 bytes, stm32f1xx_lcd.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = LCD_DrawPixel &rArr; LCD_WriteRegister16 &rArr; LCD_IO_WriteMultipleData &rArr; LCD_PORT_Value
+<BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = LCD_DrawPixel &rArr; LCD_WriteRegister16 &rArr; LCD_IO_WriteMultipleData &rArr; Toggle_LCD_RW
 </UL>
 <BR>[Calls]<UL><LI><a href="#[ca]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_WritePin
 <LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_WriteRegister16
@@ -1258,7 +1255,7 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[ca]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_WritePin
 <LI><a href="#[d2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_IO_WriteData
 <LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_IO_WriteReg
-<LI><a href="#[cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Toggle_LCD_RW
+<LI><a href="#[c9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Toggle_LCD_RW
 </UL>
 <BR>[Called By]<UL><LI><a href="#[e4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_FillScreen
 <LI><a href="#[c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_FillRect
@@ -1266,7 +1263,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[c4]"></a>LCD_DrawFastHLine</STRONG> (Thumb, 136 bytes, Stack size 24 bytes, stm32f1xx_lcd.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 96<LI>Call Chain = LCD_DrawFastHLine &rArr; LCD_SetAddrWindow &rArr; LCD_WriteRegister16 &rArr; LCD_IO_WriteMultipleData &rArr; LCD_PORT_Value
+<BR><BR>[Stack]<UL><LI>Max Depth = 96<LI>Call Chain = LCD_DrawFastHLine &rArr; LCD_SetAddrWindow &rArr; LCD_WriteRegister16 &rArr; LCD_IO_WriteMultipleData &rArr; Toggle_LCD_RW
 </UL>
 <BR>[Calls]<UL><LI><a href="#[d7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Flood
 <LI><a href="#[d4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_SetAddrWindow
@@ -1307,7 +1304,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[c5]"></a>LCD_FillRect</STRONG> (Thumb, 216 bytes, Stack size 32 bytes, stm32f1xx_lcd.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 104<LI>Call Chain = LCD_FillRect &rArr; LCD_SetAddrWindow &rArr; LCD_WriteRegister16 &rArr; LCD_IO_WriteMultipleData &rArr; LCD_PORT_Value
+<BR><BR>[Stack]<UL><LI>Max Depth = 104<LI>Call Chain = LCD_FillRect &rArr; LCD_SetAddrWindow &rArr; LCD_WriteRegister16 &rArr; LCD_IO_WriteMultipleData &rArr; Toggle_LCD_RW
 </UL>
 <BR>[Calls]<UL><LI><a href="#[d7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Flood
 <LI><a href="#[d4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_SetAddrWindow
@@ -1331,7 +1328,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[df]"></a>LCD_DrawChar20</STRONG> (Thumb, 404 bytes, Stack size 64 bytes, stm32f1xx_lcd.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 128<LI>Call Chain = LCD_DrawChar20 &rArr; LCD_DrawPixel &rArr; LCD_WriteRegister16 &rArr; LCD_IO_WriteMultipleData &rArr; LCD_PORT_Value
+<BR><BR>[Stack]<UL><LI>Max Depth = 128<LI>Call Chain = LCD_DrawChar20 &rArr; LCD_DrawPixel &rArr; LCD_WriteRegister16 &rArr; LCD_IO_WriteMultipleData &rArr; Toggle_LCD_RW
 </UL>
 <BR>[Calls]<UL><LI><a href="#[d5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_DrawPixel
 </UL>
@@ -1339,7 +1336,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[e0]"></a>LCD_DrawChar36</STRONG> (Thumb, 372 bytes, Stack size 64 bytes, stm32f1xx_lcd.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 128<LI>Call Chain = LCD_DrawChar36 &rArr; LCD_DrawPixel &rArr; LCD_WriteRegister16 &rArr; LCD_IO_WriteMultipleData &rArr; LCD_PORT_Value
+<BR><BR>[Stack]<UL><LI>Max Depth = 128<LI>Call Chain = LCD_DrawChar36 &rArr; LCD_DrawPixel &rArr; LCD_WriteRegister16 &rArr; LCD_IO_WriteMultipleData &rArr; Toggle_LCD_RW
 </UL>
 <BR>[Calls]<UL><LI><a href="#[d5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_DrawPixel
 </UL>
@@ -1383,7 +1380,7 @@ Global Symbols
 
 <P><STRONG><a name="[c2]"></a>LCD_Printf20</STRONG> (Thumb, 200 bytes, Stack size 40 bytes, stm32f1xx_lcd.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 168 + Unknown Stack Size
-<LI>Call Chain = LCD_Printf20 &rArr; LCD_DrawChar20 &rArr; LCD_DrawPixel &rArr; LCD_WriteRegister16 &rArr; LCD_IO_WriteMultipleData &rArr; LCD_PORT_Value
+<LI>Call Chain = LCD_Printf20 &rArr; LCD_DrawChar20 &rArr; LCD_DrawPixel &rArr; LCD_WriteRegister16 &rArr; LCD_IO_WriteMultipleData &rArr; Toggle_LCD_RW
 </UL>
 <BR>[Calls]<UL><LI><a href="#[e6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__c89vsprintf
 <LI><a href="#[df]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_DrawChar20
@@ -1394,7 +1391,7 @@ Global Symbols
 
 <P><STRONG><a name="[e8]"></a>LCD_Printf36</STRONG> (Thumb, 196 bytes, Stack size 40 bytes, stm32f1xx_lcd.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 168 + Unknown Stack Size
-<LI>Call Chain = LCD_Printf36 &rArr; LCD_DrawChar36 &rArr; LCD_DrawPixel &rArr; LCD_WriteRegister16 &rArr; LCD_IO_WriteMultipleData &rArr; LCD_PORT_Value
+<LI>Call Chain = LCD_Printf36 &rArr; LCD_DrawChar36 &rArr; LCD_DrawPixel &rArr; LCD_WriteRegister16 &rArr; LCD_IO_WriteMultipleData &rArr; Toggle_LCD_RW
 </UL>
 <BR>[Calls]<UL><LI><a href="#[e6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__c89vsprintf
 <LI><a href="#[e0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_DrawChar36
@@ -1484,7 +1481,7 @@ Global Symbols
 
 <P><STRONG><a name="[ef]"></a>PrintDecimal</STRONG> (Thumb, 136 bytes, Stack size 16 bytes, syringepump.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 184 + Unknown Stack Size
-<LI>Call Chain = PrintDecimal &rArr; LCD_Printf36 &rArr; LCD_DrawChar36 &rArr; LCD_DrawPixel &rArr; LCD_WriteRegister16 &rArr; LCD_IO_WriteMultipleData &rArr; LCD_PORT_Value
+<LI>Call Chain = PrintDecimal &rArr; LCD_Printf36 &rArr; LCD_DrawChar36 &rArr; LCD_DrawPixel &rArr; LCD_WriteRegister16 &rArr; LCD_IO_WriteMultipleData &rArr; Toggle_LCD_RW
 </UL>
 <BR>[Calls]<UL><LI><a href="#[e8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Printf36
 <LI><a href="#[c2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Printf20
@@ -1495,7 +1492,7 @@ Global Symbols
 
 <P><STRONG><a name="[c6]"></a>PrintRate</STRONG> (Thumb, 32 bytes, Stack size 8 bytes, syringepump.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 192 + Unknown Stack Size
-<LI>Call Chain = PrintRate &rArr; PrintDecimal &rArr; LCD_Printf36 &rArr; LCD_DrawChar36 &rArr; LCD_DrawPixel &rArr; LCD_WriteRegister16 &rArr; LCD_IO_WriteMultipleData &rArr; LCD_PORT_Value
+<LI>Call Chain = PrintRate &rArr; PrintDecimal &rArr; LCD_Printf36 &rArr; LCD_DrawChar36 &rArr; LCD_DrawPixel &rArr; LCD_WriteRegister16 &rArr; LCD_IO_WriteMultipleData &rArr; Toggle_LCD_RW
 </UL>
 <BR>[Calls]<UL><LI><a href="#[ef]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PrintDecimal
 <LI><a href="#[c1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Print_Text_On
@@ -1521,7 +1518,7 @@ Global Symbols
 
 <P><STRONG><a name="[c3]"></a>Print_Syringe_Size</STRONG> (Thumb, 32 bytes, Stack size 8 bytes, syringepump.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 192 + Unknown Stack Size
-<LI>Call Chain = Print_Syringe_Size &rArr; PrintDecimal &rArr; LCD_Printf36 &rArr; LCD_DrawChar36 &rArr; LCD_DrawPixel &rArr; LCD_WriteRegister16 &rArr; LCD_IO_WriteMultipleData &rArr; LCD_PORT_Value
+<LI>Call Chain = Print_Syringe_Size &rArr; PrintDecimal &rArr; LCD_Printf36 &rArr; LCD_DrawChar36 &rArr; LCD_DrawPixel &rArr; LCD_WriteRegister16 &rArr; LCD_IO_WriteMultipleData &rArr; Toggle_LCD_RW
 </UL>
 <BR>[Calls]<UL><LI><a href="#[ef]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PrintDecimal
 <LI><a href="#[c1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Print_Text_On
@@ -1530,7 +1527,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[71]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[ba]"></a>TIM4_Init</STRONG> (Thumb, 46 bytes, Stack size 24 bytes, stm32f1xx_pwm.o(.text))
+<P><STRONG><a name="[bb]"></a>TIM4_Init</STRONG> (Thumb, 46 bytes, Stack size 24 bytes, stm32f1xx_pwm.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = TIM4_Init &rArr; HAL_GPIO_Init
 </UL>
 <BR>[Calls]<UL><LI><a href="#[8c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_Init
@@ -1542,12 +1539,12 @@ Global Symbols
 
 <P><STRONG><a name="[16b]"></a>PWM_OFF</STRONG> (Thumb, 14 bytes, Stack size 0 bytes, stm32f1xx_pwm.o(.text), UNUSED)
 
-<P><STRONG><a name="[c8]"></a>PWM_Freq</STRONG> (Thumb, 42 bytes, Stack size 0 bytes, stm32f1xx_pwm.o(.text))
+<P><STRONG><a name="[c8]"></a>PWM_Freq</STRONG> (Thumb, 46 bytes, Stack size 0 bytes, stm32f1xx_pwm.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[f0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PumpRate
 <LI><a href="#[71]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[bb]"></a>Syringe_Size</STRONG> (Thumb, 110 bytes, Stack size 16 bytes, syringe_size.o(.text))
+<P><STRONG><a name="[bc]"></a>Syringe_Size</STRONG> (Thumb, 110 bytes, Stack size 16 bytes, syringe_size.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 144<LI>Call Chain = Syringe_Size &rArr; HAL_ADCEx_Calibration_Start &rArr; HAL_RCCEx_GetPeriphCLKFreq &rArr; HAL_RCC_GetPCLK2Freq &rArr; HAL_RCC_GetHCLKFreq &rArr; HAL_RCC_GetSysClockFreq
 </UL>
 <BR>[Calls]<UL><LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_ADCEx_Calibration_Start
@@ -2078,7 +2075,7 @@ Local Symbols
 </UL>
 <BR>[Called By]<UL><LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_ADC_ErrorCallback
 <LI><a href="#[f2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADC_Config
-<LI><a href="#[bb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Syringe_Size
+<LI><a href="#[bc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Syringe_Size
 </UL>
 
 <P><STRONG><a name="[f2]"></a>ADC_Config</STRONG> (Thumb, 76 bytes, Stack size 16 bytes, syringe_size.o(.text))
@@ -2088,7 +2085,7 @@ Local Symbols
 <LI><a href="#[9b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_ADC_Init
 <LI><a href="#[f1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Error_Handler
 </UL>
-<BR>[Called By]<UL><LI><a href="#[bb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Syringe_Size
+<BR>[Called By]<UL><LI><a href="#[bc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Syringe_Size
 </UL>
 
 <P><STRONG><a name="[40]"></a>_printf_input_char</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, _printf_char_common.o(.text))
