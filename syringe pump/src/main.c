@@ -4,6 +4,7 @@
 #include "main.h"
 
 extern __IO uint16_t   aADCxConvertedValues[ADCCONVERTEDVALUES_BUFFER_SIZE];
+extern uint16_t PumpingRate;
 
 uint32_t ad_value;
 
@@ -34,10 +35,11 @@ HAL_Init();
 	
 	  /* Configure the system clock = 64 MHz */
   SystemClock_Config();
-st7783_Init();
+
 Button_Init();
 //TIM4_Init ();
-
+LCD_Delay(8000);
+st7783_Init();
 	ad_value=Syringe_Size();
 	//aADCxConvertedValues[10]=0;
 m_textbgcolor=BLACK;	
@@ -135,7 +137,7 @@ LCD_SetRotation(1);
 	LCD_SetTextSize(1);
 	  //LCD_Printf36("300");
 	//PrintDecimal(200);
-	PrintRate(300);
+	PrintRate(PumpingRate);
 	
 	
 		LCD_SetTextSize(1);

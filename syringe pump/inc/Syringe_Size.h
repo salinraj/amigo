@@ -1,3 +1,11 @@
+
+#ifndef __SYRINGE_SIZE_H
+#define __SYRINGE_SIZE_H
+
+
+
+
+
 #include "stm32f1xx_hal.h"
 //#include "stm32f1xx_nucleo.h"
 
@@ -88,3 +96,10 @@ void assert_failed(uint8_t *file, uint32_t line);
 
 
 #endif
+
+
+
+
+
+#endif /* __STM32F1XX_NUCLEO_H */
+

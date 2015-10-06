@@ -282,7 +282,7 @@ static uint16_t m_textbgcolor;
 static uint8_t m_textsize;
 static uint8_t m_rotation;
 static uint8_t m_wrap;
-static 
+
 
 
 #ifdef __cplusplus
