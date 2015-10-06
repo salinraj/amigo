@@ -5,96 +5,96 @@
 //***********************************************************************************
 
 
-// Initialization commands
-static const uint16_t ST7781_regValues[] = {
-	0x0001,0x0100,
-	0x0002,0x0700,
-	0x0003,0x1030,
-	0x0008,0x0302,
-	0x0009,0x0000,
-	0x000A,0x0008,
-	//*******POWER CONTROL REGISTER INITIAL*******//
-	0x0010,0x0790,
-	0x0011,0x0005,
-	0x0012,0x0000,
-	0x0013,0x0000,
-	//delayms(50,
-	//********POWER SUPPPLY STARTUP 1 SETTING*******//
-	0x0010,0x12B0,
-	// delayms(50,
-	0x0011,0x0007,
-	//delayms(50,
-	//********POWER SUPPLY STARTUP 2 SETTING******//
-	0x0012,0x008C,
-	0x0013,0x1700,
-	0x0029,0x0022,
-	// delayms(50,
-	//******GAMMA CLUSTER SETTING******//
-	0x0030,0x0000,
-	0x0031,0x0505,
-	0x0032,0x0205,
-	0x0035,0x0206,
-	0x0036,0x0408,
-	0x0037,0x0000,
-	0x0038,0x0504,
-	0x0039,0x0206,
-	0x003C,0x0206,
-	0x003D,0x0408,
-	// -----------DISPLAY WINDOWS 240*320-------------//
-	0x0050,0x0000,
-	0x0051,0x00EF,
-	0x0052,0x0000,
-	0x0053,0x013F,
-	//-----FRAME RATE SETTING-------//
-	0x0060,0xA700,
-	0x0061,0x0001,
-	0x0090,0x0033, //RTNI setting
-	//-------DISPLAY ON------//
-	0x0007,0x0133,    0x0001,0x0100,
-	0x0002,0x0700,
-	0x0003,0x1030,
-	0x0008,0x0302,
-	0x0009,0x0000,
-	0x000A,0x0008,
-	//*******POWER CONTROL REGISTER INITIAL*******//
-	0x0010,0x0790,
-	0x0011,0x0005,
-	0x0012,0x0000,
-	0x0013,0x0000,
-	//delayms(50,
-	//********POWER SUPPPLY STARTUP 1 SETTING*******//
-	0x0010,0x12B0,
-	// delayms(50,
-	0x0011,0x0007,
-	// delayms(50,
-	//********POWER SUPPLY STARTUP 2 SETTING******//
-	0x0012,0x008C,
-	0x0013,0x1700,
-	0x0029,0x0022,
-	// delayms(50,
-	//******GAMMA CLUSTER SETTING******//
-	0x0030,0x0000,
-	0x0031,0x0505,
-	0x0032,0x0205,
-	0x0035,0x0206,
-	0x0036,0x0408,
-	0x0037,0x0000,
-	0x0038,0x0504,
-	0x0039,0x0206,
-	0x003C,0x0206,
-	0x003D,0x0408,
-	// -----------DISPLAY WINDOWS 240*320-------------//
-	0x0050,0x0000,
-	0x0051,0x00EF,
-	0x0052,0x0000,
-	0x0053,0x013F,
-	//-----FRAME RATE SETTING-------//
-	0x0060,0xA700,
-	0x0061,0x0001,
-	0x0090,0x0033, //RTNI setting
-	//-------DISPLAY ON------//
-	0x0007,0x0133,
-};
+// // Initialization commands
+// static const uint16_t ST7781_regValues[] = {
+// 	0x0001,0x0100,
+// 	0x0002,0x0700,
+// 	0x0003,0x1030,
+// 	0x0008,0x0302,
+// 	0x0009,0x0000,
+// 	0x000A,0x0008,
+// 	//*******POWER CONTROL REGISTER INITIAL*******//
+// 	0x0010,0x0790,
+// 	0x0011,0x0005,
+// 	0x0012,0x0000,
+// 	0x0013,0x0000,
+// 	//delayms(50,
+// 	//********POWER SUPPPLY STARTUP 1 SETTING*******//
+// 	0x0010,0x12B0,
+// 	// delayms(50,
+// 	0x0011,0x0007,
+// 	//delayms(50,
+// 	//********POWER SUPPLY STARTUP 2 SETTING******//
+// 	0x0012,0x008C,
+// 	0x0013,0x1700,
+// 	0x0029,0x0022,
+// 	// delayms(50,
+// 	//******GAMMA CLUSTER SETTING******//
+// 	0x0030,0x0000,
+// 	0x0031,0x0505,
+// 	0x0032,0x0205,
+// 	0x0035,0x0206,
+// 	0x0036,0x0408,
+// 	0x0037,0x0000,
+// 	0x0038,0x0504,
+// 	0x0039,0x0206,
+// 	0x003C,0x0206,
+// 	0x003D,0x0408,
+// 	// -----------DISPLAY WINDOWS 240*320-------------//
+// 	0x0050,0x0000,
+// 	0x0051,0x00EF,
+// 	0x0052,0x0000,
+// 	0x0053,0x013F,
+// 	//-----FRAME RATE SETTING-------//
+// 	0x0060,0xA700,
+// 	0x0061,0x0001,
+// 	0x0090,0x0033, //RTNI setting
+// 	//-------DISPLAY ON------//
+// 	0x0007,0x0133,    0x0001,0x0100,
+// 	0x0002,0x0700,
+// 	0x0003,0x1030,
+// 	0x0008,0x0302,
+// 	0x0009,0x0000,
+// 	0x000A,0x0008,
+// 	//*******POWER CONTROL REGISTER INITIAL*******//
+// 	0x0010,0x0790,
+// 	0x0011,0x0005,
+// 	0x0012,0x0000,
+// 	0x0013,0x0000,
+// 	//delayms(50,
+// 	//********POWER SUPPPLY STARTUP 1 SETTING*******//
+// 	0x0010,0x12B0,
+// 	// delayms(50,
+// 	0x0011,0x0007,
+// 	// delayms(50,
+// 	//********POWER SUPPLY STARTUP 2 SETTING******//
+// 	0x0012,0x008C,
+// 	0x0013,0x1700,
+// 	0x0029,0x0022,
+// 	// delayms(50,
+// 	//******GAMMA CLUSTER SETTING******//
+// 	0x0030,0x0000,
+// 	0x0031,0x0505,
+// 	0x0032,0x0205,
+// 	0x0035,0x0206,
+// 	0x0036,0x0408,
+// 	0x0037,0x0000,
+// 	0x0038,0x0504,
+// 	0x0039,0x0206,
+// 	0x003C,0x0206,
+// 	0x003D,0x0408,
+// 	// -----------DISPLAY WINDOWS 240*320-------------//
+// 	0x0050,0x0000,
+// 	0x0051,0x00EF,
+// 	0x0052,0x0000,
+// 	0x0053,0x013F,
+// 	//-----FRAME RATE SETTING-------//
+// 	0x0060,0xA700,
+// 	0x0061,0x0001,
+// 	0x0090,0x0033, //RTNI setting
+// 	//-------DISPLAY ON------//
+// 	0x0007,0x0133,
+// };
 
 
 void delay(unsigned int t)
@@ -411,14 +411,14 @@ void LCD_IO_WriteMultipleData(uint16_t *pData, uint32_t Size)
     /* Only 1 byte to be sent to LCD - general interface can be used */
     /* Send Data */
    // SPIx_Write(*pData);
-		LCD_RW_LOW();
+	//	LCD_RW_LOW();
 	LCD_PORT_Value((*pData)>>8);
-		LCD_RW_HIGH();
-  //Toggle_LCD_RW();
-		LCD_RW_LOW();
+	//	LCD_RW_HIGH();
+  Toggle_LCD_RW();
+	//	LCD_RW_LOW();
 		  LCD_PORT_Value(*pData);
-		LCD_RW_HIGH();
-  //Toggle_LCD_RW();
+	//	LCD_RW_HIGH();
+  Toggle_LCD_RW();
   }
   else
 {
@@ -470,37 +470,37 @@ void LCD_IO_WriteMultipleData(uint16_t *pData, uint32_t Size)
 ////////////////////////////////////////////lcd parallel 8 bit 
 
 
-void LCD_PORT_Value(uint32_t value)
+void LCD_PORT_Value(uint16_t value)
 {
 //uint8_t Mask;
 
-if(value & 0x80) HAL_GPIO_WritePin(LCD_GPIO_PORT, LCD_DATA_PIN_7, GPIO_PIN_SET);
-else 	HAL_GPIO_WritePin(LCD_GPIO_PORT, LCD_DATA_PIN_7, GPIO_PIN_RESET);
+// if(value & 0x80) HAL_GPIO_WritePin(LCD_GPIO_PORT, LCD_DATA_PIN_7, GPIO_PIN_SET);
+// else 	HAL_GPIO_WritePin(LCD_GPIO_PORT, LCD_DATA_PIN_7, GPIO_PIN_RESET);
 
-	if(value & 0x40) HAL_GPIO_WritePin(LCD_GPIO_PORT, LCD_DATA_PIN_6, GPIO_PIN_SET);
-else 	HAL_GPIO_WritePin(LCD_GPIO_PORT, LCD_DATA_PIN_6, GPIO_PIN_RESET);
-	
-	if(value & 0x20) HAL_GPIO_WritePin(LCD_GPIO_PORT, LCD_DATA_PIN_5, GPIO_PIN_SET);
-else 	HAL_GPIO_WritePin(LCD_GPIO_PORT, LCD_DATA_PIN_5, GPIO_PIN_RESET);
-	
-	if(value & 0x10) HAL_GPIO_WritePin(LCD_GPIO_PORT, LCD_DATA_PIN_4, GPIO_PIN_SET);       //10
-else 	HAL_GPIO_WritePin(LCD_GPIO_PORT, LCD_DATA_PIN_4, GPIO_PIN_RESET);
+// 	if(value & 0x40) HAL_GPIO_WritePin(LCD_GPIO_PORT, LCD_DATA_PIN_6, GPIO_PIN_SET);
+// else 	HAL_GPIO_WritePin(LCD_GPIO_PORT, LCD_DATA_PIN_6, GPIO_PIN_RESET);
+// 	
+// 	if(value & 0x20) HAL_GPIO_WritePin(LCD_GPIO_PORT, LCD_DATA_PIN_5, GPIO_PIN_SET);
+// else 	HAL_GPIO_WritePin(LCD_GPIO_PORT, LCD_DATA_PIN_5, GPIO_PIN_RESET);
+// 	
+// 	if(value & 0x10) HAL_GPIO_WritePin(LCD_GPIO_PORT, LCD_DATA_PIN_4, GPIO_PIN_SET);       //10
+// else 	HAL_GPIO_WritePin(LCD_GPIO_PORT, LCD_DATA_PIN_4, GPIO_PIN_RESET);
 
-	if(value & 0x08) HAL_GPIO_WritePin(LCD_GPIO_PORT, LCD_DATA_PIN_3, GPIO_PIN_SET);       //9
-else 	HAL_GPIO_WritePin(LCD_GPIO_PORT, LCD_DATA_PIN_3, GPIO_PIN_RESET);
+// 	if(value & 0x08) HAL_GPIO_WritePin(LCD_GPIO_PORT, LCD_DATA_PIN_3, GPIO_PIN_SET);       //9
+// else 	HAL_GPIO_WritePin(LCD_GPIO_PORT, LCD_DATA_PIN_3, GPIO_PIN_RESET);
 
-	if(value & 0x04) HAL_GPIO_WritePin(LCD_GPIO_PORT, LCD_DATA_PIN_2, GPIO_PIN_SET);
-else 	HAL_GPIO_WritePin(LCD_GPIO_PORT, LCD_DATA_PIN_2, GPIO_PIN_RESET);
-	
-		if(value & 0x02) HAL_GPIO_WritePin(LCD_GPIO_PORT, LCD_DATA_PIN_1, GPIO_PIN_SET);
-else 	HAL_GPIO_WritePin(LCD_GPIO_PORT, LCD_DATA_PIN_1, GPIO_PIN_RESET);
-	
-	if(value & 0x01) HAL_GPIO_WritePin(LCD_GPIO_PORT, LCD_DATA_PIN_0, GPIO_PIN_SET);
-else 	HAL_GPIO_WritePin(LCD_GPIO_PORT, LCD_DATA_PIN_0, GPIO_PIN_RESET);
+// 	if(value & 0x04) HAL_GPIO_WritePin(LCD_GPIO_PORT, LCD_DATA_PIN_2, GPIO_PIN_SET);
+// else 	HAL_GPIO_WritePin(LCD_GPIO_PORT, LCD_DATA_PIN_2, GPIO_PIN_RESET);
+// 	
+// 		if(value & 0x02) HAL_GPIO_WritePin(LCD_GPIO_PORT, LCD_DATA_PIN_1, GPIO_PIN_SET);
+// else 	HAL_GPIO_WritePin(LCD_GPIO_PORT, LCD_DATA_PIN_1, GPIO_PIN_RESET);
+// 	
+// 	if(value & 0x01) HAL_GPIO_WritePin(LCD_GPIO_PORT, LCD_DATA_PIN_0, GPIO_PIN_SET);
+// else 	HAL_GPIO_WritePin(LCD_GPIO_PORT, LCD_DATA_PIN_0, GPIO_PIN_RESET);
 
- // GPIOB->ODR =(GPIOB->ODR & 0x00ff);
-
- // GPIOB->ODR =(GPIOB->ODR |(value<<8));
+value=value&0x00ff;
+GPIOB->ODR =(GPIOB->ODR & 0x00ff);
+GPIOB->ODR =(GPIOB->ODR |(value<<8));
 
 //LCD_Delay(50);
 
@@ -512,7 +512,7 @@ void Toggle_LCD_RW(void)
 { LCD_Delay(10);
 	LCD_RD_HIGH();
 	LCD_RW_LOW();
-	LCD_Delay(1);
+	LCD_Delay(3);
 	LCD_RW_HIGH();
 	//LCD_Delay(10);
 }
@@ -1700,7 +1700,7 @@ void LCD_Printf3(const char *fmt, ...)
 			// skip em
 		} else {
 			LCD_DrawChar3(m_cursor_x, m_cursor_y, *p, m_textcolor, m_textbgcolor, m_textsize);
-			m_cursor_x += m_textsize*6;
+			m_cursor_x += m_textsize*12;
 			if (m_wrap && (m_cursor_x > (m_width - m_textsize*6))) {
 				m_cursor_y += m_textsize*8;
 				m_cursor_x = 0;

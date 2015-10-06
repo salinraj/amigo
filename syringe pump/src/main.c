@@ -36,11 +36,13 @@ HAL_Init();
   SystemClock_Config();
 st7783_Init();
 Button_Init();
-TIM4_Init ();
+//TIM4_Init ();
 
 	ad_value=Syringe_Size();
 	//aADCxConvertedValues[10]=0;
-	
+m_textbgcolor=BLACK;	
+
+
 LCD_SetRotation(1);
 //Display_Clear(CYAN);
 
@@ -57,7 +59,7 @@ LCD_SetRotation(1);
 	LCD_Delay(8000);
 		Display_Clear(MAGENTA);
 	LCD_Delay(8000);
-		Display_Clear(WHITE);
+		Display_Clear(BLACK);
 	LCD_Delay(2000);
  //Syringe_Size_stop();	
 	
@@ -105,28 +107,29 @@ LCD_SetRotation(1);
 // 		LCD_DrawPixel(300,200,GREEN);
 // 		
 		//////////////////////////////////////////////
-		
+//	LCD_FillRoundRect(50,50,150,100,20,RED);	
 	LCD_SetTextSize(1);
-	LCD_SetTextColor(LIGHTGRAY,WHITE);
+	LCD_SetTextColor(GRAY,m_textbgcolor);
 	Print_Text_On(Line1,Position1);
   LCD_Printf20("ClassB ");
 	//while(1);
 	//Print_Text_On(Line1,Position8);
 	//LCD_SetTextSize(2);
-	LCD_SetTextColor(BLUE,WHITE);
+	LCD_SetTextColor(GREEN,BLACK);
   //LCD_Printf20("10ml");
 	Print_Syringe_Size(10);
-	Print_Text_On(Line1,Position35);	
+	Print_Text_On(Line1,Position41);	
  	LCD_Printf20("ml");
 // 	LCD_SetTextColor(GREEN,WHITE);
 //   LCD_Printf20("OCCL:H");
-	LCD_DrawFastHLine(1,35,319,RED);
-
-	LCD_FillRect(Position2,Line2,100,28,LIGHTGRAY);
+	LCD_DrawFastHLine(1,38,319,RED);
+	//LCD_FillRect(1,39,319,160,GRAY);
+	LCD_DrawRoundRect(20,50,280,130,10,BLACK);
+	
 	LCD_SetTextSize(1);
-	Print_Text_On(Line2,Position2);
-	LCD_SetTextColor(BLACK,LIGHTGRAY);
-  LCD_Printf20("RATE");
+	Print_Text_On(Line3,Position14);
+	LCD_SetTextColor(WHITE,m_textbgcolor);
+  LCD_Printf3("RATE");
 	
 	
 	LCD_SetTextSize(1);
@@ -136,14 +139,14 @@ LCD_SetRotation(1);
 	
 	
 		LCD_SetTextSize(1);
-	Print_Text_On(Line5,Position29);
-	LCD_SetTextColor(BLACK,WHITE);
+	Print_Text_On(Line5,Position33);
+	LCD_SetTextColor(WHITE,m_textbgcolor);
   LCD_Printf20("ml/h");
 	
 	LCD_DrawFastHLine(1,200,319,RED);
 	LCD_SetCursor(2,Line9);
 	LCD_SetTextSize(1);
-	LCD_SetTextColor(BLUE,WHITE);
+	LCD_SetTextColor(YELLOW,m_textbgcolor);
   LCD_Printf20("Limit");
 	//LCD_Delay(4000);
 	//LCD_Delay(8000);
@@ -153,19 +156,19 @@ LCD_SetRotation(1);
 ////////////////////////////////////////////////////////test adc
 
 
-while(1)
-{
-	LCD_SetTextSize(1);
-	Print_Text_On(Line1,Position5);
-  //LCD_Printf("ClassB     ");
-	Print_Text_On(Line1,Position12);
-	//LCD_SetTextSize(2);
-	LCD_SetTextColor(BLUE,WHITE);
-  //PrintDecimal(Syringe_Size());
-	Print_Syringe_Size(Syringe_Size());
-	//LCD_Printf20("ml");
-			
-}
+// while(1)
+// {
+// 	LCD_SetTextSize(1);
+// 	Print_Text_On(Line1,Position5);
+//   //LCD_Printf("ClassB     ");
+// 	Print_Text_On(Line1,Position12);
+// 	//LCD_SetTextSize(2);
+// 	LCD_SetTextColor(BLUE,WHITE);
+//   //PrintDecimal(Syringe_Size());
+// 	Print_Syringe_Size(Syringe_Size());
+// 	//LCD_Printf20("ml");
+// 			
+// }
 
 
 
@@ -182,8 +185,8 @@ if(!Read_OK_Button())
 	if(Running==0)
 	{
 	LCD_SetCursor(2,Line7);
-	LCD_SetTextSize(2);
-	LCD_SetTextColor(BLUE,WHITE);
+	LCD_SetTextSize(1);
+	LCD_SetTextColor(BLUE,m_textbgcolor);
   LCD_Printf("Rate ");
 	PumpRate();
 	}
@@ -193,7 +196,7 @@ if(!Read_START_Button())
 {
 	LCD_SetCursor(2,Line7);
 	LCD_SetTextSize(2);
-	LCD_SetTextColor(BLUE,WHITE);
+	LCD_SetTextColor(BLUE,m_textbgcolor);
   LCD_Printf("start");
 	PWM_ON();
 	Running=1;
@@ -203,7 +206,7 @@ if(!Read_STOP_Button())
 {
 	LCD_SetCursor(2,Line7);
 	LCD_SetTextSize(2);
-	LCD_SetTextColor(BLUE,WHITE);
+	LCD_SetTextColor(BLUE,m_textbgcolor);
   LCD_Printf("stop ");
 	PWM_OFF();
 	Running=0;
@@ -213,14 +216,14 @@ if(!Read_STOP_Button())
 	
 	//test=aADCxConvertedValues[10];
 
-	LCD_SetTextSize(2);
-	Print_Text_On(Line1,Position5);
-  //LCD_Printf("ClassB     ");
-	//Print_Text_On(Line1,Position8);
-	//LCD_SetTextSize(2);
-	LCD_SetTextColor(BLUE,WHITE);
-  //PrintDecimal(aADCxConvertedValues[10]);
-		PrintRate(aADCxConvertedValues[10]);		
+// 	LCD_SetTextSize(2);
+// 	Print_Text_On(Line1,Position5);
+//   //LCD_Printf("ClassB     ");
+// 	//Print_Text_On(Line1,Position8);
+// 	//LCD_SetTextSize(2);
+// 	LCD_SetTextColor(BLUE,WHITE);
+//   //PrintDecimal(aADCxConvertedValues[10]);
+// 		PrintRate(aADCxConvertedValues[10]);		
 }
 
 

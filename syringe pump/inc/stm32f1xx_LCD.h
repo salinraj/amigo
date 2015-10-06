@@ -164,7 +164,7 @@
   * @brief  LCD data pins
   */
 
-#define LCD_DATA_PIN_0												GPIO_PIN_7	
+#define LCD_DATA_PIN_0												GPIO_PIN_8	
 #define LCD_DATA_PIN_1												GPIO_PIN_9	
 #define LCD_DATA_PIN_2												GPIO_PIN_10	
 #define LCD_DATA_PIN_3												GPIO_PIN_11
@@ -221,7 +221,7 @@ void LCD_IO_WriteReg(uint16_t LCDReg);
 void LCD_IO_WriteData(uint16_t LCDData);
 void LCD_IO_WriteMultipleData(uint16_t *pData, uint32_t Size);
 void LCD_Delay(uint32_t Delay);
-void LCD_PORT_Value(uint32_t value);
+void LCD_PORT_Value(uint16_t value);
 void Toggle_LCD_RW(void);
 
 void Display_Clear(uint16_t color) ;
@@ -282,6 +282,7 @@ static uint16_t m_textbgcolor;
 static uint8_t m_textsize;
 static uint8_t m_rotation;
 static uint8_t m_wrap;
+static 
 
 
 #ifdef __cplusplus

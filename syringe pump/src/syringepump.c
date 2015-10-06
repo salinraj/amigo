@@ -11,7 +11,7 @@ uint16_t PumpingRate = 200;
 void PumpRate(void)
 {
 	
-	LCD_SetTextSize(4);
+	//LCD_SetTextSize(4);
 	
 	LCD_SetTextColor(BLACK,WHITE);
 	while(1)
@@ -25,10 +25,10 @@ void PumpRate(void)
 		PWM_Freq(PumpingRate);
 		
 		
-	Print_Text_On(Line4,Position4);
-  //LCD_Printf("UP");
+// 	Print_Text_On(Line4,Position4);
+//   LCD_Printf("UP");
 	//PrintDecimal(PumpingRate);
-PrintRate(PumpingRate);
+	PrintRate(PumpingRate);
 	}
 	else if(!Read_DOWN_Button())
 	{
@@ -39,8 +39,8 @@ PrintRate(PumpingRate);
 		PWM_Freq(PumpingRate);
 		
 		
-			Print_Text_On(Line4,Position4);
-  //LCD_Printf("DN");
+// 	Print_Text_On(Line4,Position4);
+//   LCD_Printf("DN");
 	//PrintDecimal(PumpingRate);
 		
 		PrintRate(PumpingRate);
@@ -52,10 +52,10 @@ PrintRate(PumpingRate);
 		while(!Read_OK_Button());
 		
 			LCD_SetCursor(2,Line7);
-	LCD_SetTextSize(2);
-	LCD_SetTextColor(BLUE,WHITE);
-  LCD_Printf("     ");
-		HAL_Delay(1000);
+			LCD_SetTextSize(1);
+			LCD_SetTextColor(BLUE,WHITE);
+			LCD_Printf("     ");
+ 		HAL_Delay(1000);
 		//return;
 		break;
 	}
@@ -92,8 +92,8 @@ void PrintDecimal(uint16_t value,uint8_t Size)
 void PrintRate(uint16_t value)
 {
 	
-	Print_Text_On(Line4,Position14);
-	LCD_SetTextColor(BLACK,WHITE);	
+	Print_Text_On(Line4,Position18);
+	LCD_SetTextColor(WHITE,m_textbgcolor);	
   PrintDecimal(value,36);
 
 }
@@ -102,8 +102,8 @@ void PrintRate(uint16_t value)
 /*Print the size of the syringe*/
 void Print_Syringe_Size(uint16_t value)
 {
-	LCD_SetTextColor(BLUE,WHITE);
-	Print_Text_On(Line1,Position26);	
+	LCD_SetTextColor(GREEN,m_textbgcolor);
+	Print_Text_On(Line1,Position32);	
   PrintDecimal(value,20);
 	
 }
