@@ -57,11 +57,13 @@ __IO uint8_t    ubUserButtonClickEvent = RESET;  /* Event detection: Set after U
 
 
 
+//uint16_t Syringe_Size=10;
 
 
 
 
-uint32_t Syringe_Size(void)
+
+uint16_t Get_Syringe_Size(void)
 {
 	uint32_t adc_value;
 	uint32_t adc_valuetest=0;
@@ -118,9 +120,9 @@ uint32_t Syringe_Size(void)
 	
 	adc_value= HAL_ADC_GetValue(&AdcHandle);
 	if(adc_value<=0x400) return(10);
-	else if(adc_value>0x400 && adc_value<=0x800) return(20); 
-	else if(adc_value>0x810 && adc_value<=0xc00) return(30); 
-	else if(adc_value>0xc10)
+	else if(adc_value>0x400 && adc_value<=0x800) return(20);
+	else if(adc_value>0x810 && adc_value<=0xc00) return(30);
+	else if(adc_value>0xc10) 
 	return(50);
 
 }

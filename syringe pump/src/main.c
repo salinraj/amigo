@@ -6,7 +6,7 @@
 extern __IO uint16_t   aADCxConvertedValues[ADCCONVERTEDVALUES_BUFFER_SIZE];
 extern uint16_t PumpingRate;
 
-uint32_t ad_value;
+uint16_t Syringe_Size_Current;
 
 int main()
 {
@@ -37,10 +37,10 @@ HAL_Init();
   SystemClock_Config();
 
 Button_Init();
-//TIM4_Init ();
+TIM4_Init ();
 LCD_Delay(8000);
 st7783_Init();
-	ad_value=Syringe_Size();
+	//ad_value=Get_Syringe_Size();
 	//aADCxConvertedValues[10]=0;
 m_textbgcolor=BLACK;	
 
@@ -131,7 +131,7 @@ LCD_SetRotation(1);
 	LCD_SetTextSize(1);
 	Print_Text_On(Line3,Position14);
 	LCD_SetTextColor(WHITE,m_textbgcolor);
-  LCD_Printf3("RATE");
+  LCD_Printf10("RATE");
 	
 	
 	LCD_SetTextSize(1);
@@ -152,7 +152,7 @@ LCD_SetRotation(1);
   LCD_Printf20("Limit");
 	//LCD_Delay(4000);
 	//LCD_Delay(8000);
-	PWM_Freq(200);
+	//PWM_Freq(200);
 
 
 ////////////////////////////////////////////////////////test adc
@@ -179,7 +179,20 @@ LCD_SetRotation(1);
 
 	while(1)
 	{
+		if(Syringe_Size_Current!=Get_Syringe_Size())
+		{
+			Syringe_Size_Current=Get_Syringe_Size();
+			Print_Syringe_Size(Syringe_Size_Current);
+			if(Running==1)                 //syringe holder is misplaced. So if pumping is ON ,it must be turned OFF.
+			{
+				
+			Alarm_Syringe_Misplacement();
+			Running=0;
+			}
 
+
+		}
+Print_Syringe_Size(Get_Syringe_Size());
 		
 if(!Read_OK_Button())
 {
@@ -197,9 +210,10 @@ if(!Read_OK_Button())
 if(!Read_START_Button())
 {
 	LCD_SetCursor(2,Line7);
-	LCD_SetTextSize(2);
+	LCD_SetTextSize(1);
 	LCD_SetTextColor(BLUE,m_textbgcolor);
   LCD_Printf("start");
+	Motor_Speed(PumpingRate,Get_Syringe_Size());
 	PWM_ON();
 	Running=1;
 }
@@ -207,25 +221,14 @@ if(!Read_START_Button())
 if(!Read_STOP_Button())
 {
 	LCD_SetCursor(2,Line7);
-	LCD_SetTextSize(2);
+	LCD_SetTextSize(1);
 	LCD_SetTextColor(BLUE,m_textbgcolor);
   LCD_Printf("stop ");
 	PWM_OFF();
 	Running=0;
 }
 	
-
-	
-	//test=aADCxConvertedValues[10];
-
-// 	LCD_SetTextSize(2);
-// 	Print_Text_On(Line1,Position5);
-//   //LCD_Printf("ClassB     ");
-// 	//Print_Text_On(Line1,Position8);
-// 	//LCD_SetTextSize(2);
-// 	LCD_SetTextColor(BLUE,WHITE);
-//   //PrintDecimal(aADCxConvertedValues[10]);
-// 		PrintRate(aADCxConvertedValues[10]);		
+		
 }
 
 

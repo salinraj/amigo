@@ -20,7 +20,14 @@
 //#define ADC_TRIGGER_FROM_TIMER
 
 /* Variable containing ADC conversions results */
+
+
+
 #define ADCCONVERTEDVALUES_BUFFER_SIZE ((uint32_t) 256)     /* Size of array containing ADC converted values */
+
+
+
+
 
 //__IO uint16_t   aADCxConvertedValues[ADCCONVERTEDVALUES_BUFFER_SIZE];
 
@@ -81,8 +88,13 @@ void HAL_ADC_ConvHalfCpltCallback(ADC_HandleTypeDef* hadc);
   void HAL_ADC_LevelOutOfWindowCallback(ADC_HandleTypeDef* hadc);
 	void HAL_ADC_ErrorCallback(ADC_HandleTypeDef *hadc);
 	static void Error_Handler(void);
-uint32_t Syringe_Size(void);
+
+
+
+
+uint16_t Get_Syringe_Size(void);
 void Syringe_Size_stop(void);
+
 
 #ifdef  USE_FULL_ASSERT
 	/**

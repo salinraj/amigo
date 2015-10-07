@@ -35,7 +35,7 @@
 ### ADS-LD Output File: 'syringe pump.axf'
 ### ADS-LD Command File: 'syringe pump.lnp'
 ### Checking for dirty Components...
-### Creating CmdFile 'syringe pump.lnp', Handle=0x00000238
+### Creating CmdFile 'syringe pump.lnp', Handle=0x00000698
 ### Writing '.lnp' file
 ### ADS-LD Command file 'syringe pump.lnp' is ready.
 ### ADS-LD: About to start ADS-LD Thread.

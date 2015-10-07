@@ -1135,7 +1135,7 @@ void LCD_DrawChar(int16_t x, int16_t y, unsigned char c, uint16_t color, uint16_
 
 
 
-void LCD_DrawChar3(int16_t x, int16_t y, unsigned char c, uint16_t color, uint16_t bg, uint8_t size)
+void LCD_DrawChar10(int16_t x, int16_t y, unsigned char c, uint16_t color, uint16_t bg, uint8_t size)
 {
 	uint8_t x_max;
 	uint8_t x_temp;
@@ -1681,7 +1681,7 @@ void LCD_Printf(const char *fmt, ...)
 
 
 
-void LCD_Printf3(const char *fmt, ...)
+void LCD_Printf10(const char *fmt, ...)
 {
 	static char buf[256];
 	char *p;
@@ -1699,7 +1699,7 @@ void LCD_Printf3(const char *fmt, ...)
 		} else if (*p == '\r') {
 			// skip em
 		} else {
-			LCD_DrawChar3(m_cursor_x, m_cursor_y, *p, m_textcolor, m_textbgcolor, m_textsize);
+			LCD_DrawChar10(m_cursor_x, m_cursor_y, *p, m_textcolor, m_textbgcolor, m_textsize);
 			m_cursor_x += m_textsize*12;
 			if (m_wrap && (m_cursor_x > (m_width - m_textsize*6))) {
 				m_cursor_y += m_textsize*8;

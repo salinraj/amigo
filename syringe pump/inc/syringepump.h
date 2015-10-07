@@ -16,8 +16,9 @@ void PumpRate(void);
 void PrintDecimal(uint16_t value,uint8_t Size);
 void PrintRate(uint16_t value);
 void Print_Syringe_Size(uint16_t value);
-
-
+void Motor_Speed(uint16_t Rate,uint16_t Size);
+void Alarm_Syringe_Misplacement(void);
+void Initial_Screen(void);
 
 
 

@@ -247,8 +247,8 @@ void LCD_DrawChar(int16_t x, int16_t y, unsigned char c, uint16_t color, uint16_
 
 
 //font size test
-void LCD_DrawChar3(int16_t x, int16_t y, unsigned char c, uint16_t color, uint16_t bg, uint8_t size);
-void LCD_Printf3(const char *fmt, ...);
+void LCD_DrawChar10(int16_t x, int16_t y, unsigned char c, uint16_t color, uint16_t bg, uint8_t size);
+void LCD_Printf10(const char *fmt, ...);
 void LCD_DrawChar20(int16_t x, int16_t y, unsigned char c, uint16_t color, uint16_t bg, uint8_t size);
 void LCD_Printf20( char *fmt, ...);
 void LCD_DrawChar36(int16_t x, int16_t y, unsigned char c, uint16_t color, uint16_t bg, uint8_t size);

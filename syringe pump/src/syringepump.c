@@ -22,7 +22,7 @@ void PumpRate(void)
 		PumpingRate += 10;
 		if(PumpingRate>300)
 		PumpingRate=300;
-		PWM_Freq(PumpingRate);
+	//	PWM_Freq(PumpingRate);
 		
 		
 // 	Print_Text_On(Line4,Position4);
@@ -36,7 +36,7 @@ void PumpRate(void)
 		PumpingRate -= 10;
 		if(PumpingRate<10)
 		PumpingRate=10;
-		PWM_Freq(PumpingRate);
+	//	PWM_Freq(PumpingRate);
 		
 		
 // 	Print_Text_On(Line4,Position4);
@@ -53,7 +53,7 @@ void PumpRate(void)
 		
 			LCD_SetCursor(2,Line7);
 			LCD_SetTextSize(1);
-			LCD_SetTextColor(BLUE,WHITE);
+			LCD_SetTextColor(BLUE,BLACK);
 			LCD_Printf("     ");
  		HAL_Delay(1000);
 		//return;
@@ -106,6 +106,69 @@ void Print_Syringe_Size(uint16_t value)
 	Print_Text_On(Line1,Position32);	
   PrintDecimal(value,20);
 	
+}
+
+void Motor_Speed(uint16_t Rate,uint16_t Size)
+{
+
+PWM_Freq(Rate*Size/10);
+}
+
+
+void Alarm_Syringe_Misplacement(void)
+{
+			PWM_OFF();
+			Display_Clear(BLACK);
+			Print_Text_On(Line3,Position18);
+			LCD_SetTextColor(RED,m_textbgcolor);
+			LCD_Printf20("ALERT...");
+			Print_Text_On(Line6,Position2);	
+			LCD_Printf20("Syringe Misplaced");	
+	
+			HAL_Delay(15000);
+			Initial_Screen();
+
+}
+
+void Initial_Screen(void)
+{
+
+	Display_Clear(BLACK);	
+	LCD_SetTextSize(1);
+	LCD_SetTextColor(GRAY,m_textbgcolor);
+	Print_Text_On(Line1,Position1);
+  LCD_Printf20("ClassB ");
+	
+	LCD_SetTextColor(GREEN,BLACK);
+  Print_Syringe_Size(Get_Syringe_Size());
+	Print_Text_On(Line1,Position41);	
+ 	LCD_Printf20("ml");
+	
+	LCD_DrawFastHLine(1,38,319,RED);
+
+	LCD_SetTextSize(1);
+	Print_Text_On(Line3,Position14);
+	LCD_SetTextColor(WHITE,m_textbgcolor);
+  LCD_Printf10("RATE");
+	LCD_SetTextSize(1);
+	PrintRate(PumpingRate);
+	
+	
+	LCD_SetTextSize(1);
+	Print_Text_On(Line5,Position33);
+	LCD_SetTextColor(WHITE,m_textbgcolor);
+  LCD_Printf20("ml/h");
+	
+	
+	LCD_DrawFastHLine(1,200,319,RED);
+	LCD_SetCursor(2,Line9);
+	LCD_SetTextSize(1);
+	LCD_SetTextColor(YELLOW,m_textbgcolor);
+  LCD_Printf20("Limit");
+
+
+
+
 }
 
 
