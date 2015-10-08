@@ -271,7 +271,7 @@ void LCD_SetTextWrap(uint8_t w) ;
 void LCD_Printf(const char *fmt, ...);
 void Print_Text_On(uint8_t line, uint8_t position);
 
-
+                                                              void LCD_Flood1(uint16_t color, uint32_t len);
 
 //static int16_t m_width;
 //static int16_t m_height;

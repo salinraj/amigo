@@ -5,8 +5,8 @@
 
 extern __IO uint16_t   aADCxConvertedValues[ADCCONVERTEDVALUES_BUFFER_SIZE];
 extern uint16_t PumpingRate;
-
-uint16_t Syringe_Size_Current;
+extern uint8_t Current_Screen;
+uint16_t Syringe_Size_Current=0;
 
 int main()
 {
@@ -31,21 +31,26 @@ int main()
        - Low Level Initialization
      */
 
-HAL_Init(); 
+	HAL_Init(); 
 	
 	  /* Configure the system clock = 64 MHz */
   SystemClock_Config();
 
 Button_Init();
 TIM4_Init ();
-LCD_Delay(8000);
+LCD_Delay(16000);
 st7783_Init();
 	//ad_value=Get_Syringe_Size();
 	//aADCxConvertedValues[10]=0;
 m_textbgcolor=BLACK;	
 
 
-LCD_SetRotation(1);
+// LCD_SetRotation(1);
+// Display_Clear(WHITE);
+// LCD_SetAddrWindow(0,0,320,240);
+// LCD_Flood1(RED,(320*250*2));
+
+// while(1);
 //Display_Clear(CYAN);
 
 	//LCD_DrawFastHLine(40,40,30,BLACK);
@@ -60,120 +65,9 @@ LCD_SetRotation(1);
 		Display_Clear(YELLOW);
 	LCD_Delay(8000);
 		Display_Clear(MAGENTA);
-	LCD_Delay(8000);
-		Display_Clear(BLACK);
-	LCD_Delay(2000);
- //Syringe_Size_stop();	
-	
-	//LCD_FillRect(1,1,319,32,LIGHTGRAY);
-
-// 	LCD_SetTextSize(1);
-// 	LCD_SetTextColor(RED,WHITE);
-// 	Print_Text_On(Line3,Position10);
-//   LCD_Printf3("1");
-// 	Print_Text_On(Line4,Position10);
-//   LCD_Printf20("RATE");
-// 	LCD_SetTextColor(BLUE,WHITE);
-// 	Print_Text_On(Line4,Position25);
-//   LCD_Printf36("321");
-// 	Print_Text_On(Line8,Position10);
-//   LCD_Printf("K");
-// 	while(1)
-// 	{
-// }
-// 	
 
 
-
-
-///////////////////////////////////////////////////////
-
-//	LCD_SetAddrWindow(50, 10, 200, 10);
-//	LCD_Flood(RED, 319);
-	//while(1);
-
-
-
-//////////////////////////////////////////////////////////
-		
-		/////////////////////////////////////////test
-// 		for(test1=0;test1<319;test1++)
-// 		{
-// 		LCD_DrawPixel(test1,100,RED);
-// 		
-// 		LCD_DrawPixel(test1,150,BLUE);
-// 		
-// 		}
-// 		
-// 		while(1);
-// 		LCD_DrawPixel(300,200,GREEN);
-// 		
-		//////////////////////////////////////////////
-//	LCD_FillRoundRect(50,50,150,100,20,RED);	
-	LCD_SetTextSize(1);
-	LCD_SetTextColor(GRAY,m_textbgcolor);
-	Print_Text_On(Line1,Position1);
-  LCD_Printf20("ClassB ");
-	//while(1);
-	//Print_Text_On(Line1,Position8);
-	//LCD_SetTextSize(2);
-	LCD_SetTextColor(GREEN,BLACK);
-  //LCD_Printf20("10ml");
-	Print_Syringe_Size(10);
-	Print_Text_On(Line1,Position41);	
- 	LCD_Printf20("ml");
-// 	LCD_SetTextColor(GREEN,WHITE);
-//   LCD_Printf20("OCCL:H");
-	LCD_DrawFastHLine(1,38,319,RED);
-	//LCD_FillRect(1,39,319,160,GRAY);
-	LCD_DrawRoundRect(20,50,280,130,10,BLACK);
-	
-	LCD_SetTextSize(1);
-	Print_Text_On(Line3,Position14);
-	LCD_SetTextColor(WHITE,m_textbgcolor);
-  LCD_Printf10("RATE");
-	
-	
-	LCD_SetTextSize(1);
-	  //LCD_Printf36("300");
-	//PrintDecimal(200);
-	PrintRate(PumpingRate);
-	
-	
-		LCD_SetTextSize(1);
-	Print_Text_On(Line5,Position33);
-	LCD_SetTextColor(WHITE,m_textbgcolor);
-  LCD_Printf20("ml/h");
-	
-	LCD_DrawFastHLine(1,200,319,RED);
-	LCD_SetCursor(2,Line9);
-	LCD_SetTextSize(1);
-	LCD_SetTextColor(YELLOW,m_textbgcolor);
-  LCD_Printf20("Limit");
-	//LCD_Delay(4000);
-	//LCD_Delay(8000);
-	//PWM_Freq(200);
-
-
-////////////////////////////////////////////////////////test adc
-
-
-// while(1)
-// {
-// 	LCD_SetTextSize(1);
-// 	Print_Text_On(Line1,Position5);
-//   //LCD_Printf("ClassB     ");
-// 	Print_Text_On(Line1,Position12);
-// 	//LCD_SetTextSize(2);
-// 	LCD_SetTextColor(BLUE,WHITE);
-//   //PrintDecimal(Syringe_Size());
-// 	Print_Syringe_Size(Syringe_Size());
-// 	//LCD_Printf20("ml");
-// 			
-// }
-
-
-
+Initial_Screen();
 
 /////////////////////////////////////////////////////////
 
@@ -182,17 +76,18 @@ LCD_SetRotation(1);
 		if(Syringe_Size_Current!=Get_Syringe_Size())
 		{
 			Syringe_Size_Current=Get_Syringe_Size();
-			Print_Syringe_Size(Syringe_Size_Current);
+			
 			if(Running==1)                 //syringe holder is misplaced. So if pumping is ON ,it must be turned OFF.
 			{
 				
 			Alarm_Syringe_Misplacement();
 			Running=0;
 			}
-
+			else
+			Print_Syringe_Size(Syringe_Size_Current);
 
 		}
-Print_Syringe_Size(Get_Syringe_Size());
+//Print_Syringe_Size(Get_Syringe_Size());
 		
 if(!Read_OK_Button())
 {
@@ -226,9 +121,19 @@ if(!Read_STOP_Button())
   LCD_Printf("stop ");
 	PWM_OFF();
 	Running=0;
+	Initial_Screen();
+	
 }
 	
-		
+if(Running==1)
+{
+if(	Current_Screen==0)
+Running_Screen();
+	
+}	
+
+
+
 }
 
 

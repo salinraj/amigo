@@ -91,7 +91,7 @@ void HAL_ADC_ConvHalfCpltCallback(ADC_HandleTypeDef* hadc);
 
 
 
-
+uint32_t Get_ADC_Value(void);
 uint16_t Get_Syringe_Size(void);
 void Syringe_Size_stop(void);
 

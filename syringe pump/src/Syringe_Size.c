@@ -23,9 +23,9 @@
 //#define ADCCONVERTEDVALUES_BUFFER_SIZE ((uint32_t) 256)     /* Size of array containing ADC converted values */
 
 #if defined(ADC_TRIGGER_FROM_TIMER)
-#define TIMER_FREQUENCY                ((uint32_t) 1000)    /* Timer frequency (unit: Hz). With a timer 16 bits and time base freq min 1Hz, range is min=1Hz, max=32kHz. */
-#define TIMER_FREQUENCY_RANGE_MIN      ((uint32_t)    1)    /* Timer minimum frequency (unit: Hz). With a timer 16 bits, maximum frequency will be 32000 times this value. */
-#define TIMER_PRESCALER_MAX_VALUE      (0xFFFF-1)           /* Timer prescaler maximum value (0xFFFF for a timer 16 bits) */
+	#define TIMER_FREQUENCY                ((uint32_t) 1000)    /* Timer frequency (unit: Hz). With a timer 16 bits and time base freq min 1Hz, range is min=1Hz, max=32kHz. */
+	#define TIMER_FREQUENCY_RANGE_MIN      ((uint32_t)    1)    /* Timer minimum frequency (unit: Hz). With a timer 16 bits, maximum frequency will be 32000 times this value. */
+	#define TIMER_PRESCALER_MAX_VALUE      (0xFFFF-1)           /* Timer prescaler maximum value (0xFFFF for a timer 16 bits) */
 #endif /* ADC_TRIGGER_FROM_TIMER */
 
 /* Private macro -------------------------------------------------------------*/
@@ -63,9 +63,10 @@ __IO uint8_t    ubUserButtonClickEvent = RESET;  /* Event detection: Set after U
 
 
 
-uint16_t Get_Syringe_Size(void)
+uint32_t Get_ADC_Value(void)
 {
-	uint32_t adc_value;
+
+uint32_t adc_value;
 	uint32_t adc_valuetest=0;
  ADC_Config();
 	
@@ -119,11 +120,84 @@ uint16_t Get_Syringe_Size(void)
   }
 	
 	adc_value= HAL_ADC_GetValue(&AdcHandle);
+
+return(adc_value);
+
+
+}
+
+
+
+
+
+
+
+
+
+
+uint16_t Get_Syringe_Size(void)
+{
+	uint32_t adc_value;
+	uint32_t adc_value2;
+//  ADC_Config();
+// 	
+// 	
+// 	  if (HAL_ADCEx_Calibration_Start(&AdcHandle) != HAL_OK)
+//   {
+//     /* Calibration Error */
+//     Error_Handler();
+//   }
+// 	
+// 	#if defined(ADC_TRIGGER_FROM_TIMER)
+//   /* Configure the TIM peripheral */
+//   TIM_Config();
+// #endif /* ADC_TRIGGER_FROM_TIMER */
+// 	
+// 	 /*## Enable peripherals ####################################################*/
+// #if defined(ADC_TRIGGER_FROM_TIMER)
+//   /* Timer enable */
+//   if (HAL_TIM_Base_Start(&TimHandle) != HAL_OK)
+//   {
+//     /* Counter Enable Error */
+//     Error_Handler();
+//   }
+// #endif /* ADC_TRIGGER_FROM_TIMER */
+//   /* Note: This example, on some other STM32 boards, is performing            */
+//   /*       DAC signal generation here.                                        */
+//   /*       On STM32F103RB-Nucleo, the device has no DAC available,            */
+//   /*       therefore analog signal must be supplied externally.               */
+
+//   /*## Start ADC conversions #################################################*/
+//   
+//   /* Start ADC conversion on regular group with transfer by DMA */
+// //   if (HAL_ADC_Start_DMA(&AdcHandle,
+// //                         (uint32_t *)aADCxConvertedValues,
+// //                         ADCCONVERTEDVALUES_BUFFER_SIZE
+// //                        ) != HAL_OK)
+// //   {
+// //     /* Start Error */
+// //     Error_Handler();
+// //   }
+//    if (HAL_ADC_Start(&AdcHandle) != HAL_OK)
+//   {
+//     /* Start Error */
+//     Error_Handler();
+//   }
+// 	
+// 	if (HAL_ADC_PollForConversion(&AdcHandle,10) != HAL_OK)
+// 		  {
+//     /* Start Error */
+//     Error_Handler();
+//   }
+	
+	
+	adc_value  =  Get_ADC_Value();
+	adc_value2 =  Get_ADC_Value();
+	adc_value  =  (adc_value+adc_value2)/2;
 	if(adc_value<=0x400) return(10);
 	else if(adc_value>0x400 && adc_value<=0x800) return(20);
-	else if(adc_value>0x810 && adc_value<=0xc00) return(30);
-	else if(adc_value>0xc10) 
-	return(50);
+	else if(adc_value>0x800 && adc_value<=0xc00) return(30);
+	else if(adc_value>0xc01) return(50);
 
 }
 
@@ -463,6 +537,19 @@ void assert_failed(uint8_t *file, uint32_t line)
   {
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 #endif
 

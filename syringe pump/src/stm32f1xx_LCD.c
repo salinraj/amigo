@@ -202,6 +202,11 @@ void st7783_Init(void)
 	LCD_WriteRegister16(0x0012, 0x008c);
 	LCD_WriteRegister16(0x0013, 0x1700);
 	LCD_WriteRegister16(0x0029, 0x0022);
+	
+	//************* frame rate control ******//
+	LCD_WriteRegister16(0x002b, 0x000E);
+	
+	
 	//delay
 	//HAL_Delay(10);
 	//******GAMMA CLUSTER SETTING******//
@@ -509,10 +514,10 @@ GPIOB->ODR =(GPIOB->ODR |(value<<8));
 
 
 void Toggle_LCD_RW(void)
-{ LCD_Delay(10);
+{ LCD_Delay(1);
 	LCD_RD_HIGH();
 	LCD_RW_LOW();
-	LCD_Delay(3);
+	LCD_Delay(2);
 	LCD_RW_HIGH();
 	//LCD_Delay(10);
 }
@@ -520,28 +525,29 @@ void Toggle_LCD_RW(void)
 
 
 
-// void LCD_Flood(uint16_t color, uint32_t len)
-// {
-// 	uint32_t  i, hi = color >> 8, lo = color;
-// 	LCD_IO_WriteReg(0x0022); // Write data to GRAM
+void LCD_Flood1(uint16_t color, uint32_t len)
+{
+	uint32_t  i, hi = color >> 8, lo = color;
+	LCD_IO_WriteReg(0x0022); // Write data to GRAM
 
-// 	// Write first pixel normally, decrement counter by 1
-// 	LCD_CS_LOW();
-// 	LCD_DC_HIGH();
-// 	for(i=0;i<len;i++)
-// 	{
-// 	LCD_RW_LOW();
-// 	LCD_PORT_Value(hi);
-// 		LCD_RW_HIGH();
-//   //Toggle_LCD_RW();
-// 		LCD_RW_LOW();
-// 		  LCD_PORT_Value(lo);
-// 		LCD_RW_HIGH();	
-// 		
-// 	}
+	// Write first pixel normally, decrement counter by 1
+	LCD_CS_LOW();
+	LCD_DC_HIGH();
+	for(i=0;i<len;i++)
+	{
+	//LCD_RW_LOW();
+	LCD_PORT_Value(hi);
+	//	LCD_RW_HIGH();
+  Toggle_LCD_RW();
+	//	LCD_RW_LOW();
+		  LCD_PORT_Value(lo);
+	//	LCD_RW_HIGH();	
+		Toggle_LCD_RW();
+		
+	}
 
-// 	
-// 	}
+	
+	}
 	
 	
 	

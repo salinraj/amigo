@@ -8,6 +8,7 @@ file includes functions for display of syringpump and motor control for syringe 
 #include "syringepump.h"
 
 uint16_t PumpingRate = 200;
+uint8_t Current_Screen=0;
 void PumpRate(void)
 {
 	
@@ -118,17 +119,28 @@ PWM_Freq(Rate*Size/10);
 void Alarm_Syringe_Misplacement(void)
 {
 			PWM_OFF();
-			Display_Clear(BLACK);
-			Print_Text_On(Line3,Position18);
-			LCD_SetTextColor(RED,m_textbgcolor);
-			LCD_Printf20("ALERT...");
-			Print_Text_On(Line6,Position2);	
-			LCD_Printf20("Syringe Misplaced");	
+			Display_Clear(GRAY);
+			Print_Text_On(Line3,Position2);
+			LCD_SetTextColor(RED,GRAY);
+			LCD_Printf20("....ALERT...");
+	//		Print_Text_On(Line6,Position2);	
+	//		LCD_Printf20("Syringe Misplaced");
+			LCD_FillRect(60,133,20,4,RED);
+			LCD_FillRoundRect(80,120,100,30,10,RED);
+			LCD_FillRect(172,115,10,40,RED);
+			LCD_FillRect(182,130,20,10,RED);		
+			LCD_FillRect(202,110,10,50,RED);	
+			LCD_DrawLine(110,110,140,160,BLACK);
+			LCD_DrawLine(111,110,141,160,BLACK);
+			LCD_DrawLine(140,110,110,160,BLACK);	
+			LCD_DrawLine(141,110,111,160,BLACK);	
 	
 			HAL_Delay(15000);
 			Initial_Screen();
 
 }
+
+///******lcd display when the machine is idle state
 
 void Initial_Screen(void)
 {
@@ -166,6 +178,31 @@ void Initial_Screen(void)
 	LCD_SetTextColor(YELLOW,m_textbgcolor);
   LCD_Printf20("Limit");
 
+
+}
+
+
+void Running_Screen(void)
+{
+	
+	if(Current_Screen==0)
+	{
+	Display_Clear(BLACK);	
+	LCD_SetTextSize(1);
+	Print_Text_On(Line1,Position14);
+	LCD_SetTextColor(WHITE,m_textbgcolor);
+  LCD_Printf10("RATE");
+	LCD_SetTextSize(1);
+	//PrintRate(PumpingRate);
+	Print_Text_On(Line2,Position18);
+	LCD_SetTextColor(WHITE,m_textbgcolor);	
+  PrintDecimal(PumpingRate,36);
+	Print_Text_On(Line3,Position33);
+	LCD_SetTextColor(WHITE,m_textbgcolor);
+  LCD_Printf20("ml/h");
+	Current_Screen=1;	
+	}
+	
 
 
 
