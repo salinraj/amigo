@@ -68,7 +68,7 @@ uint32_t Get_ADC_Value(void)
 
 uint32_t adc_value;
 	uint32_t adc_valuetest=0;
- ADC_Config();
+// ADC_Config();
 	
 	
 	  if (HAL_ADCEx_Calibration_Start(&AdcHandle) != HAL_OK)
@@ -137,7 +137,8 @@ return(adc_value);
 
 uint16_t Get_Syringe_Size(void)
 {
-	uint32_t adc_value;
+	uint8_t count;
+	uint32_t adc_value[4];
 	uint32_t adc_value2;
 //  ADC_Config();
 // 	
@@ -189,15 +190,33 @@ uint16_t Get_Syringe_Size(void)
 //     /* Start Error */
 //     Error_Handler();
 //   }
+
+	for(count=0;count<4;count++)
+	{
+adc_value[count] =  Get_ADC_Value();
+		HAL_Delay(1);
+	}
+	
+	adc_value2=0;
+	
+		for(count=0;count<4;count++)
+	{
+adc_value2+=adc_value[count] ;
+	}
+	adc_value2=adc_value2/4;
 	
 	
-	adc_value  =  Get_ADC_Value();
-	adc_value2 =  Get_ADC_Value();
-	adc_value  =  (adc_value+adc_value2)/2;
-	if(adc_value<=0x400) return(10);
-	else if(adc_value>0x400 && adc_value<=0x800) return(20);
-	else if(adc_value>0x800 && adc_value<=0xc00) return(30);
-	else if(adc_value>0xc01) return(50);
+// 	adc_value  =  Get_ADC_Value();
+// 	adc_value2 =  Get_ADC_Value();
+// 	adc_value  =  (adc_value+adc_value2)/2;
+	
+	if(adc_value2<=0x100) return(99);
+	else if(adc_value2>0x100 && adc_value2<=0x400) return(10);
+	else if(adc_value2>0x400 && adc_value2<=0x800) return(20);
+	else if(adc_value2>0x800 && adc_value2<=0xb00) return(30);
+	else if(adc_value2>0xb00 && adc_value2<=0xd80) return(50);
+	else if(adc_value2>0xd80) return(99);
+	else return(99);
 
 }
 
@@ -280,7 +299,8 @@ HAL_ADC_Stop_DMA(&AdcHandle);
 
 
 
-static void ADC_Config(void)
+//static void ADC_Config(void)
+void ADC_Config(void)
 {
   ADC_ChannelConfTypeDef   sConfig;
  // ADC_AnalogWDGConfTypeDef AnalogWDGConfig;
@@ -317,8 +337,8 @@ static void ADC_Config(void)
   /*       duration to not create an overhead situation in IRQHandler.        */
   sConfig.Channel      = ADCx_CHANNELa;
   sConfig.Rank         = ADC_REGULAR_RANK_1;
-  sConfig.SamplingTime = ADC_SAMPLETIME_41CYCLES_5;
-	//sConfig.SamplingTime = ADC_SAMPLETIME_239CYCLES_5;
+  //sConfig.SamplingTime = ADC_SAMPLETIME_41CYCLES_5;
+	sConfig.SamplingTime = ADC_SAMPLETIME_239CYCLES_5;
   
   if (HAL_ADC_ConfigChannel(&AdcHandle, &sConfig) != HAL_OK)
   {

@@ -38,7 +38,8 @@ int main()
 
 Button_Init();
 TIM4_Init ();
-LCD_Delay(16000);
+ADC_Config();
+HAL_Delay(500);
 st7783_Init();
 	//ad_value=Get_Syringe_Size();
 	//aADCxConvertedValues[10]=0;
@@ -73,19 +74,24 @@ Initial_Screen();
 
 	while(1)
 	{
+		
 		if(Syringe_Size_Current!=Get_Syringe_Size())
 		{
-			Syringe_Size_Current=Get_Syringe_Size();
-			
-			if(Running==1)                 //syringe holder is misplaced. So if pumping is ON ,it must be turned OFF.
+			while((Syringe_Size_Current=Get_Syringe_Size())==99)
 			{
-				
+
 			Alarm_Syringe_Misplacement();
-			Running=0;
+			Running=0;	
+			
 			}
-			else
+			
+			if(Syringe_Size_Current!=99)
+			{
+			//Initial_Screen();
 			Print_Syringe_Size(Syringe_Size_Current);
 
+			}
+			
 		}
 //Print_Syringe_Size(Get_Syringe_Size());
 		

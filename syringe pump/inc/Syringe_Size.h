@@ -75,7 +75,10 @@
 
 #endif /* ADC_TRIGGER_FROM_TIMER */
 
-static void ADC_Config(void);
+//static void ADC_Config(void);
+void ADC_Config(void);
+
+
 
 #if defined(ADC_TRIGGER_FROM_TIMER)
 static void TIM_Config(void);
