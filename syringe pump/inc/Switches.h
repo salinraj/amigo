@@ -28,16 +28,27 @@
 #define START_BUTTON_GPIO_CLK_ENABLE()    __HAL_RCC_GPIOB_CLK_ENABLE()
 #define START_BUTTON_GPIO_CLK_DISABLE()   __HAL_RCC_GPIOB_CLK_DISABLE()
 	 
-	 
+#define IR_SENSOR_GPIO_CLK_ENABLE()    __HAL_RCC_GPIOA_CLK_ENABLE()
+#define IR_SENSOR_GPIO_CLK_DISABLE()   __HAL_RCC_GPIOA_CLK_DISABLE()	 
+#define IR_SENSOR_PORT										GPIOA
+#define PISTON_SENSOR											GPIO_PIN_10
+#define STOP_SENSOR												GPIO_PIN_11
 
 uint32_t Button_GetState(uint16_t Button);
 void Button_Init(void);
+void IR_SENSOR_Init(void); 
 
 uint32_t Read_START_Button(void);
 uint32_t Read_STOP_Button(void);
 uint32_t Read_OK_Button(void);
 uint32_t Read_UP_Button(void);
 uint32_t Read_DOWN_Button(void);
+
+uint32_t IR_SENSOR_GetState(uint16_t Button);
+uint32_t Read_STOP_SENSOR(void);
+uint32_t Read_PISTON_SENSOR(void);
+
+
 	 
 	 
 	 

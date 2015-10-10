@@ -86,3 +86,50 @@ return Button_GetState(DOWN_BUTTON);
 
 
 
+
+void IR_SENSOR_Init(void)
+{
+		GPIO_InitTypeDef gpioinitstruct = {0};
+
+		/* Enable the BUTTON Clock */
+		IR_SENSOR_GPIO_CLK_ENABLE();
+/* Configure Button pin as input */
+
+
+    gpioinitstruct.Pin    =  PISTON_SENSOR;
+    gpioinitstruct.Mode   = GPIO_MODE_INPUT;
+    gpioinitstruct.Pull   = GPIO_PULLUP ;
+    gpioinitstruct.Speed  = GPIO_SPEED_MEDIUM;
+
+    HAL_GPIO_Init(IR_SENSOR_PORT, &gpioinitstruct);
+  
+gpioinitstruct.Pin    = STOP_SENSOR	 ;
+HAL_GPIO_Init(IR_SENSOR_PORT, &gpioinitstruct);
+
+ }
+
+uint32_t Read_PISTON_SENSOR(void)
+{
+return IR_SENSOR_GetState(PISTON_SENSOR);
+}
+
+
+uint32_t Read_STOP_SENSOR(void)
+{
+return IR_SENSOR_GetState(STOP_SENSOR);
+}
+
+
+uint32_t IR_SENSOR_GetState(uint16_t Button)
+{
+  return HAL_GPIO_ReadPin(IR_SENSOR_PORT, Button);
+}
+
+
+
+
+
+
+
+
+

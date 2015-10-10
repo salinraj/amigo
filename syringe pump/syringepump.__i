@@ -1,5 +1,0 @@
--c --cpu Cortex-M3 -g -O0 --apcs=interwork -I.\inc -I.\CMSIS\inc -I.\CMSIS\src -I.\src -I..\inc -I..\src 
--I C:\Keil\ARM\RV31\INC 
--I C:\Keil\ARM\CMSIS\Include 
--I C:\Keil\ARM\Inc\ST\STM32F10x 
--DUSE_HAL_DRIVER -DSTM32F103xB -DUSE_STM32F1xx_NUCLEO -o "syringepump.o" --omf_browse "syringepump.crf" --depend "syringepump.d" "src\syringepump.c"

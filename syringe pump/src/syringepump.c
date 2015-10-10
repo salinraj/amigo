@@ -141,7 +141,7 @@ void Alarm_Syringe_Misplacement(void)
 // 			LCD_DrawLine(140,110,110,160,BLACK);	
 // 			LCD_DrawLine(141,110,111,160,BLACK);	
 	
-			HAL_Delay(5000);
+	//		HAL_Delay(5000);
 			Current_Screen=0;
 			}
 
@@ -152,7 +152,8 @@ void Alarm_Syringe_Misplacement(void)
 
 void Initial_Screen(void)
 {
-
+if(Current_Screen!=1)
+{
 	Display_Clear(BLACK);	
 	LCD_SetTextSize(1);
 	LCD_SetTextColor(GRAY,m_textbgcolor);
@@ -186,7 +187,7 @@ void Initial_Screen(void)
 	LCD_SetTextColor(YELLOW,m_textbgcolor);
   LCD_Printf20("Limit");
 	Current_Screen=1;
-
+}
 
 }
 
@@ -229,6 +230,7 @@ void Syringe_Image(void)
 	uint8_t length = 150;
 	uint8_t i;
 	
+	
 	LCD_FillRoundRect(2,50,315,150,20,BLUE);  //main tube
 			LCD_FillRect(x-20,y+22,20,6,RED);        //needle
 			LCD_FillRoundRect(x,y,length,width,20,RED);  //main tube
@@ -264,8 +266,33 @@ void Lock_Image(void)
 	for(i=0;i<50;i++)
 	{
 		LCD_DrawFastHLine(x+20+i,y+30+i,50,BLACK);
+		if(i>20)
+		{
+			LCD_DrawFastHLine(x+70+i,y+30+i,25,BLUE);
+
+		}
+	
+	}
+	
+	HAL_Delay(200);
+	
+		for(i=0;i<35;i++)
+	{
+		if(i<24)	LCD_DrawLine(x+20+i,y+30,x+30+i,y+49,RED);
+		else			LCD_DrawLine(x+18+i,y+50,x+32+i,y+77,BLUE);
 		
 
+	}
+	
+
+	//	LCD_FillRect(x+40,y+50,30,30,BLUE);
+	//LCD_FillRect(x+40,y+22,50,35,RED);
+
+
+	for(i=0;i<50;i++)
+	{
+	LCD_DrawLine(x+40+i,y+22,x+70+i,y+80,BLACK);
+				
 	}
 // 		for(i=0;i<50;i++)
 // 	{
@@ -273,17 +300,106 @@ void Lock_Image(void)
 // 	}
 // 	
 //	LCD_FillCircle(x+95,y+63,6,YELLOW);
-HAL_Delay(1000);
+HAL_Delay(200);
 	
-		LCD_FillRect(x+20,y+30,50,20,RED);
+		LCD_FillRect(x+40,y+22,30,27,RED);
 		LCD_FillRect(x+40,y+50,30,30,BLUE);	
-	  LCD_FillRect(x+70,y+15,50,75,BLACK);
+	  LCD_FillRect(x+70,y+15,50,85,BLACK);
 //	LCD_FillCircle(x+95,y+63,6,YELLOW);	
 	
 HAL_Delay(1000);	
 
+}
+
+void Piston_Lock_Image(void)
+{
+	uint16_t x=60;
+	uint16_t y=100;	
+	
+	
+// 			LCD_FillRect(x+150,y+16,35,18,RED);		// piston
+// 			LCD_FillRect(x+185,y-10,15,70,RED);	  //piston end
+// 			HAL_Delay(300);	
+			LCD_FillRect(x+150,y+16,35,18,WHITE);		// piston
+			LCD_FillRect(x+185,y-10,15,70,WHITE);	  //piston end
+			HAL_Delay(300);
+			LCD_FillRect(x+150,y+16,35,18,BLACK);		// piston
+			LCD_FillRect(x+185,y-10,15,70,BLACK);	  //piston end
+			HAL_Delay(300);			
 
 }
+
+
+void Alarm_Piston_Lock(void)
+{
+	uint16_t x=60;
+	uint16_t y=100;	
+	uint8_t width = 50;
+	uint8_t length = 150;
+	uint8_t i;
+				if(Current_Screen==3)
+			{
+				Piston_Lock_Image();
+			}
+			else
+			{
+			PWM_OFF();
+			Display_Clear(LCD_Color565(111,235,249));
+			Print_Text_On(Line1,Position2);
+			LCD_SetTextColor(BLACK,LCD_Color565(111,235,249));
+			LCD_Printf20("Lock Piston!!");
+
+				
+
+	
+	
+			LCD_FillRoundRect(2,50,315,150,20,LCD_Color565(170,181,136));  //main tube
+			LCD_FillRect(x-20,y+22,20,6,RED);        //needle
+			LCD_FillRoundRect(x,y,length,width,20,RED);  //main tube
+//			LCD_FillRect(x+12,y+1,length-10,5,LCD_Color565(79,79,79));
+			LCD_FillRect(x+130,y,10,50,RED);	
+			LCD_FillRect(x+140,y-15,10,80,RED);  //maintube end
+			LCD_FillRect(x+150,y+16,35,18,RED);		// piston
+			LCD_FillRect(x+185,y-10,15,70,RED);	  //piston end
+			
+			LCD_DrawFastVLine(x+25,y,25,BLACK);
+			LCD_DrawFastVLine(x+35,y,15,BLACK);
+			LCD_DrawFastVLine(x+45,y,25,BLACK);
+			LCD_DrawFastVLine(x+55,y,15,BLACK);
+			LCD_DrawFastVLine(x+65,y,25,BLACK);
+			LCD_DrawFastVLine(x+75,y,15,BLACK);
+			LCD_DrawFastVLine(x+85,y,25,BLACK);
+			LCD_DrawFastVLine(x+95,y,15,BLACK);
+
+
+			LCD_DrawFastVLine(x+26,y,25,BLACK);
+			LCD_DrawFastVLine(x+36,y,15,BLACK);
+			LCD_DrawFastVLine(x+46,y,25,BLACK);
+			LCD_DrawFastVLine(x+56,y,15,BLACK);
+			LCD_DrawFastVLine(x+66,y,25,BLACK);
+			LCD_DrawFastVLine(x+76,y,15,BLACK);
+			LCD_DrawFastVLine(x+86,y,25,BLACK);
+			LCD_DrawFastVLine(x+96,y,15,BLACK);
+		
+				
+				
+				
+				
+				
+// 			LCD_DrawLine(110,110,140,160,BLACK);
+// 			LCD_DrawLine(111,110,141,160,BLACK);
+// 			LCD_DrawLine(140,110,110,160,BLACK);	
+// 			LCD_DrawLine(141,110,111,160,BLACK);	
+	
+		
+			Current_Screen=3;
+			}
+	
+	
+}
+
+
+
 
 
 

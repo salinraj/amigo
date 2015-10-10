@@ -22,6 +22,8 @@ void Initial_Screen(void);
 void Running_Screen(void);
 void Syringe_Image(void);
 void Lock_Image(void);
+void Alarm_Piston_Lock(void);
+void Piston_Lock_Image(void);
 
 
 

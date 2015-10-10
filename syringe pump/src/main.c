@@ -13,8 +13,9 @@ int main()
 	  uint8_t Running=0;
 	  uint32_t  buttonstate;
 		uint32_t  buttonstate2;
+		uint8_t Misplace_alarm_ON=0;
 	
-	uint16_t test1=0;
+	uint32_t test1=0;
 	
 	uint16_t x;
 	uint16_t y;
@@ -37,6 +38,7 @@ int main()
   SystemClock_Config();
 
 Button_Init();
+IR_SENSOR_Init();
 TIM4_Init ();
 ADC_Config();
 HAL_Delay(500);
@@ -81,6 +83,8 @@ Initial_Screen();
 			{
 
 			Alarm_Syringe_Misplacement();
+			Misplace_alarm_ON=1;
+				//Alarm_Piston_Lock();
 			Running=0;	
 			
 			}
@@ -89,11 +93,20 @@ Initial_Screen();
 			{
 			//Initial_Screen();
 			Print_Syringe_Size(Syringe_Size_Current);
+			Misplace_alarm_ON=0;
 
 			}
 			
 		}
-//Print_Syringe_Size(Get_Syringe_Size());
+		
+	if(Read_PISTON_SENSOR())	
+	{
+		
+		if(Misplace_alarm_ON==0)	Alarm_Piston_Lock();
+
+	}
+	else Initial_Screen();
+		
 		
 if(!Read_OK_Button())
 {
