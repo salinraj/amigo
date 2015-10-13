@@ -27,3 +27,7 @@ stm32f1xx_hal_msp.o: .\CMSIS\inc\stm32f1xx_hal_pwr.h
 stm32f1xx_hal_msp.o: .\CMSIS\inc\stm32f1xx_hal_spi.h
 stm32f1xx_hal_msp.o: .\CMSIS\inc\stm32f1xx_hal_tim.h
 stm32f1xx_hal_msp.o: .\CMSIS\inc\stm32f1xx_hal_tim_ex.h
+stm32f1xx_hal_msp.o: .\inc\stm32f1xx_PWM.h
+stm32f1xx_hal_msp.o: C:\Keil\ARM\ARMCC\bin\..\include\stdlib.h
+stm32f1xx_hal_msp.o: C:\Keil\ARM\ARMCC\bin\..\include\stdarg.h
+stm32f1xx_hal_msp.o: C:\Keil\ARM\ARMCC\bin\..\include\stdio.h

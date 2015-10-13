@@ -37,6 +37,7 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "Syringe_Size.h"
+#include "stm32f1xx_PWM.h"
 
 /** @addtogroup STM32F1xx_HAL_Examples
   * @{
@@ -169,7 +170,7 @@ void HAL_ADC_MspDeInit(ADC_HandleTypeDef *hadc)
 }
 
 
-#if defined(ADC_TRIGGER_FROM_TIMER)
+//#if defined(ADC_TRIGGER_FROM_TIMER)
 /**
   * @brief TIM MSP initialization
   *        This function configures the hardware resources used in this example:
@@ -181,7 +182,15 @@ void HAL_TIM_Base_MspInit(TIM_HandleTypeDef *htim)
 {
   /* TIM peripheral clock enable */
   TIMx_CLK_ENABLE();
+	
+	  /*##-2- Configure the NVIC for TIMx ########################################*/
+  /* Set the TIMx priority */
+  HAL_NVIC_SetPriority(TIMx_IRQn, 3, 0);
+
+  /* Enable the TIMx global Interrupt */
+  HAL_NVIC_EnableIRQ(TIMx_IRQn);
 }
+
 
 /**
   * @brief TIM MSP de-initialization
@@ -190,13 +199,13 @@ void HAL_TIM_Base_MspInit(TIM_HandleTypeDef *htim)
   * @param htim: TIM handle pointer
   * @retval None
   */
-void HAL_TIM_Base_MspDeInit(TIM_HandleTypeDef *htim)
-{
-  /*##-1- Reset peripherals ##################################################*/
-  TIMx_FORCE_RESET();
-  TIMx_RELEASE_RESET();
-}
-#endif /* ADC_TRIGGER_FROM_TIMER */
+// void HAL_TIM_Base_MspDeInit(TIM_HandleTypeDef *htim)
+// {
+//   /*##-1- Reset peripherals ##################################################*/
+//   TIMx_FORCE_RESET();
+//   TIMx_RELEASE_RESET();
+// }
+//#endif /* ADC_TRIGGER_FROM_TIMER */
 
 
 /* Note: This example, on some other STM32 boards, is performing              */

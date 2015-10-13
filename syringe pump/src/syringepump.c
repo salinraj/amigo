@@ -19,7 +19,7 @@ void PumpRate(void)
 	{
 	if(!Read_UP_Button())
 	{
-		while(!Read_UP_Button);
+		while(!Read_UP_Button());
 		PumpingRate += 10;
 		if(PumpingRate>300)
 		PumpingRate=300;
@@ -94,7 +94,7 @@ void PrintRate(uint16_t value)
 {
 	
 	Print_Text_On(Line4,Position18);
-	LCD_SetTextColor(WHITE,m_textbgcolor);	
+	LCD_SetTextColor(YELLOW,m_textbgcolor);	
   PrintDecimal(value,36);
 
 }
@@ -161,7 +161,7 @@ if(Current_Screen!=1)
   LCD_Printf20("ClassB ");
 	
 	LCD_SetTextColor(GREEN,BLACK);
- // Print_Syringe_Size(Get_Syringe_Size());
+ 
 	Print_Text_On(Line1,Position41);	
  	LCD_Printf20("ml");
 	
@@ -177,16 +177,17 @@ if(Current_Screen!=1)
 	
 	LCD_SetTextSize(1);
 	Print_Text_On(Line5,Position33);
-	LCD_SetTextColor(WHITE,m_textbgcolor);
+	LCD_SetTextColor(GREEN,m_textbgcolor);
   LCD_Printf20("ml/h");
 	
 	
 	LCD_DrawFastHLine(1,200,319,RED);
 	LCD_SetCursor(2,Line9);
 	LCD_SetTextSize(1);
-	LCD_SetTextColor(YELLOW,m_textbgcolor);
+	LCD_SetTextColor(GRAY,m_textbgcolor);
   LCD_Printf20("Limit");
 	Current_Screen=1;
+	Print_Syringe_Size(Get_Syringe_Size());
 }
 
 }
@@ -197,29 +198,53 @@ void Running_Screen(void)
 	
 	if(Current_Screen!= 2 )
 	{
-	Print_Text_On(Line1,Position14);
-	LCD_SetTextColor(WHITE,m_textbgcolor);
-  LCD_Printf10("RATE");
+// 	Print_Text_On(Line1,Position14);
+// 	LCD_SetTextColor(WHITE,m_textbgcolor);
+//   LCD_Printf10("RATE");
 	Display_Clear(BLACK);	
 	LCD_SetTextSize(1);
-	Print_Text_On(Line1,Position14);
+	Print_Text_On(Line2,Position2);
+	LCD_SetTextColor(LCD_Color565(255,10,255),m_textbgcolor);
+  LCD_Printf20(" ~~RUNNING~~");	
+	Print_Text_On(Line9,Position2);
 	LCD_SetTextColor(WHITE,m_textbgcolor);
+	LCD_DrawFastHLine(1,188,319,RED);
+	LCD_DrawFastHLine(1,189,319,RED);
   LCD_Printf10("RATE");
 	LCD_SetTextSize(1);
 	//PrintRate(PumpingRate);
-	Print_Text_On(Line2,Position18);
-	LCD_SetTextColor(WHITE,m_textbgcolor);	
+	Print_Text_On(195,Position18);
+	LCD_SetTextColor(YELLOW,m_textbgcolor);	
   PrintDecimal(PumpingRate,36);
-	Print_Text_On(Line3,Position33);
-	LCD_SetTextColor(WHITE,m_textbgcolor);
+	Print_Text_On(Line9,Position33);
+	LCD_SetTextColor(GREEN,m_textbgcolor);
   LCD_Printf20("ml/h");
 	Current_Screen=2;	
 	}
 	
+}
 
-
+void Finishing_Screen(void)
+{
+	uint8_t i;
+		Display_Clear(BLACK);	
+	PWM_OFF();
+	for(i=0;i<4;i++)
+	{
+	Print_Text_On(Line2,Position2);
+	LCD_SetTextColor(LCD_Color565(100,255,100),m_textbgcolor);
+  LCD_Printf20("   FINISHED ");
+	HAL_Delay(800);
+	Print_Text_On(Line2,Position2);
+	LCD_SetTextColor(LCD_Color565(255,10,255),m_textbgcolor);
+  LCD_Printf20("   FINISHED ");
+	HAL_Delay(800);
+	}
 
 }
+
+
+
 
 
 void Syringe_Image(void)
@@ -228,7 +253,7 @@ void Syringe_Image(void)
 	uint16_t y=100;	
 	uint8_t width = 50;
 	uint8_t length = 150;
-	uint8_t i;
+//	uint8_t i;
 	
 	
 	LCD_FillRoundRect(2,50,315,150,20,BLUE);  //main tube

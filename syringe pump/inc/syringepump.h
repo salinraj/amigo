@@ -20,6 +20,7 @@ void Motor_Speed(uint16_t Rate,uint16_t Size);
 void Alarm_Syringe_Misplacement(void);
 void Initial_Screen(void);
 void Running_Screen(void);
+void Finishing_Screen(void);
 void Syringe_Image(void);
 void Lock_Image(void);
 void Alarm_Piston_Lock(void);

@@ -900,7 +900,7 @@ void LCD_DrawLine(uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2, uint16_t c
 void LCD_DrawFastHLine(int16_t x, int16_t y, int16_t length, uint16_t color)
 {
 	int16_t x2;
-	int16_t t;
+//	int16_t t;
 	
 	////////////////////////////////////////test
 	
@@ -1720,7 +1720,7 @@ void LCD_Printf10(const char *fmt, ...)
 
 void LCD_Printf20( char *fmt, ...)
 {
-	static char buf[256];
+//	static char buf[256];
 	char *p;
 // 	va_list lst;
 

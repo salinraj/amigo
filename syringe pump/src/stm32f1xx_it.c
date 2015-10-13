@@ -30,12 +30,15 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "stm32f1xx_it.h"
+#include "stm32f1xx_PWM.h"
 
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/
 /* Private macro -------------------------------------------------------------*/
 /* Private variables ---------------------------------------------------------*/
 extern uint8_t BlinkSpeed;
+
+extern TIM_HandleTypeDef    TimHandle;
 
 /* Private function prototypes -----------------------------------------------*/
 /* Private functions ---------------------------------------------------------*/
@@ -158,6 +161,15 @@ void EXTI15_10_IRQHandler(void)
 {
 //  HAL_GPIO_EXTI_IRQHandler(USER_BUTTON_PIN);
 }
+
+
+
+void TIM3_IRQHandler(void)
+{
+  HAL_TIM_IRQHandler(&TimHandle);
+}
+
+
 
 /**
   * @brief  This function handles PPP interrupt request.

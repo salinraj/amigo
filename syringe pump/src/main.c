@@ -7,18 +7,19 @@ extern __IO uint16_t   aADCxConvertedValues[ADCCONVERTEDVALUES_BUFFER_SIZE];
 extern uint16_t PumpingRate;
 extern uint8_t Current_Screen;
 uint16_t Syringe_Size_Current=0;
+uint16_t Injected_Volume=0;
 
 int main()
 {
 	  uint8_t Running=0;
-	  uint32_t  buttonstate;
-		uint32_t  buttonstate2;
+//	  uint32_t  buttonstate;
+//		uint32_t  buttonstate2;
 		uint8_t Misplace_alarm_ON=0;
 	
 	uint32_t test1=0;
 	
-	uint16_t x;
-	uint16_t y;
+//	uint16_t x;
+//	uint16_t y;
 	
 	
 	/* STM32F103xB HAL library initialization:
@@ -43,10 +44,25 @@ TIM4_Init ();
 ADC_Config();
 HAL_Delay(500);
 st7783_Init();
+//TIM3_init();
 	//ad_value=Get_Syringe_Size();
 	//aADCxConvertedValues[10]=0;
 m_textbgcolor=BLACK;	
+// while(1)
+// {
+// HAL_GPIO_WritePin(LCD_GPIO_PORT, GPIO_PIN_7, GPIO_PIN_SET);
+// HAL_Delay(500);
+// HAL_GPIO_WritePin(LCD_GPIO_PORT, GPIO_PIN_7, GPIO_PIN_RESET);
+// HAL_Delay(500);	
 
+// }
+
+// PWM_Freq(100);
+// 	
+// PWM_ON();
+// while(1)
+// {
+// }
 
 // LCD_SetRotation(1);
 // Display_Clear(WHITE);
@@ -66,8 +82,6 @@ m_textbgcolor=BLACK;
 // 		Display_Clear(BLUE);
 // 	LCD_Delay(8000);
 		Display_Clear(YELLOW);
-	LCD_Delay(8000);
-		Display_Clear(MAGENTA);
 
 
 Initial_Screen();
@@ -94,17 +108,36 @@ Initial_Screen();
 			//Initial_Screen();
 			Print_Syringe_Size(Syringe_Size_Current);
 			Misplace_alarm_ON=0;
+			Running=0;
 
 			}
 			
 		}
 		
-	if(Read_PISTON_SENSOR())	
+	if(!Read_PISTON_SENSOR())	
 	{
 		
-		if(Misplace_alarm_ON==0)	Alarm_Piston_Lock();
-
+		if(Misplace_alarm_ON==0)	
+		{
+			Alarm_Piston_Lock();
+			Running=0;
+		}
 	}
+	else if(Running==1)
+	{
+		
+			if(!Read_STOP_SENSOR())
+			{
+					Finishing_Screen();
+					Running=0;
+
+			}
+		
+			if(	Current_Screen!=2)
+					Running_Screen();
+	
+	}	
+
 	else Initial_Screen();
 		
 		
@@ -144,12 +177,6 @@ if(!Read_STOP_Button())
 	
 }
 	
-if(Running==1)
-{
-if(	Current_Screen==0)
-Running_Screen();
-	
-}	
 
 
 
@@ -196,3 +223,6 @@ void SystemClock_Config(void)
     while(1); 
   }
 }
+
+
+
