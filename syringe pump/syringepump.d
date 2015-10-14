@@ -34,3 +34,4 @@ syringepump.o: .\CMSIS\inc\stm32f1xx_hal_tim_ex.h
 syringepump.o: .\inc\glcdfont.h
 syringepump.o: .\inc\Switches.h
 syringepump.o: .\inc\stm32f1xx_PWM.h
+syringepump.o: .\inc\Syringe_Size.h

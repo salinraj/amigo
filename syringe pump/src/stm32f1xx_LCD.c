@@ -1826,7 +1826,7 @@ void LCD_Reset(void)
 
 	LCD_DC_LOW();
 	LCD_IO_WriteReg(0x0000);
-	for(i=0; i<2; i++) Toggle_LCD_RW; // Three extra 0x00s
+	for(i=0; i<2; i++) Toggle_LCD_RW(); // Three extra 0x00s
 	LCD_CS_HIGH();
 }
 

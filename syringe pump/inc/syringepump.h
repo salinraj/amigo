@@ -9,6 +9,7 @@
 #include "stm32f1xx_LCD.h"
 #include "Switches.h"
 #include "stm32f1xx_PWM.h"
+#include "Syringe_Size.h"
 
 
 

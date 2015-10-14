@@ -44,20 +44,29 @@ TIM4->CR1  |= TIM_CR1_CEN;                      /* timer enable             */
 
 void PWM_OFF(void)
 {
-TIM4->CR1  &= ~TIM_CR1_CEN;                      /* timer enable             */
+TIM4->CR1  &= ~TIM_CR1_CEN;                      /* timer disable             */
 }
 
 
 void PWM_Freq(uint16_t rate)
 {
+	
+	
+	/*
+	timer input clock is internel clock= 64mhz
+	
+	
+	
+	
+	*/
 		
 	
-		TIM4->PSC   = ( 640 - 1);                      /* set prescaler   = 10 KHz */
-		TIM4->ARR   = (0x600 - rate);                      /* set auto-reload =  1 s   */          
+		TIM4->PSC   = ( 640 - 1);                      /* set prescaler   = 100 KHz */
+		TIM4->ARR   = (3000 - rate);                      /* set auto-reload =  1 s   */          
 
 	
 	
-		TIM4->CCR2  = ((0x600 - rate)/2);                             /* Duty cicle channel 3     */
+		TIM4->CCR2  = ((1500 - rate)/2);                             /* Duty cicle channel 3     */
 //			TIM4->CCR2  = 0x65;                             /* Duty cicle channel 3     */
 	
 		TIM4->CCMR1 = (6 <<  12);// |                      /* PWM mode 1 channel 2     */

@@ -67,7 +67,7 @@ uint32_t Get_ADC_Value(void)
 {
 
 uint32_t adc_value;
-	uint32_t adc_valuetest=0;
+//	uint32_t adc_valuetest=0;
 // ADC_Config();
 	
 	

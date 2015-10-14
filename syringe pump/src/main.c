@@ -16,7 +16,7 @@ int main()
 //		uint32_t  buttonstate2;
 		uint8_t Misplace_alarm_ON=0;
 	
-	uint32_t test1=0;
+//	uint32_t test1=0;
 	
 //	uint16_t x;
 //	uint16_t y;
@@ -42,7 +42,7 @@ Button_Init();
 IR_SENSOR_Init();
 TIM4_Init ();
 ADC_Config();
-HAL_Delay(500);
+HAL_Delay(1500);
 st7783_Init();
 //TIM3_init();
 	//ad_value=Get_Syringe_Size();
@@ -57,12 +57,12 @@ m_textbgcolor=BLACK;
 
 // }
 
-// PWM_Freq(100);
-// 	
-// PWM_ON();
-// while(1)
-// {
-// }
+PWM_Freq(1);
+	
+PWM_ON();
+while(1)
+{
+}
 
 // LCD_SetRotation(1);
 // Display_Clear(WHITE);

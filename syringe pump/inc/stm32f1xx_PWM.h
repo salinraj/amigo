@@ -1,7 +1,7 @@
 
 /* Define to prevent recursive inclusion -------------------------------------*/
-#ifndef __STM32F1XX_LCD_H
-#define __STM32F1XX_LCD_H
+#ifndef __STM32F1XX_PWM_H
+#define __STM32F1XX_PWM_H
 
 
 #ifdef __cplusplus

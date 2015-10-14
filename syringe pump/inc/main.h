@@ -13,6 +13,7 @@
 #include "Switches.h"	
 #include "syringepump.h"
 #include "Syringe_Size.h"
+#include "stm32f1xx_PWM.h"
 
 void SystemClock_Config(void);
 

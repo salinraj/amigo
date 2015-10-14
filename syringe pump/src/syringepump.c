@@ -232,12 +232,10 @@ void Finishing_Screen(void)
 	for(i=0;i<4;i++)
 	{
 	Print_Text_On(Line2,Position2);
-	LCD_SetTextColor(LCD_Color565(100,255,100),m_textbgcolor);
-  LCD_Printf20("   FINISHED ");
-	HAL_Delay(800);
-	Print_Text_On(Line2,Position2);
-	LCD_SetTextColor(LCD_Color565(255,10,255),m_textbgcolor);
-  LCD_Printf20("   FINISHED ");
+	LCD_SetTextColor(LCD_Color565(52,255,67),m_textbgcolor);
+  LCD_Printf20("  INJECTION  ");
+	Print_Text_On(Line4,Position2);	
+	LCD_Printf20("  FINISHED  ");	
 	HAL_Delay(800);
 	}
 
@@ -361,7 +359,7 @@ void Alarm_Piston_Lock(void)
 	uint16_t y=100;	
 	uint8_t width = 50;
 	uint8_t length = 150;
-	uint8_t i;
+//	uint8_t i;
 				if(Current_Screen==3)
 			{
 				Piston_Lock_Image();
