@@ -514,10 +514,10 @@ GPIOB->ODR =(GPIOB->ODR |(value<<8));
 
 
 void Toggle_LCD_RW(void)
-{ LCD_Delay(1);
+{ //LCD_Delay(1);
 	LCD_RD_HIGH();
 	LCD_RW_LOW();
-	LCD_Delay(2);
+	LCD_Delay(1);
 	LCD_RW_HIGH();
 	//LCD_Delay(10);
 }

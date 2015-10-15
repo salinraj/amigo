@@ -15,6 +15,7 @@ int main()
 //	  uint32_t  buttonstate;
 //		uint32_t  buttonstate2;
 		uint8_t Misplace_alarm_ON=0;
+		uint16_t Injected_Volume_Previeus=0;
 	
 //	uint32_t test1=0;
 	
@@ -44,7 +45,7 @@ TIM4_Init ();
 ADC_Config();
 HAL_Delay(1500);
 st7783_Init();
-//TIM3_init();
+TIM3_init();
 	//ad_value=Get_Syringe_Size();
 	//aADCxConvertedValues[10]=0;
 m_textbgcolor=BLACK;	
@@ -57,12 +58,11 @@ m_textbgcolor=BLACK;
 
 // }
 
-PWM_Freq(1);
-	
-PWM_ON();
-while(1)
-{
-}
+// PWM_Freq(10000);
+// PWM_ON();
+// while(1)
+// {
+// }
 
 // LCD_SetRotation(1);
 // Display_Clear(WHITE);
@@ -81,10 +81,11 @@ while(1)
 // 	LCD_Delay(8000);
 // 		Display_Clear(BLUE);
 // 	LCD_Delay(8000);
-		Display_Clear(YELLOW);
+		
+	Display_Clear(YELLOW);
 
 
-Initial_Screen();
+	Initial_Screen();
 
 /////////////////////////////////////////////////////////
 
@@ -126,6 +127,7 @@ Initial_Screen();
 	else if(Running==1)
 	{
 		
+		
 			if(!Read_STOP_SENSOR())
 			{
 					Finishing_Screen();
@@ -133,9 +135,13 @@ Initial_Screen();
 
 			}
 		
-			if(	Current_Screen!=2)
-					Running_Screen();
-	
+			if(	Current_Screen!=2) Running_Screen();
+			if(Injected_Volume_Previeus!=Injected_Volume)
+			{
+			Print_Injected_Volume();
+			Injected_Volume_Previeus=Injected_Volume;
+
+			}
 	}	
 
 	else Initial_Screen();
@@ -162,6 +168,7 @@ if(!Read_START_Button())
   LCD_Printf("start");
 	Motor_Speed(PumpingRate,Get_Syringe_Size());
 	PWM_ON();
+	Counter_Start();
 	Running=1;
 }
 	
@@ -172,6 +179,7 @@ if(!Read_STOP_Button())
 	LCD_SetTextColor(BLUE,m_textbgcolor);
   LCD_Printf("stop ");
 	PWM_OFF();
+	Counter_Stop();
 	Running=0;
 	Initial_Screen();
 	
@@ -195,15 +203,15 @@ void SystemClock_Config(void)
   /* PLL configuration: PLLCLK = (HSI / 2) * PLLMUL = (8 / 2) * 16 = 64 MHz */
   /* PREDIV1 configuration: PREDIV1CLK = PLLCLK / HSEPredivValue = 64 / 1 = 64 MHz */
   /* Enable HSI and activate PLL with HSi_DIV2 as source */
-  oscinitstruct.OscillatorType  = RCC_OSCILLATORTYPE_HSI;
-  oscinitstruct.HSEState        = RCC_HSE_OFF;
+  oscinitstruct.OscillatorType  = RCC_OSCILLATORTYPE_HSE;
+  oscinitstruct.HSEState        = RCC_HSE_ON;
   oscinitstruct.LSEState        = RCC_LSE_OFF;
-  oscinitstruct.HSIState        = RCC_HSI_ON;
+  oscinitstruct.HSIState        = RCC_HSI_OFF;
   oscinitstruct.HSICalibrationValue = RCC_HSICALIBRATION_DEFAULT;
   oscinitstruct.HSEPredivValue    = RCC_HSE_PREDIV_DIV1;
   oscinitstruct.PLL.PLLState    = RCC_PLL_ON;
-  oscinitstruct.PLL.PLLSource   = RCC_PLLSOURCE_HSI_DIV2;
-  oscinitstruct.PLL.PLLMUL      = RCC_PLL_MUL16;
+  oscinitstruct.PLL.PLLSource   = RCC_PLLSOURCE_HSE;
+  oscinitstruct.PLL.PLLMUL      = RCC_PLL_MUL9;
   if (HAL_RCC_OscConfig(&oscinitstruct)!= HAL_OK)
   {
     /* Initialization Error */

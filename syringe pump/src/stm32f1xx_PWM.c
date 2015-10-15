@@ -48,25 +48,35 @@ TIM4->CR1  &= ~TIM_CR1_CEN;                      /* timer disable             */
 }
 
 
-void PWM_Freq(uint16_t rate)
+
+
+
+
+void PWM_Freq(uint16_t freq)
 {
 	
 	
 	/*
+	frequency in Hz
+	
 	timer input clock is internel clock= 64mhz
-	
-	
+	prescaler freq = 100khz
+	PWM output frequency = prescaler freq/ARR
+	so 
+	ARR = prescaler freq/PWM output frequency
 	
 	
 	*/
-		
+		if(freq==0) freq=1;
 	
 		TIM4->PSC   = ( 640 - 1);                      /* set prescaler   = 100 KHz */
-		TIM4->ARR   = (3000 - rate);                      /* set auto-reload =  1 s   */          
+		TIM4->ARR   = (100000/freq);                      /* set auto-reload =  1 s   */          
 
 	
 	
-		TIM4->CCR2  = ((1500 - rate)/2);                             /* Duty cicle channel 3     */
+//		TIM4->CCR2  = ((1500 - rate)/2);                             /* Duty cicle channel 3     */
+			TIM4->CCR2  = (100000/(2*freq));                             /* Duty cicle channel 3     */
+
 //			TIM4->CCR2  = 0x65;                             /* Duty cicle channel 3     */
 	
 		TIM4->CCMR1 = (6 <<  12);// |                      /* PWM mode 1 channel 2     */
@@ -108,14 +118,16 @@ void TIM3_init(void)
 
   /*##-2- Start the TIM Base generation in interrupt mode ####################*/
   /* Start Channel1 */
-  if (HAL_TIM_Base_Start_IT(&TimHandle) != HAL_OK)
-  {
-    /* Starting Error */
-    Error_Handler();
-  }
+//   if (HAL_TIM_Base_Start_IT(&TimHandle) != HAL_OK)
+//   {
+//     /* Starting Error */
+//     Error_Handler();
+//   }
 
 
 }
+
+
 
 
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
@@ -139,6 +151,32 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
     HAL_Delay(500);
   }
 }
+
+void Counter_Start(void)
+{
+	
+  if (HAL_TIM_Base_Start_IT(&TimHandle) != HAL_OK)
+  {
+    /* Starting Error */
+    Error_Handler();
+  }
+
+
+}
+
+void Counter_Stop(void)
+{
+	
+  if (HAL_TIM_Base_Stop_IT(&TimHandle) != HAL_OK)
+  {
+    /* Starting Error */
+    Error_Handler();
+  }
+	Injected_Volume=0;
+
+
+}
+
 
 
 

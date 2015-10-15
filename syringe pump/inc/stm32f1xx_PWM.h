@@ -28,7 +28,8 @@ void TIM3_init(void);
 void PWM_ON(void);
 void PWM_OFF(void);	 
 void PWM_Freq(uint16_t rate);
-
+void Counter_Start(void);
+void Counter_Stop(void);
 	 
 static void Error_Handler(void);
 

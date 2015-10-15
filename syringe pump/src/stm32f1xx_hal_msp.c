@@ -1,6 +1,6 @@
 /**
   ******************************************************************************
-  * @file    ADC/ADC_AnalogWatchdog/Src/stm32f1xx_hal_msp.c
+  * @file   ADC/ADC_AnalogWatchdog/Src/stm32f1xx_hal_msp.c
   * @author  MCD Application Team
   * @version V1.0.0
   * @date    17-December-2014

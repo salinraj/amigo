@@ -9,6 +9,7 @@ file includes functions for display of syringpump and motor control for syringe 
 
 uint16_t PumpingRate = 200;
 uint8_t Current_Screen=0;
+extern uint16_t Injected_Volume;
 void PumpRate(void)
 {
 	
@@ -116,7 +117,8 @@ void Print_Syringe_Size(uint16_t value)
 
 void Motor_Speed(uint16_t Rate,uint16_t Size)
 {
-
+	
+/* prescalar output frequency is 100khz	*/	
 PWM_Freq(Rate*Size/10);
 }
 
@@ -200,11 +202,12 @@ void Running_Screen(void)
 	{
 // 	Print_Text_On(Line1,Position14);
 // 	LCD_SetTextColor(WHITE,m_textbgcolor);
-//   LCD_Printf10("RATE");
+//  LCD_Printf10("RATE");
 	Display_Clear(BLACK);	
 	LCD_SetTextSize(1);
-	Print_Text_On(Line2,Position2);
+	Print_Text_On(Line1,Position2);
 	LCD_SetTextColor(LCD_Color565(255,10,255),m_textbgcolor);
+	
   LCD_Printf20(" ~~RUNNING~~");	
 	Print_Text_On(Line9,Position2);
 	LCD_SetTextColor(WHITE,m_textbgcolor);
@@ -419,6 +422,16 @@ void Alarm_Piston_Lock(void)
 			}
 	
 	
+}
+void Print_Injected_Volume(void)
+{
+	Print_Text_On(Line4,Position12);
+	LCD_SetTextColor(GREEN,m_textbgcolor);		
+	
+	PrintDecimal( Injected_Volume,36);
+
+
+
 }
 
 
