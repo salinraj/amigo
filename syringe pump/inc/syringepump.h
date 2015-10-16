@@ -28,6 +28,8 @@ void Alarm_Piston_Lock(void);
 void Piston_Lock_Image(void);
 void Print_Injected_Volume(void);
 
+char *ConvertToDecimal(uint16_t value);
+
 
 
 #endif /* __STM32F1XX_NUCLEO_H */

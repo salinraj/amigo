@@ -517,7 +517,7 @@ void Toggle_LCD_RW(void)
 { //LCD_Delay(1);
 	LCD_RD_HIGH();
 	LCD_RW_LOW();
-	LCD_Delay(1);
+	//LCD_Delay(1);
 	LCD_RW_HIGH();
 	//LCD_Delay(10);
 }
@@ -1776,7 +1776,8 @@ void LCD_Printf36(const char *fmt, ...)
 		
 		/////////////////////test exiting
 		else if (*p ==' ') {
-			break;
+			m_cursor_x += m_textsize*28;
+		//	break;
 		}
 		
 		///////////////////////

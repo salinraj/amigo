@@ -59,9 +59,9 @@ I (.\CMSIS\inc\stm32f1xx_hal_pwr.h)(0x548F85A6)
 I (.\CMSIS\inc\stm32f1xx_hal_spi.h)(0x548F85A6)
 I (.\CMSIS\inc\stm32f1xx_hal_tim.h)(0x548F85A6)
 I (.\CMSIS\inc\stm32f1xx_hal_tim_ex.h)(0x548F85A6)
-I (.\inc\glcdfont.h)(0x56033048)
+I (.\inc\glcdfont.h)(0x5620A406)
 I (.\inc\Switches.h)(0x561B8FE3)
-I (.\inc\syringepump.h)(0x561F5678)
+I (.\inc\syringepump.h)(0x56209626)
 I (.\inc\stm32f1xx_PWM.h)(0x561F70CB)
 I (.\inc\Syringe_Size.h)(0x5616B34E)
 I (.\inc\stm32f1xx_it.h)(0x561C8E89)
@@ -470,7 +470,7 @@ I (.\CMSIS\inc\stm32f1xx_hal_pwr.h)(0x548F85A6)
 I (.\CMSIS\inc\stm32f1xx_hal_spi.h)(0x548F85A6)
 I (.\CMSIS\inc\stm32f1xx_hal_tim.h)(0x548F85A6)
 I (.\CMSIS\inc\stm32f1xx_hal_tim_ex.h)(0x548F85A6)
-F (.\src\main.c)(0x561F7A2C)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork -I.\inc -I.\CMSIS\inc -I.\CMSIS\src -I.\src -I..\inc -I..\src -I C:\Keil\ARM\RV31\INC -I C:\Keil\ARM\CMSIS\Include -I C:\Keil\ARM\Inc\ST\STM32F10x -DUSE_HAL_DRIVER -DSTM32F103xB -DUSE_STM32F1xx_NUCLEO -o "main.o" --omf_browse "main.crf" --depend "main.d")
+F (.\src\main.c)(0x562097E3)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork -I.\inc -I.\CMSIS\inc -I.\CMSIS\src -I.\src -I..\inc -I..\src -I C:\Keil\ARM\RV31\INC -I C:\Keil\ARM\CMSIS\Include -I C:\Keil\ARM\Inc\ST\STM32F10x -DUSE_HAL_DRIVER -DSTM32F103xB -DUSE_STM32F1xx_NUCLEO -o "main.o" --omf_browse "main.crf" --depend "main.d")
 I (.\inc\main.h)(0x561DE12B)
 I (C:\Keil\ARM\ARMCC\bin\..\include\stdio.h)(0x4EB1A576)
 I (C:\Keil\ARM\ARMCC\bin\..\include\stdlib.h)(0x4EB1A574)
@@ -502,12 +502,12 @@ I (.\CMSIS\inc\stm32f1xx_hal_pwr.h)(0x548F85A6)
 I (.\CMSIS\inc\stm32f1xx_hal_spi.h)(0x548F85A6)
 I (.\CMSIS\inc\stm32f1xx_hal_tim.h)(0x548F85A6)
 I (.\CMSIS\inc\stm32f1xx_hal_tim_ex.h)(0x548F85A6)
-I (.\inc\glcdfont.h)(0x56033048)
+I (.\inc\glcdfont.h)(0x5620A406)
 I (.\inc\Switches.h)(0x561B8FE3)
-I (.\inc\syringepump.h)(0x561F5678)
+I (.\inc\syringepump.h)(0x56209626)
 I (.\inc\stm32f1xx_PWM.h)(0x561F70CB)
 I (.\inc\Syringe_Size.h)(0x5616B34E)
-F (.\src\stm32f1xx_LCD.c)(0x561F7A2C)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork -I.\inc -I.\CMSIS\inc -I.\CMSIS\src -I.\src -I..\inc -I..\src -I C:\Keil\ARM\RV31\INC -I C:\Keil\ARM\CMSIS\Include -I C:\Keil\ARM\Inc\ST\STM32F10x -DUSE_HAL_DRIVER -DSTM32F103xB -DUSE_STM32F1xx_NUCLEO -o "stm32f1xx_lcd.o" --omf_browse "stm32f1xx_lcd.crf" --depend "stm32f1xx_lcd.d")
+F (.\src\stm32f1xx_LCD.c)(0x5620A49C)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork -I.\inc -I.\CMSIS\inc -I.\CMSIS\src -I.\src -I..\inc -I..\src -I C:\Keil\ARM\RV31\INC -I C:\Keil\ARM\CMSIS\Include -I C:\Keil\ARM\Inc\ST\STM32F10x -DUSE_HAL_DRIVER -DSTM32F103xB -DUSE_STM32F1xx_NUCLEO -o "stm32f1xx_lcd.o" --omf_browse "stm32f1xx_lcd.crf" --depend "stm32f1xx_lcd.d")
 I (.\inc\stm32f1xx_LCD.h)(0x5616F75E)
 I (C:\Keil\ARM\ARMCC\bin\..\include\stdlib.h)(0x4EB1A574)
 I (C:\Keil\ARM\ARMCC\bin\..\include\stdarg.h)(0x4EB1A56C)
@@ -538,7 +538,7 @@ I (.\CMSIS\inc\stm32f1xx_hal_pwr.h)(0x548F85A6)
 I (.\CMSIS\inc\stm32f1xx_hal_spi.h)(0x548F85A6)
 I (.\CMSIS\inc\stm32f1xx_hal_tim.h)(0x548F85A6)
 I (.\CMSIS\inc\stm32f1xx_hal_tim_ex.h)(0x548F85A6)
-I (.\inc\glcdfont.h)(0x56033048)
+I (.\inc\glcdfont.h)(0x5620A406)
 F (.\src\Switches.c)(0x561836A6)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork -I.\inc -I.\CMSIS\inc -I.\CMSIS\src -I.\src -I..\inc -I..\src -I C:\Keil\ARM\RV31\INC -I C:\Keil\ARM\CMSIS\Include -I C:\Keil\ARM\Inc\ST\STM32F10x -DUSE_HAL_DRIVER -DSTM32F103xB -DUSE_STM32F1xx_NUCLEO -o "switches.o" --omf_browse "switches.crf" --depend "switches.d")
 I (.\inc\Switches.h)(0x561B8FE3)
 I (C:\Keil\ARM\ARMCC\bin\..\include\stdlib.h)(0x4EB1A574)
@@ -570,8 +570,8 @@ I (.\CMSIS\inc\stm32f1xx_hal_pwr.h)(0x548F85A6)
 I (.\CMSIS\inc\stm32f1xx_hal_spi.h)(0x548F85A6)
 I (.\CMSIS\inc\stm32f1xx_hal_tim.h)(0x548F85A6)
 I (.\CMSIS\inc\stm32f1xx_hal_tim_ex.h)(0x548F85A6)
-F (.\src\syringepump.c)(0x561F6F68)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork -I.\inc -I.\CMSIS\inc -I.\CMSIS\src -I.\src -I..\inc -I..\src -I C:\Keil\ARM\RV31\INC -I C:\Keil\ARM\CMSIS\Include -I C:\Keil\ARM\Inc\ST\STM32F10x -DUSE_HAL_DRIVER -DSTM32F103xB -DUSE_STM32F1xx_NUCLEO -o "syringepump.o" --omf_browse "syringepump.crf" --depend "syringepump.d")
-I (.\inc\syringepump.h)(0x561F5678)
+F (.\src\syringepump.c)(0x5620E76B)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork -I.\inc -I.\CMSIS\inc -I.\CMSIS\src -I.\src -I..\inc -I..\src -I C:\Keil\ARM\RV31\INC -I C:\Keil\ARM\CMSIS\Include -I C:\Keil\ARM\Inc\ST\STM32F10x -DUSE_HAL_DRIVER -DSTM32F103xB -DUSE_STM32F1xx_NUCLEO -o "syringepump.o" --omf_browse "syringepump.crf" --depend "syringepump.d")
+I (.\inc\syringepump.h)(0x56209626)
 I (.\inc\stm32f1xx_LCD.h)(0x5616F75E)
 I (C:\Keil\ARM\ARMCC\bin\..\include\stdlib.h)(0x4EB1A574)
 I (C:\Keil\ARM\ARMCC\bin\..\include\stdarg.h)(0x4EB1A56C)
@@ -602,7 +602,7 @@ I (.\CMSIS\inc\stm32f1xx_hal_pwr.h)(0x548F85A6)
 I (.\CMSIS\inc\stm32f1xx_hal_spi.h)(0x548F85A6)
 I (.\CMSIS\inc\stm32f1xx_hal_tim.h)(0x548F85A6)
 I (.\CMSIS\inc\stm32f1xx_hal_tim_ex.h)(0x548F85A6)
-I (.\inc\glcdfont.h)(0x56033048)
+I (.\inc\glcdfont.h)(0x5620A406)
 I (.\inc\Switches.h)(0x561B8FE3)
 I (.\inc\stm32f1xx_PWM.h)(0x561F70CB)
 I (.\inc\Syringe_Size.h)(0x5616B34E)
@@ -665,12 +665,12 @@ I (.\CMSIS\inc\stm32f1xx_hal_pwr.h)(0x548F85A6)
 I (.\CMSIS\inc\stm32f1xx_hal_spi.h)(0x548F85A6)
 I (.\CMSIS\inc\stm32f1xx_hal_tim.h)(0x548F85A6)
 I (.\CMSIS\inc\stm32f1xx_hal_tim_ex.h)(0x548F85A6)
-I (.\inc\syringepump.h)(0x561F5678)
+I (.\inc\syringepump.h)(0x56209626)
 I (.\inc\stm32f1xx_LCD.h)(0x5616F75E)
 I (C:\Keil\ARM\ARMCC\bin\..\include\stdlib.h)(0x4EB1A574)
 I (C:\Keil\ARM\ARMCC\bin\..\include\stdarg.h)(0x4EB1A56C)
 I (C:\Keil\ARM\ARMCC\bin\..\include\stdio.h)(0x4EB1A576)
-I (.\inc\glcdfont.h)(0x56033048)
+I (.\inc\glcdfont.h)(0x5620A406)
 I (.\inc\Switches.h)(0x561B8FE3)
 I (.\inc\stm32f1xx_PWM.h)(0x561F70CB)
 F (.\src\stm32f1xx_hal_msp.c)(0x561F418D)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork -I.\inc -I.\CMSIS\inc -I.\CMSIS\src -I.\src -I..\inc -I..\src -I C:\Keil\ARM\RV31\INC -I C:\Keil\ARM\CMSIS\Include -I C:\Keil\ARM\Inc\ST\STM32F10x -DUSE_HAL_DRIVER -DSTM32F103xB -DUSE_STM32F1xx_NUCLEO -o "stm32f1xx_hal_msp.o" --omf_browse "stm32f1xx_hal_msp.crf" --depend "stm32f1xx_hal_msp.d")

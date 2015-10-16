@@ -67,21 +67,22 @@ void PumpRate(void)
 
 void PrintDecimal(uint16_t value,uint8_t Size)
 {
- char digit[4]={0,0,0,0};
-		digit[0] = (unsigned int)(value/100);									 // Calculate digit1 of ADC_value
-		digit[1] = (unsigned int)((value - digit[0]*100)/10);						 // Calculate digit2 of ADC_value
-		digit[2] = (unsigned int)((value - (digit[0]*100+digit[1]*10))/1);			 // Calculate digit3 of ADC_value
-		//digit[3] = (unsigned int)((value - (digit[0]*1000+digit[1]*100+digit[2]*10))/1);	 // Calculate digit4 of ADC_value
-		digit[0]=digit[0]+0x30;
-		digit[1]=digit[1]+0x30;
-		digit[2]=digit[2]+0x30;
-		//digit[3]=digit[3]+0x30;
-	if(Size==36)
-      LCD_Printf36(digit);
-	else if(Size==20)
-	{
-			LCD_Printf20(&digit[1]);
-	}
+//  char digit[4]={0,0,0,0};
+// 		digit[0] = (unsigned int)(value/100);									 // Calculate digit1 of ADC_value
+// 		digit[1] = (unsigned int)((value - digit[0]*100)/10);						 // Calculate digit2 of ADC_value
+// 		digit[2] = (unsigned int)((value - (digit[0]*100+digit[1]*10))/1);			 // Calculate digit3 of ADC_value
+// 		//digit[3] = (unsigned int)((value - (digit[0]*1000+digit[1]*100+digit[2]*10))/1);	 // Calculate digit4 of ADC_value
+// 		digit[0]=digit[0]+0x30;
+// 		digit[1]=digit[1]+0x30;
+// 		digit[2]=digit[2]+0x30;
+// 		//digit[3]=digit[3]+0x30;
+// 	if(Size==36)
+// 		
+//       LCD_Printf36(digit);
+// 	else if(Size==20)
+// 	{
+// 			LCD_Printf20(&digit[1]);
+// 	}
 		
 		//LCD_Printf(digit2);
 //LCD_Printf(digit3);
@@ -90,13 +91,52 @@ void PrintDecimal(uint16_t value,uint8_t Size)
 }
 
 
+char *ConvertToDecimal(uint16_t value)
+{
+static char digit[5]={0,0,0,0,0};
+		digit[0] = (unsigned int)(value/10000);									 // Calculate digit1 of ADC_value
+		digit[1] = (unsigned int)((value - digit[0]*10000)/1000);						 // Calculate digit2 of ADC_value
+		digit[2] = (unsigned int)((value - (digit[0]*10000+digit[1]*1000))/100);			 // Calculate digit3 of ADC_value
+		digit[3] = (unsigned int)((value - (digit[0]*10000+digit[1]*1000+digit[2]*100))/10);	 // Calculate digit4 of ADC_value
+		digit[4] = (unsigned int)((value - (digit[0]*10000+digit[1]*1000+digit[2]*100+digit[3]*10))/1);	 // Calculate digit4 of ADC_value
+
+		digit[0]=digit[0]+0x30;
+		digit[1]=digit[1]+0x30;
+		digit[2]=digit[2]+0x30;
+		digit[3]=digit[3]+0x30;
+		digit[4]=digit[4]+0x30;
+		return digit;
+
+
+}
+
+
+
+
 /*Print the Rate of injection in ml/hour*/
 void PrintRate(uint16_t value)
 {
+	uint8_t *ConvertedValue;
+	uint8_t *ConvertedValuecheck;
+	uint16_t positionX = Position18;
 	
 	Print_Text_On(Line4,Position18);
-	LCD_SetTextColor(YELLOW,m_textbgcolor);	
-  PrintDecimal(value,36);
+	LCD_SetTextColor(YELLOW,m_textbgcolor);
+	ConvertedValue = ConvertToDecimal(value);
+	ConvertedValuecheck = ConvertedValue;
+	ConvertedValue++;
+	ConvertedValue++;
+	while(*ConvertedValue=='0')
+	{
+	//if most left bit is 0, then that should be replaced by using space
+	// But in lcd fonts array is of reduced size, space is comming in the place of ':'
+	LCD_Printf36(":");          
+		                          
+	ConvertedValue++;
+	}
+
+		
+  LCD_Printf36(ConvertedValue);
 
 }
 
@@ -104,6 +144,7 @@ void PrintRate(uint16_t value)
 /*Print the size of the syringe*/
 void Print_Syringe_Size(uint16_t value)
 {
+	char *ConvertedValue;
 	if(Current_Screen!=1)
 	{
 		Initial_Screen();
@@ -111,7 +152,8 @@ void Print_Syringe_Size(uint16_t value)
 	
 	LCD_SetTextColor(GREEN,m_textbgcolor);
 	Print_Text_On(Line1,Position32);	
-  PrintDecimal(value,20);
+  ConvertedValue = ConvertToDecimal(value);
+  LCD_Printf20(ConvertedValue+3);
 	
 }
 
@@ -425,11 +467,15 @@ void Alarm_Piston_Lock(void)
 }
 void Print_Injected_Volume(void)
 {
+	uint8_t *ConvertedValue;
+	uint32_t Display_volume=0;
 	Print_Text_On(Line4,Position12);
 	LCD_SetTextColor(GREEN,m_textbgcolor);		
 	
-	PrintDecimal( Injected_Volume,36);
-
+	Display_volume = ((PumpingRate*Injected_Volume*100)/36);      //  rate per hour is changed to rate per second and decimal point is adjusted
+	
+	ConvertedValue = ConvertToDecimal(Display_volume);
+	LCD_Printf36(ConvertedValue);
 
 
 }
