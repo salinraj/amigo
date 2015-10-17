@@ -7,7 +7,7 @@ extern __IO uint16_t   aADCxConvertedValues[ADCCONVERTEDVALUES_BUFFER_SIZE];
 extern uint16_t PumpingRate;
 extern uint8_t Current_Screen;
 uint16_t Syringe_Size_Current=0;
-uint16_t Injected_Volume=0;
+uint32_t Injected_Volume=0;
 
 int main()
 {

@@ -133,7 +133,7 @@ void TIM3_init(void)
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
   Injected_Volume ++;
-	if(Injected_Volume>=1000) Injected_Volume=0;
+	if(Injected_Volume>=100000) Injected_Volume=0;
 
 }
 

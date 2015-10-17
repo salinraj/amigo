@@ -117,13 +117,10 @@ static char digit[5]={0,0,0,0,0};
 void PrintRate(uint16_t value)
 {
 	uint8_t *ConvertedValue;
-	uint8_t *ConvertedValuecheck;
-	uint16_t positionX = Position18;
 	
 	Print_Text_On(Line4,Position18);
 	LCD_SetTextColor(YELLOW,m_textbgcolor);
 	ConvertedValue = ConvertToDecimal(value);
-	ConvertedValuecheck = ConvertedValue;
 	ConvertedValue++;
 	ConvertedValue++;
 	while(*ConvertedValue=='0')
@@ -239,7 +236,7 @@ if(Current_Screen!=1)
 
 void Running_Screen(void)
 {
-	
+		uint8_t *ConvertedValue;
 	if(Current_Screen!= 2 )
 	{
 // 	Print_Text_On(Line1,Position14);
@@ -260,10 +257,30 @@ void Running_Screen(void)
 	//PrintRate(PumpingRate);
 	Print_Text_On(195,Position18);
 	LCD_SetTextColor(YELLOW,m_textbgcolor);	
-  PrintDecimal(PumpingRate,36);
+  //PrintDecimal(PumpingRate,36);
+		
+	ConvertedValue = ConvertToDecimal(PumpingRate);
+	ConvertedValue++;
+	ConvertedValue++;
+	while(*ConvertedValue=='0')
+	{
+	//if most left bit is 0, then that should be replaced by using space
+	// But in lcd fonts array is of reduced size, space is comming in the place of ':'
+	LCD_Printf36(":");          
+		                          
+	ConvertedValue++;
+	}
+  LCD_Printf36(ConvertedValue);
+	
+	
 	Print_Text_On(Line9,Position33);
 	LCD_SetTextColor(GREEN,m_textbgcolor);
   LCD_Printf20("ml/h");
+	
+	
+	Print_Text_On(Line5,Position40);
+	LCD_SetTextColor(LCD_Color565(79,185,249),m_textbgcolor);
+  LCD_Printf20("ml");
 	Current_Screen=2;	
 	}
 	
@@ -469,14 +486,29 @@ void Print_Injected_Volume(void)
 {
 	uint8_t *ConvertedValue;
 	uint32_t Display_volume=0;
-	Print_Text_On(Line4,Position12);
+	Print_Text_On(Line4,Position9);
 	LCD_SetTextColor(GREEN,m_textbgcolor);		
 	
-	Display_volume = ((PumpingRate*Injected_Volume*100)/36);      //  rate per hour is changed to rate per second and decimal point is adjusted
+	Display_volume = ((PumpingRate*Injected_Volume)/36);      //  rate per hour is changed to rate per second and decimal point is adjusted
 	
-	ConvertedValue = ConvertToDecimal(Display_volume);
-	LCD_Printf36(ConvertedValue);
-
+	ConvertedValue = ConvertToDecimal(Display_volume/100);
+	ConvertedValue++;
+		while(*ConvertedValue=='0')
+	{
+	//if most left bit is 0, then that should be replaced by using space
+	// But in lcd fonts array is of reduced size, space is comming in the place of ':'
+	LCD_Printf36(":");          
+		                          
+	ConvertedValue++;
+	}
+	LCD_Printf36(ConvertedValue);	
+	ConvertedValue = ConvertToDecimal(Display_volume%100);
+	//
+	//LCD_Printf20(".");
+	
+	Print_Text_On(Line5,Position30);
+	LCD_Printf20(ConvertedValue+3);
+	LCD_FillRect(165,115,5,5,GREEN);
 
 }
 
